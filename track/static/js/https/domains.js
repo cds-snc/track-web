@@ -178,12 +178,12 @@ $(function () {
 
     bod_crypto: {
       en: {
-        "-1": "--", // No HTTPS
+        "-1": "N/A", // No HTTPS
         0: "No",
         1: "Yes"
       },
       fr: {
-        "-1": "--",
+        "-1": "ND",
         0: "Non",
         1: "Oui"
       }
@@ -199,7 +199,7 @@ $(function () {
       fr: {
         0: "Non", 
         1: "Prêt", 
-        2: "<strong>Yes</strong>"
+        2: "<strong>Oui</strong>"
       }
     },
 
