@@ -1,4 +1,4 @@
-CircleCI Status: [![CircleCI](https://circleci.com/gh/cds-snc/pulse.svg?style=svg)](https://circleci.com/gh/cds-snc/pulse)
+CircleCI Status: [![CircleCI](https://circleci.com/gh/cds-snc/track-web.svg?style=svg)](https://circleci.com/gh/cds-snc/track-web)
 
 ## Track Government of Canada domains's adherance to digital security practices
 
@@ -13,7 +13,7 @@ How the GC domain space is doing at best practices and federal requirements.
 ## Developer Notes
 
 This repository is using [snyk](https://snyk.io/org/cds-snc) to scan our dependencies for vulnerabilities.  
-Unfortunatly Synk lacks the ability to detect the dependencies listed in the `setup.py` files in the `track_digital` and `tracker` directories.
+Unfortunatly Synk lacks the ability to detect the dependencies listed in the `setup.py` file.
 To get around this we are have the dependencies synced between the `setup.py` and `requirements.txt` (which snyk can scan) files.  
 If you are developing this and add an aditional dependency, make sure to add it to both locations
 
@@ -25,9 +25,7 @@ This dashboard is a [Flask](http://flask.pocoo.org/) app written for **Python 3.
 
 To setup local python dependencies you can run `make setup` from the root of the repository. We recommend that this is done from within a virtual environment
 
-### Web app
-
-From the `track_digital` subdirectory
+To prepare data for presentation, please see the [tracker](https://github.com/cds-snc/tracker) repository.
 
 * Install dependencies:
 
@@ -63,60 +61,6 @@ This will run the app with `DEBUG` mode on, showing full error messages in-brows
 When running in development mode it is expected that you have a database running locally, accessable via `localhost:27017`.
 
 To produce some data for the flask app to display, follow the instructions in the following section.
-
-### Domain scanner
-
-from the `tracker` subdirectory
-
-* Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-* If developing tracker, you will also need the development requirements
-```bash
-pip install .[development]
-```
-
-#### Install domain-scan and dependencies
-
-Download and set up `domain-scan` [from GitHub](https://github.com/cds-snc/domain-scan) as per it's setup instructions.
-
-`domain-scan` in turn requires [`pshtt`](https://github.com/dhs-ncats/pshtt) and [`sslyze`](https://github.com/nabla-c0d3/sslyze). These can be installed directly via `pip`.
-
-The app requires you to set one environment variable:
-
-* `DOMAIN_SCAN_PATH`: A path to `domain-scan`'s `scan` binary.
-* `DOMAIN_GATHER_PATH`: A path to `domain-scan`'s `gather` binary.
-
-However, if you don't have `pshtt` and `sslyze` on your PATH, then `domain-scan` may need you to set a couple others:
-
-* `PSHTT_PATH`: Path to the `pshtt` binary.
-* `SSLYZE_PATH`: Path to the `sslyze` binary.
-
-#### Then run it
-
-From the `tracker` subdirectory:
-
-```
-tracker run
-```
-
-This will kick off the `domain-scan` scanning process for HTTP/HTTPS and DAP participation, using the domain lists as specified in `tracker/data/data_meta.yml` for the base set of domains to scan.
-
-Then it will run the scan data through post-processing producing some JSON and CSV files as scan artifacts and finally uploading the results into the database that the frontend uses to render the information (by default if not further specified `localhost:21017/track`).
-
-For a more detailed step by step procedue of getting a local development deployment going, checkout out the [Local Deploy Step-by-step](docs/local-instructions.md) document!
-
-#### Scanner CLI
-
-The scanner portion has a CLI that can be used to perform individual parts of the scanning in isolation of the other steps.
-By following the steps to setup the Scanning portion, this CLI should be readily accessable to you (if you have activated the environment you installed it into).
-As you may have guesed from the command in the previous section, the CLI command is `tracker`.
-
-Help on how to use the CLI can be output via the command `tracker --help`
-
 
 ## Public domain
 

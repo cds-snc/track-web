@@ -34,7 +34,7 @@ LABELS = {
 }
 
 
-FIELD_MAPPING: typing.Dict[str, typing.Dict] = {
+FIELD_MAPPING = {
     "common": {},
     "https": {
         "compliant": {

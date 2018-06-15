@@ -1,15 +1,15 @@
 import setuptools
 
 setuptools.setup(
-    name='tracker',
+    name='track-web',
     version='0.0.1',
     long_description='',
     author='GSA 18F, CDS-SNC',
     author_email='pulse@cio.gov, cds-snc@tbs-sct.gc.ca',
-    url='https://github.com/cds-snc/pulse',
+    url='https://github.com/cds-snc/track-web',
     include_package_data=True,
     packages=[
-        'data',
+        'track',
     ],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
@@ -18,11 +18,16 @@ setuptools.setup(
         'Programming Language :: Python :: 3',
     ],
     install_requires=[
+        'flask==0.12',
+        'gunicorn==19.6.0',
         'pyyaml==3.12',
-        'pymongo==3.6.1',
-        'ujson==1.35',
-        'click==6.7',
         'python-slugify==1.2.1',
+        'Flask-PyMongo==0.5.1',
+        'ujson==1.35',
+        'flask-compress==1.4.0',
+        'click==6.7',
+        'gevent==1.2.2',
+        'Babel==2.6.0',
     ],
     extras_require={
         'development': [
@@ -32,9 +37,4 @@ setuptools.setup(
             'pytest-cov==2.5.1',
         ],
     },
-    entry_points='''
-        [console_scripts]
-        tracker=data.cli:main
-    '''
-
 )
