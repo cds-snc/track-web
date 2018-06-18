@@ -1,3 +1,4 @@
+from http import HTTPStatus
 import os
 from flask import render_template, Response, abort, request
 import ujson
@@ -52,7 +53,11 @@ def register(app):
 
     @app.route("/cache-buster")
     def cache_bust():
-        cache.clear()
+        try:
+            cache.clear()
+            return HTTPStatus.OK
+        except:
+            return HTTPStatus.INTERNAL_SERVER_ERROR
 
     ##
     # Data endpoints.
