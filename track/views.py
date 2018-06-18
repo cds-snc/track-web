@@ -1,9 +1,9 @@
-
-from flask import render_template, Response, abort, request
-from track import models
-from track.data import FIELD_MAPPING
 import os
+from flask import render_template, Response, abort, request
 import ujson
+from track.data import FIELD_MAPPING
+from track import models
+from track.cache import cache
 
 def register(app):
 
@@ -50,11 +50,16 @@ def register(app):
         else:
             abort(404)
 
+    @app.route("/cache-buster")
+    def cache_bust():
+        cache.clear()
+
     ##
     # Data endpoints.
 
     # High-level %'s, used to power the donuts.
     @app.route("/data/reports/<report_name>.json")
+    @cache.cached()
     def report(report_name):
         response = Response(ujson.dumps(models.Report.latest().get(report_name, {})))
         response.headers['Content-Type'] = 'application/json'
@@ -62,6 +67,7 @@ def register(app):
 
     # Detailed data per-parent-domain.
     @app.route("/data/domains/<report_name>.<ext>")
+    @cache.cached()
     def domain_report(report_name, ext):
         domains = models.Domain.eligible_parents(report_name)
         domains = sorted(domains, key=lambda k: k['domain'])
@@ -76,6 +82,7 @@ def register(app):
 
     # Detailed data per-host for a given report.
     @app.route("/data/hosts/<report_name>.<ext>")
+    @cache.cached()
     def hostname_report(report_name, ext):
         domains = models.Domain.eligible(report_name)
 
@@ -93,6 +100,7 @@ def register(app):
 
     # Detailed data for all subdomains of a given parent domain, for a given report.
     @app.route("/data/hosts/<domain>/<report_name>.<ext>")
+    @cache.cached()
     def hostname_report_for_domain(domain, report_name, ext):
         domains = models.Domain.eligible_for_domain(domain, report_name)
 
@@ -109,6 +117,7 @@ def register(app):
         return response
 
     @app.route("/data/organizations/<report_name>.json")
+    @cache.cached()
     def organization_report(report_name):
         domains = models.Organization.eligible(report_name)
         response = Response(ujson.dumps({'data': domains}))
