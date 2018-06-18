@@ -315,7 +315,7 @@ $(function () {
           link.addClass("loading").html("<img src=\"/static/images/arrow.png\" class=\"mr-2 h-2\">" + text.loading[language] + base_domain + " services...");
 
           $.ajax({
-            url: "/data/hosts/" + base_domain + "/https.json" + Utils.cacheBust(),
+            url: "/data/hosts/" + base_domain + "/https.json",
             success: function(response) {
               loadHostData(row, base_domain, response.data);
 
