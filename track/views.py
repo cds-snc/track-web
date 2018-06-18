@@ -49,7 +49,7 @@ def register(app):
         if(prefix == 'en' or prefix == 'fr'):
             return os.path.join(prefix, '{}.html'.format(page_id))
         else:
-            abort(404)
+            abort(HTTPStatus.NOT_FOUND)
 
     @app.route("/cache-buster")
     def cache_bust():
@@ -136,4 +136,4 @@ def register(app):
 
     @app.errorhandler(404)
     def page_not_found(e):
-      return render_template('404.html'), 404
+        return render_template('404.html'), HTTPStatus.NOT_FOUND
