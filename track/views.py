@@ -55,9 +55,9 @@ def register(app):
     def cache_bust():
         try:
             cache.clear()
-            return HTTPStatus.OK
-        except:
-            return HTTPStatus.INTERNAL_SERVER_ERROR
+            return '', HTTPStatus.NO_CONTENT
+        except Exception as exc:
+            return str(exc), HTTPStatus.INTERNAL_SERVER_ERROR
 
     ##
     # Data endpoints.
