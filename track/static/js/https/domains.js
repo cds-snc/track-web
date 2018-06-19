@@ -55,10 +55,6 @@ $(function () {
           data: "totals.crypto.good_cert",
           render: Tables.percentTotals("crypto", "good_cert")
         },
-        // {
-        //   data: "https.preloaded",
-        //   render: display(names.preloaded[language])
-        // },
         {
           data: "",
           render: Tables.noop
