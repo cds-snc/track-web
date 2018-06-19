@@ -93,6 +93,9 @@ var Tables = {
 
   // common render helper for percent bars
   percentBar: function(data) {
+    //values under 6 look weird, set default to 6
+    if(data > 0 && data < 6) data = 6;
+
     return '' +
       '<div class="progress-bar-indication">' +
         '<span class="meter width' + data + '" style="width: ' + data + '%">' +
