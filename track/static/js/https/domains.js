@@ -247,7 +247,7 @@ $(function () {
       var host = hosts[i];
       var details = $("<tr/>").addClass("host");
 
-      var link = "<a href=\"" + host.canonical + "\" target=\"blank\">" + Utils.truncate(host.domain, 35) + "</a>";
+      var link = "<a class=\"word-break\" href=\"" + host.canonical + "\" target=\"blank\">" + Utils.truncate(host.domain, 35) + "</a></div>";
       details.append($("<td/>").addClass("link").html(link));
 
       var https = names.enforces[language][host.https.enforces];
@@ -365,7 +365,7 @@ $(function () {
   };
 
   var n = function(text) {
-    return "<div style=\"-ms-word-break: break-all; word-break: break-all; word-break: break-word;\"><strong>" + text + "</strong></div>";
+    return "<div class=\"word-break\"><strong>" + text + "</strong></div>";
   }
 
 })
