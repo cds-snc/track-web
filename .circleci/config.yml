@@ -24,6 +24,7 @@ jobs:
               . .env/bin/activate
               # pylint src tests -- Major overhaul needed to not fail linting, not including linting in tests for now
               # mypy src tests
+              ./utils/sync_dependencies.py setup.py requirements.txt
               pytest --cov=track tests
           name: "Running tests"
     working_directory: ~/repo
