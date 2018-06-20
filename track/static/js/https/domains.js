@@ -52,8 +52,8 @@ $(function () {
           render: Tables.percentTotals("crypto", "bod_crypto")
         },
         {
-          data: "https.preloaded",
-          render: display(names.preloaded[language])
+          data: "totals.crypto.good_cert",
+          render: Tables.percentTotals("crypto", "good_cert")
         },
         {
           data: "",
@@ -189,20 +189,18 @@ $(function () {
       }
     },
 
-    // Parent domains only
-    preloaded: {
+    good_cert: {
       en: {
-        0: "No",  // No
-        1: "Ready",  // Preload-ready
-        2: "<strong>Yes</strong>"  // Yes
+        "-1": "<strong>No</strong>",
+        0: "<strong>No</strong>",
+        1: "Yes",
       },
       fr: {
-        0: "Non", 
-        1: "Prêt", 
-        2: "<strong>Yes</strong>"
+        "-1": "<strong>Non</strong>",
+        0: "<strong>Non</strong>",
+        1: "Oui",
       }
-    },
-
+    }
   };
 
   var display = function(set) {
@@ -260,6 +258,9 @@ $(function () {
 
       var crypto = displayCrypto(host);
       details.append($("<td/>").html(crypto));
+
+      var good_cert = names.good_cert[language][host.https.good_cert];
+      details.append($("<td/>").html(good_cert));
 
       // blank
       details.append($("<td/>"));
