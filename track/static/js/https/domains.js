@@ -365,7 +365,7 @@ $(function () {
   };
 
   var n = function(text) {
-    return "<div style=\"-ms-word-break: break-all; word-break: break-all; word-break: break-word;\">" + text + "</div>";
+    return "<div style=\"-ms-word-break: break-all; word-break: break-all; word-break: break-word;\"><strong>" + text + "</strong></div>";
   }
 
 })
