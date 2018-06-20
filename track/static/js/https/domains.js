@@ -40,6 +40,10 @@ $(function () {
         },
         {data: "organization_name_" + language}, // here for filtering/sorting
         {
+          data: "totals.https.compliant",
+          render: Tables.percentTotals("https", "compliant")
+        },
+        {
           data: "totals.https.enforces",
           render: Tables.percentTotals("https", "enforces")
         },
@@ -143,6 +147,19 @@ $(function () {
   };
 
   var names = {
+
+    compliant: {
+      en: {
+        "-1": "<strong>No</strong>",
+        0: "<strong>No</strong>",
+        1: "Yes",
+      },
+      fr: {
+        "-1": "<strong>Non</strong>",
+        0: "<strong>Non</strong>",
+        1: "Oui",
+      }
+    },
 
     enforces: {
       en: {
@@ -250,8 +267,11 @@ $(function () {
       var link = "<a href=\"" + host.canonical + "\" target=\"blank\">" + Utils.truncate(host.domain, 35) + "</a>";
       details.append($("<td/>").addClass("link").html(link));
 
+      var compliant = names.compliant[language][host.https.compliant];
+      details.append($("<td class=\"compliant\"/>").html(compliant));
+
       var https = names.enforces[language][host.https.enforces];
-      details.append($("<td class=\"compliant\"/>").html(https));
+      details.append($("<td/>").html(https));
 
       var hsts = names.hsts[language][host.https.hsts];
       details.append($("<td/>").html(hsts));
