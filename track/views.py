@@ -1,4 +1,3 @@
-
 from flask import render_template, Response, abort, request
 from track import models
 from track.data import FIELD_MAPPING
@@ -122,8 +121,6 @@ def register(app):
         response = Response(ujson.dumps({'data': organizations}))
         response.headers['Content-Type'] = 'application/json'
         return response
-
-        pass
 
     # Detailed data per-host for a given report.
     @app.route("/data/hosts/<report_name>.<ext>")
