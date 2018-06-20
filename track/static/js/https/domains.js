@@ -4,7 +4,7 @@ $(function () {
   var table;
 
   // Populate with parent domain data, expand hosts per-domain
-  $.get("/data/domains/https.json" + Utils.cacheBust(), function(data) {
+  $.get("/data/domains-table.json" + Utils.cacheBust(), function(data) {
     table = Tables.init(data.data, {
 
       csv: "/data/hosts/https.csv",
