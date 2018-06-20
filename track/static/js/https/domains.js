@@ -365,7 +365,7 @@ $(function () {
   };
 
   var n = function(text) {
-    return "<strong class=\"neutral\">" + text + "</strong>";
+    return "<div style=\"-ms-word-break: break-all; word-break: break-all; word-break: break-word;\">" + text + "</div>";
   }
 
 })
