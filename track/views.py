@@ -74,6 +74,14 @@ def register(app):
           response.headers['Content-Type'] = 'text/csv'
         return response
 
+    @app.route("/data/domains-table.json")
+    def domains_table():
+        pass
+
+    @app.route("/data/organizations-table.json")
+    def organizations_table():
+        pass
+
     # Detailed data per-host for a given report.
     @app.route("/data/hosts/<report_name>.<ext>")
     def hostname_report(report_name, ext):
