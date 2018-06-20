@@ -53,7 +53,7 @@ var Tables = {
 
     // Paginate to 100 per-page by default.
     if (!options.dom) options.dom = 'fCtrip';
-    if (!options.pageLength) options.pageLength = 100;
+    if (!options.pageLength) options.pageLength = 25;
 
     var table = $("table").DataTable(options);
 
@@ -69,7 +69,7 @@ var Tables = {
   // sets some organization-table-specific options
   initAgency: function(data, options) {
     // Don't paginate organization tables by default.
-    if (!options.pageLength) options.pageLength = 100;
+    if (!options.pageLength) options.pageLength = 25;
     if (!options.dom) options.dom = 'fCtrip';
 
     return Tables.init(data, options);
