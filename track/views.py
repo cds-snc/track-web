@@ -57,7 +57,6 @@ def register(app):
             cache.clear()
             return '', HTTPStatus.NO_CONTENT
         except Exception as exc:
-            app.logger.error(str(exc))
             return str(exc), HTTPStatus.INTERNAL_SERVER_ERROR
 
     ##
