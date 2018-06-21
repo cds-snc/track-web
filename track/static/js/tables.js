@@ -111,11 +111,12 @@ var Tables = {
       var set = totals ? row.totals : row;
       var numerator = set[report][field];
       var denominator = set[report].eligible;
+      var language = $( "table" ).attr("language");
 
       // don't divide by 0!
       if (denominator == 0) {
         if (type == "sort") return -1; // shrug?
-        else return "--";
+        else return {en: "N/A", fr: "ND"}[language]
       }
 
       var percent = Utils.percent(numerator, denominator);

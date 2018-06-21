@@ -24,22 +24,27 @@ $(document).ready(function () {
         },
         {
           data: "https.compliant",
+          type: "numeric",
           render: Tables.percent("https", "compliant")
         },
         {
           data: "https.enforces",
+          type: "numeric",
           render: Tables.percent("https", "enforces")
         },
         {
           data: "https.hsts",
+          type: "numeric",
           render: Tables.percent("https", "hsts")
         },
         {
           data: "crypto.bod_crypto",
+          type: "numeric",
           render: Tables.percent("crypto", "bod_crypto")
         },
         {
           data: "crypto.good_cert",
+          type: "numeric",
           render: Tables.percent("crypto", "good_cert")
         },
       ]
