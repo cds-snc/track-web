@@ -16,6 +16,17 @@ def create_app(environment='development'):
     else:
         app.config.from_object('track.config.ProductionConfig')
     app.config.from_pyfile('application.cfg', silent=True)
+
+    import logging
+    import logging.handlers
+    handler = logging.handlers.SysLogHandler(address=app.config.get('SYSLOG_ADDRESS'))
+    handler.setLevel(app.config.get('LOGLEVEL'))
+
+    formatter = logging.Formatter('%(name)s: [%(levelname)s] %(message)s')
+    handler.setFormatter(formatter)
+
+    app.logger.addHandler(handler)
+
     Compress(app)
 
     from track.cache import cache
