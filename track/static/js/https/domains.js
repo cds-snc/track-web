@@ -41,22 +41,27 @@ $(function () {
         {data: "organization_name_" + language}, // here for filtering/sorting
         {
           data: "totals.https.compliant",
+          type: "numeric",
           render: Tables.percentTotals("https", "compliant")
         },
         {
           data: "totals.https.enforces",
+          type: "numeric",
           render: Tables.percentTotals("https", "enforces")
         },
         {
           data: "totals.https.hsts",
+          type: "numeric",
           render: Tables.percentTotals("https", "hsts")
         },
         {
           data: "totals.crypto.bod_crypto",
+          type: "numeric",
           render: Tables.percentTotals("crypto", "bod_crypto")
         },
         {
           data: "totals.crypto.good_cert",
+          type: "numeric",
           render: Tables.percentTotals("crypto", "good_cert")
         },
         {
