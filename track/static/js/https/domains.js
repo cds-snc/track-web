@@ -252,7 +252,7 @@ $(function () {
       var host = hosts[i];
       var details = $("<tr/>").addClass("host");
 
-      var link = "<a href=\"" + host.canonical + "\" target=\"blank\">" + Utils.truncate(host.domain, 35) + "</a>";
+      var link = "<a class=\"word-break\" href=\"" + host.canonical + "\" target=\"blank\">" + Utils.truncate(host.domain, 35) + "</a></div>";
       details.append($("<td/>").addClass("link").html(link));
 
       var compliant = names.compliant[language][host.https.compliant];
@@ -373,7 +373,7 @@ $(function () {
   };
 
   var n = function(text) {
-    return "<strong class=\"neutral\">" + text + "</strong>";
+    return "<div class=\"word-break\"><strong>" + text + "</strong></div>";
   }
 
 })
