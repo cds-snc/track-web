@@ -92,7 +92,7 @@ $(function () {
     show: {
       en: "Show",
       fr: "Montrer les"
-    } , 
+    },
 
     hide: {
       en: "Hide",
@@ -147,7 +147,12 @@ $(function () {
     subdomains: {
       en: " subdomains",
       fr: " sous-domaines"
-    }
+    },
+
+    subdomain: {
+      en: " subdomain",
+      fr: " sous-domaine"
+    },
 
   };
 
@@ -295,6 +300,8 @@ $(function () {
   var showHideText = function(show, row) {
     if (loneDomain(row))
       return (show ? "<img src=\"/static/images/arrow.png\" class=\"rotated pb-1 mr-1 h-2\">" + text.show[language] : "<img src=\"/static/images/arrow.png\" class=\"mr-2 h-2\">" + text.hide[language]) + " " + text.details[language];
+    else if(row.totals.https.eligible == 1)
+      return (show ? "<img src=\"/static/images/arrow.png\" class=\"rotated pb-1 mr-1 h-2\">" + {en: "Show", fr: "Montrer le"}[language] : "<img src=\"/static/images/arrow.png\" class=\"mr-2 h-2\">" + {en: "Hide", fr: "Cacher le"}[language]) + " " + {en: "1", fr:""}[language] + text.subdomain[language];
     else
       return (show ? "<img src=\"/static/images/arrow.png\" class=\"rotated pb-1 mr-1 h-2\">" + text.show[language] : "<img src=\"/static/images/arrow.png\" class=\"mr-2 h-2\">" + text.hide[language]) + " " + row.totals.https.eligible + text.subdomains[language];
   };
