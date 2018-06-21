@@ -25,15 +25,27 @@ $(function(){
     e.preventDefault();
   });
 
+  // $("#modal").on('click touchstart', function (e) {
+  //   if ($('#modal').hasClass('flex')) console.log("this works");
+
+  //   e.preventDefault();
+  // });
+
   $('#close-btn').on('click touchstart', function (e) {
     toggleModal('hide');
 
     e.preventDefault();
   });
 
+  $(document).click(function(e) {
+    if (!$(event.target).closest("#modal-content, #modal-btn").length && $('#modal').hasClass('flex')){
+      toggleModal('hide');
+    }
+  });
+
   $(document).keyup(function(e) {
     if(e.keyCode === KEYCODE_ESC && $('#modal').hasClass('flex')) {
-      toggleModal('hide')
+      toggleModal('hide');
     }
   })
 
