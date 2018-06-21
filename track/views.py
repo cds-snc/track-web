@@ -85,6 +85,60 @@ def register(app):
           response.headers['Content-Type'] = 'text/csv'
         return response
 
+    @app.route("/data/domains-table.json")
+    def domains_table():
+        domains = models.Domain.find_all(
+            {'https.eligible_zone': True, 'is_parent': True},
+            {
+                '_id': False,
+                'domain': True,
+                'organization_name_en': True,
+                'organization_name_fr': True,
+                'is_parent': True,
+                'base_domain': True,
+                'https.bod_crypto': True,
+                'https.eligible': True,
+                'https.enforces': True,
+                'https.hsts': True,
+                'https.compliant': True,
+                'https.bod_crypto': True,
+                'https.good_cert': True,
+                'totals.https.enforces': True,
+                'totals.https.hsts': True,
+                'totals.https.compliant': True,
+                'totals.https.eligible': True,
+                'totals.crypto.bod_crypto': True,
+                'totals.crypto.good_cert': True,
+                'totals.crypto.eligible': True,
+            }
+        )
+        response = Response(ujson.dumps({'data': domains}))
+        response.headers['Content-Type'] = 'application/json'
+        return response
+
+    @app.route("/data/organizations-table.json")
+    def organizations_table():
+        organizations = models.Organization.find_all(
+            {'https.eligible': {"$gt": 0}},
+            {
+                '_id': False,
+                'total_domains': True,
+                'name_en': True,
+                'name_fr': True,
+                'https.compliant': True,
+                'https.enforces': True,
+                'https.hsts': True,
+                'https.eligible': True,
+                'crypto.bod_crypto': True,
+                'crypto.good_cert': True,
+                'crypto.eligible': True,
+            }
+        )
+        # app.logger.debug([o for o in organizations])
+        response = Response(ujson.dumps({'data': organizations}))
+        response.headers['Content-Type'] = 'application/json'
+        return response
+
     # Detailed data per-host for a given report.
     @app.route("/data/hosts/<report_name>.<ext>")
     @cache.cached()

@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-  $.get("/data/organizations/https.json", function(data) {
+  $.get("/data/organizations-table.json", function(data) {
 
     Tables.initAgency(data.data, {
 
