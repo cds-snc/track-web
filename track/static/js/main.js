@@ -25,11 +25,6 @@ $(function(){
     e.preventDefault();
   });
 
-  // $("#modal").on('click touchstart', function (e) {
-  //   if ($('#modal').hasClass('flex')) console.log("this works");
-
-  //   e.preventDefault();
-  // });
 
   $('#close-btn').on('click touchstart', function (e) {
     toggleModal('hide');
