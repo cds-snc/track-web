@@ -6,8 +6,8 @@ def create_app(environment='development'):
 
     # Gzip compress most things
     app.config['COMPRESS_MIMETYPES'] = [
-      'text/html', 'text/css', 'text/xml',
-      'text/csv', 'application/json', 'application/javascript'
+        'text/html', 'text/css', 'text/xml',
+        'text/csv', 'application/json', 'application/javascript'
     ]
     if environment == 'development':
         app.config.from_object('track.config.DevelopmentConfig')
@@ -17,6 +17,9 @@ def create_app(environment='development'):
         app.config.from_object('track.config.ProductionConfig')
     app.config.from_pyfile('application.cfg', silent=True)
     Compress(app)
+
+    from track.cache import cache
+    cache.init_app(app)
 
     from track import views
     views.register(app)

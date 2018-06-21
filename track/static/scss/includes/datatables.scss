@@ -10,6 +10,12 @@ table caption {
   width: 1px;
 }
 
+.word-break {
+  -ms-word-break: break-all; 
+  word-break: break-all; 
+  word-break: break-word;
+}
+
 .rotated {
   -ms-transform: rotate(-90deg); /* IE 9 */
   -webkit-transform: rotate(-90deg); /* Safari */
@@ -104,7 +110,6 @@ table caption {
     td.compliant {
       border-left: 0px solid black;
       border-right: 0px solid black;
-      font-weight: bold;
       background-color: #eee;
     }
 

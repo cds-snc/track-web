@@ -31,6 +31,7 @@ def extract_txt_requires(requirements_path: pathlib.Path) -> typing.Set[str]:
     with requirements_path.open('r', encoding='utf-8-sig') as req:
         requirements = set(line.rstrip('\n') for line in req.readlines())
         requirements.discard('-e .')
+        requirements.discard('')
         return requirements
 
 

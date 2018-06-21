@@ -53,7 +53,7 @@ var Tables = {
 
     // Paginate to 100 per-page by default.
     if (!options.dom) options.dom = 'fCtrip';
-    if (!options.pageLength) options.pageLength = 100;
+    if (!options.pageLength) options.pageLength = 25;
 
     var table = $("table").DataTable(options);
 
@@ -69,7 +69,7 @@ var Tables = {
   // sets some organization-table-specific options
   initAgency: function(data, options) {
     // Don't paginate organization tables by default.
-    if (!options.pageLength) options.pageLength = 100;
+    if (!options.pageLength) options.pageLength = 25;
     if (!options.dom) options.dom = 'fCtrip';
 
     return Tables.init(data, options);
@@ -111,11 +111,12 @@ var Tables = {
       var set = totals ? row.totals : row;
       var numerator = set[report][field];
       var denominator = set[report].eligible;
+      var language = $( "table" ).attr("language");
 
       // don't divide by 0!
       if (denominator == 0) {
         if (type == "sort") return -1; // shrug?
-        else return "--";
+        else return {en: "N/A", fr: "ND"}[language]
       }
 
       var percent = Utils.percent(numerator, denominator);
