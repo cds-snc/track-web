@@ -195,12 +195,12 @@ $(function () {
 
     bod_crypto: {
       en: {
-        "-1": "--", // No HTTPS
+        "-1": "N/A", // No HTTPS
         0: "<strong>No</strong>, download CSV for details",
         1: "Yes"
       },
       fr: {
-        "-1": "--",
+        "-1": "ND",
         0: "<strong>Non</strong>, download CSV for details",
         1: "Oui"
       }
@@ -208,12 +208,12 @@ $(function () {
 
     good_cert: {
       en: {
-        "-1": "<strong>No</strong>",
+        "-1": "N/A",
         0: "<strong>No</strong>",
         1: "Yes",
       },
       fr: {
-        "-1": "<strong>Non</strong>",
+        "-1": "ND",
         0: "<strong>Non</strong>",
         1: "Oui",
       }
