@@ -66,6 +66,8 @@ $(function(){
       $('#modal-header').focus();
 
       $('#header, #main-content, #goc-footer').attr('aria-hidden', 'true');
+
+      $("body").toggleClass('modal-open');
       
     }
 
@@ -73,6 +75,8 @@ $(function(){
       $('#modal').toggleClass('hidden flex');
 
       $('#header, #main-content, #goc-footer').attr('aria-hidden', 'false');
+
+      $("body").toggleClass('modal-open');
 
       $('#close-btn').focus();
     }
