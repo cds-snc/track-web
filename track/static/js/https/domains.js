@@ -40,6 +40,10 @@ $(function () {
         },
         {data: "organization_name_" + language}, // here for filtering/sorting
         {
+          data: "totals.https.compliant",
+          render: Tables.percentTotals("https", "compliant")
+        },
+        {
           data: "totals.https.enforces",
           render: Tables.percentTotals("https", "enforces")
         },
@@ -144,6 +148,19 @@ $(function () {
 
   var names = {
 
+    compliant: {
+      en: {
+        "-1": "<strong>No</strong>",
+        0: "<strong>No</strong>",
+        1: "Yes",
+      },
+      fr: {
+        "-1": "<strong>Non</strong>",
+        0: "<strong>Non</strong>",
+        1: "Oui",
+      }
+    },
+
     enforces: {
       en: {
         0: "No", // No (no HTTPS)
@@ -179,24 +196,24 @@ $(function () {
     bod_crypto: {
       en: {
         "-1": "N/A", // No HTTPS
-        0: "No",
+        0: "<strong>No</strong>, download CSV for details",
         1: "Yes"
       },
       fr: {
         "-1": "ND",
-        0: "Non",
+        0: "<strong>Non</strong>, download CSV for details",
         1: "Oui"
       }
     },
 
     good_cert: {
       en: {
-        "-1": "<strong>No</strong>",
+        "-1": "N/A",
         0: "<strong>No</strong>",
         1: "Yes",
       },
       fr: {
-        "-1": "<strong>Non</strong>",
+        "-1": "ND",
         0: "<strong>Non</strong>",
         1: "Oui",
       }
@@ -210,23 +227,6 @@ $(function () {
       else
         return set[data.toString()];
     }
-  };
-
-  var displayCrypto = function(row) {
-    // if it's all good, then great
-    if (row.https.bod_crypto != 0)
-      return names.bod_crypto[language][row.https.bod_crypto];
-
-    var problems = [];
-    // if not, what are the problems?
-    if (row.https.rc4) problems.push("RC4");
-    if (row.https['3des']) problems.push("3DES");
-    if (row.https.sslv2) problems.push("SSLv2");
-    if (row.https.sslv3) problems.push("SSLv3");
-    if (row.https.tlsv10) problems.push("TLSv1.0");
-    if (row.https.tlsv11) problems.push("TLSV1.1");
-
-    return text.preloaded[language] + " " + problems.join(", ");
   };
 
   var loadHostData = function(tr, base_domain, hosts) {
@@ -250,13 +250,16 @@ $(function () {
       var link = "<a href=\"" + host.canonical + "\" target=\"blank\">" + Utils.truncate(host.domain, 35) + "</a>";
       details.append($("<td/>").addClass("link").html(link));
 
+      var compliant = names.compliant[language][host.https.compliant];
+      details.append($("<td class=\"compliant\"/>").html(compliant));
+
       var https = names.enforces[language][host.https.enforces];
-      details.append($("<td class=\"compliant\"/>").html(https));
+      details.append($("<td/>").html(https));
 
       var hsts = names.hsts[language][host.https.hsts];
       details.append($("<td/>").html(hsts));
 
-      var crypto = displayCrypto(host);
+      var crypto = names.bod_crypto[language][host.https.bod_crypto];
       details.append($("<td/>").html(crypto));
 
       var good_cert = names.good_cert[language][host.https.good_cert];
