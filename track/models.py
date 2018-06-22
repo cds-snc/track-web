@@ -96,6 +96,15 @@ class Domain:
             }
         )
 
+    @staticmethod
+    def find_all(query: typing.Dict, projection: typing.Dict={'_id': False, '_collection': False}) -> typing.Dict:
+        return db.db.meta.find(
+            {
+                '_collection': 'domains',
+                **query,
+            }, projection,
+        )
+
     # Useful when you want to pull in all domain entries as peers,
     # such as reports which only look at parent domains, or
     # a flat CSV of all hostnames that match a report.
@@ -244,6 +253,15 @@ class Organization:
     @staticmethod
     def find(slug: str) -> typing.Dict:
         return db.db.meta.find_one({'_collection': 'organizations', 'slug': slug}, {'_id': False, '_collection': False})
+
+    @staticmethod
+    def find_all(query: typing.Dict, projection: typing.Dict={'_id': False, '_collection': False}) -> typing.Dict:
+        return db.db.meta.find(
+            {
+                '_collection': 'organizations',
+                **query,
+            }, projection
+        )
 
     @staticmethod
     def all() -> typing.Iterable[typing.Dict]:

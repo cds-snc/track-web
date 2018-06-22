@@ -4,7 +4,7 @@ $(function () {
   var table;
 
   // Populate with parent domain data, expand hosts per-domain
-  $.get("/data/domains/https.json" + Utils.cacheBust(), function(data) {
+  $.get("/data/domains/https.json", function(data) {
     table = Tables.init(data.data, {
 
       csv: "/data/hosts/https.csv",
@@ -324,7 +324,7 @@ $(function () {
           link.addClass("loading").html("<img src=\"/static/images/arrow.png\" class=\"mr-2 h-2\">" + text.loading[language] + base_domain + " services...");
 
           $.ajax({
-            url: "/data/hosts/" + base_domain + "/https.json" + Utils.cacheBust(),
+            url: "/data/hosts/" + base_domain + "/https.json",
             success: function(response) {
               loadHostData(row, base_domain, response.data);
 

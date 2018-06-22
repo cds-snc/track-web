@@ -1,9 +1,13 @@
-
 from flask import render_template, Response, abort, request, redirect
 from track import models
 from track.data import FIELD_MAPPING
+from http import HTTPStatus
 import os
+from flask import render_template, Response, abort, request
 import ujson
+from track.data import FIELD_MAPPING
+from track import models
+from track.cache import cache
 
 def register(app):
 
@@ -53,13 +57,22 @@ def register(app):
         if(prefix == 'en' or prefix == 'fr'):
             return os.path.join(prefix, '{}.html'.format(page_id))
         else:
-            abort(404)
+            abort(HTTPStatus.NOT_FOUND)
+
+    @app.route("/cache-buster")
+    def cache_bust():
+        try:
+            cache.clear()
+            return '', HTTPStatus.NO_CONTENT
+        except Exception as exc:
+            return str(exc), HTTPStatus.INTERNAL_SERVER_ERROR
 
     ##
     # Data endpoints.
 
     # High-level %'s, used to power the donuts.
     @app.route("/data/reports/<report_name>.json")
+    @cache.cached()
     def report(report_name):
         response = Response(ujson.dumps(models.Report.latest().get(report_name, {})))
         response.headers['Content-Type'] = 'application/json'
@@ -67,6 +80,7 @@ def register(app):
 
     # Detailed data per-parent-domain.
     @app.route("/data/domains/<report_name>.<ext>")
+    @cache.cached()
     def domain_report(report_name, ext):
         domains = models.Domain.eligible_parents(report_name)
         domains = sorted(domains, key=lambda k: k['domain'])
@@ -79,8 +93,63 @@ def register(app):
           response.headers['Content-Type'] = 'text/csv'
         return response
 
+    @app.route("/data/domains-table.json")
+    def domains_table():
+        domains = models.Domain.find_all(
+            {'https.eligible_zone': True, 'is_parent': True},
+            {
+                '_id': False,
+                'domain': True,
+                'organization_name_en': True,
+                'organization_name_fr': True,
+                'is_parent': True,
+                'base_domain': True,
+                'https.bod_crypto': True,
+                'https.eligible': True,
+                'https.enforces': True,
+                'https.hsts': True,
+                'https.compliant': True,
+                'https.bod_crypto': True,
+                'https.good_cert': True,
+                'totals.https.enforces': True,
+                'totals.https.hsts': True,
+                'totals.https.compliant': True,
+                'totals.https.eligible': True,
+                'totals.crypto.bod_crypto': True,
+                'totals.crypto.good_cert': True,
+                'totals.crypto.eligible': True,
+            }
+        )
+        response = Response(ujson.dumps({'data': domains}))
+        response.headers['Content-Type'] = 'application/json'
+        return response
+
+    @app.route("/data/organizations-table.json")
+    def organizations_table():
+        organizations = models.Organization.find_all(
+            {'https.eligible': {"$gt": 0}},
+            {
+                '_id': False,
+                'total_domains': True,
+                'name_en': True,
+                'name_fr': True,
+                'https.compliant': True,
+                'https.enforces': True,
+                'https.hsts': True,
+                'https.eligible': True,
+                'crypto.bod_crypto': True,
+                'crypto.good_cert': True,
+                'crypto.eligible': True,
+            }
+        )
+        # app.logger.debug([o for o in organizations])
+        response = Response(ujson.dumps({'data': organizations}))
+        response.headers['Content-Type'] = 'application/json'
+        return response
+
     # Detailed data per-host for a given report.
     @app.route("/data/hosts/<report_name>.<ext>")
+    @cache.cached()
     def hostname_report(report_name, ext):
         domains = models.Domain.eligible(report_name)
 
@@ -98,6 +167,7 @@ def register(app):
 
     # Detailed data for all subdomains of a given parent domain, for a given report.
     @app.route("/data/hosts/<domain>/<report_name>.<ext>")
+    @cache.cached()
     def hostname_report_for_domain(domain, report_name, ext):
         domains = models.Domain.eligible_for_domain(domain, report_name)
 
@@ -114,6 +184,7 @@ def register(app):
         return response
 
     @app.route("/data/organizations/<report_name>.json")
+    @cache.cached()
     def organization_report(report_name):
         domains = models.Organization.eligible(report_name)
         response = Response(ujson.dumps({'data': domains}))
@@ -127,4 +198,4 @@ def register(app):
 
     @app.errorhandler(404)
     def page_not_found(e):
-      return render_template('404.html'), 404
+        return render_template('404.html'), HTTPStatus.NOT_FOUND
