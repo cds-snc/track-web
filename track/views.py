@@ -1,3 +1,6 @@
+from flask import render_template, Response, abort, request, redirect
+from track import models
+from track.data import FIELD_MAPPING
 from http import HTTPStatus
 import os
 from flask import render_template, Response, abort, request
@@ -8,10 +11,15 @@ from track.cache import cache
 
 def register(app):
 
-    # Default route will be English index for now
+    # Default route checks accept-language header
+    # Redirects based on browser language, defaults to english
     @app.route("/")
     def index():
-        return render_template("en/index.html")
+        user_lang = request.headers.get("Accept-Language", "en")
+        if (user_lang[:2] == "fr"):
+            return redirect("/fr/index/")
+        else:
+            return redirect("/en/index/")
 
     @app.route("/en/")
     @app.route("/fr/")
