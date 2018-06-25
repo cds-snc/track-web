@@ -36,7 +36,7 @@ $.fn.dataTable.Download = function ( inst ) {
     if (drawnOnce) return;
 
     var elem = "" +
-      "<a class=\"text-blue hover:text-blue-darker font-bold\" href=\"" + csv + "\" download>" +
+      "<a class=\"text-https-blue hover:text-black font-bold\" href=\"" + csv + "\" download>" +
         text +
       "</a>";
 
