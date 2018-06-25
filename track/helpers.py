@@ -44,7 +44,7 @@ def register(app):
         elif not mobile:
             return "flex-1"
         else:
-            return "mb-4"
+            return ""
 
     @app.template_filter("field_map")
     def field_map(value, category=None, field=None):
