@@ -25,15 +25,22 @@ $(function(){
     e.preventDefault();
   });
 
+
   $('#close-btn').on('click touchstart', function (e) {
     toggleModal('hide');
 
     e.preventDefault();
   });
 
+  $(document).click(function(e) {
+    if (!$(event.target).closest("#modal-content, #modal-btn").length && $('#modal').hasClass('flex')){
+      toggleModal('hide');
+    }
+  });
+
   $(document).keyup(function(e) {
     if(e.keyCode === KEYCODE_ESC && $('#modal').hasClass('flex')) {
-      toggleModal('hide')
+      toggleModal('hide');
     }
   })
 
@@ -54,6 +61,8 @@ $(function(){
       $('#modal-header').focus();
 
       $('#header, #main-content, #goc-footer').attr('aria-hidden', 'true');
+
+      $("body").toggleClass('modal-open');
       
     }
 
@@ -61,6 +70,8 @@ $(function(){
       $('#modal').toggleClass('hidden flex');
 
       $('#header, #main-content, #goc-footer').attr('aria-hidden', 'false');
+
+      $("body").toggleClass('modal-open');
 
       $('#close-btn').focus();
     }
