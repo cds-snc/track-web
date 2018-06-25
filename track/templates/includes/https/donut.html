@@ -9,7 +9,7 @@ function generate_chart() {
     var height = width * 1.2;
     var radius = Math.min(width, height) / 2;
     var color = d3.scale.ordinal()
-        .range(["#606F7B", "#DAE1E7"]);
+        .range(["#4499EE", "#999999"]);
     var arc = d3.svg.arc()
         .outerRadius(radius)
         .innerRadius(radius - 40);
