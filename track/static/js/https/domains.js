@@ -243,15 +243,13 @@ $(function () {
     var all = [];
     var number = hosts.length;
 
-    if (number > 1) {
-      var csv = "/data/hosts/" + base_domain + "/https.csv";
+    var csv = "/data/hosts/" + base_domain + "/https.csv";
 
-      var link = text.link_1[language] + number + text.link_2[language] + base_domain + ".&nbsp;&nbsp;";
-      link += l(csv, text.link_3[language] + base_domain + text.link_4[language]) + ".";
+    var link = text.link_1[language] + number + text.link_2[language] + base_domain + ".&nbsp;&nbsp;";
+    link += l(csv, text.link_3[language] + base_domain + text.link_4[language]) + ".";
 
-      var download = $("<tr></tr>").addClass("subdomain").html("<td class=\"link\" colspan=6>" + link + "</td>");
-      all.push(download);
-    }
+    var download = $("<tr></tr>").addClass("subdomain").html("<td class=\"link\" colspan=6>" + link + "</td>");
+    all.push(download);
 
     for (i=0; i<hosts.length; i++) {
       var host = hosts[i];

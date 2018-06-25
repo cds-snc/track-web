@@ -1,4 +1,4 @@
-CircleCI Status: [![CircleCI](https://circleci.com/gh/cds-snc/track-web.svg?style=svg)](https://circleci.com/gh/cds-snc/track-web)
+[![CircleCI](https://circleci.com/gh/cds-snc/track-web.svg?style=svg)](https://circleci.com/gh/cds-snc/track-web)
 [![Known Vulnerabilities](https://snyk.io/test/github/cds-snc/track-web/badge.svg)](https://snyk.io/test/github/cds-snc/track-web)
 
 

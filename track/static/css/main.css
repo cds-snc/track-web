@@ -40,6 +40,9 @@ th {
 #modal-content {
   height: 80%; }
 
+.modal-open {
+  overflow: hidden; }
+
 table caption {
   left: -10000px;
   height: 1px;
