@@ -29,7 +29,9 @@ th {
   vertical-align: middle; }
 
 #goc-footer {
-  margin-top: 0rem !important; }
+  margin-top: 0rem !important;
+  border-color: #999999 !important;
+  border-top-width: 0.05rem !important; }
 
 #modal {
   background-color: black;

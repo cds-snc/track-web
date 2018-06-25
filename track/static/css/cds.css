@@ -1006,11 +1006,15 @@ label {
 }
 
 .bg-https-dark-gray {
-  background-color: #999;
+  background-color: #888;
 }
 
 .bg-https-light-gray {
   background-color: #efefef;
+}
+
+.bg-alpha-pink {
+  background-color: #f90277;
 }
 
 .bg-black {
@@ -1198,11 +1202,15 @@ label {
 }
 
 .hover\:bg-https-dark-gray:hover {
-  background-color: #999;
+  background-color: #888;
 }
 
 .hover\:bg-https-light-gray:hover {
   background-color: #efefef;
+}
+
+.hover\:bg-alpha-pink:hover {
+  background-color: #f90277;
 }
 
 .hover\:bg-black:hover {
@@ -1454,11 +1462,15 @@ label {
 }
 
 .border-https-dark-gray {
-  border-color: #999;
+  border-color: #888;
 }
 
 .border-https-light-gray {
   border-color: #efefef;
+}
+
+.border-alpha-pink {
+  border-color: #f90277;
 }
 
 .border-black {
@@ -1646,11 +1658,15 @@ label {
 }
 
 .hover\:border-https-dark-gray:hover {
-  border-color: #999;
+  border-color: #888;
 }
 
 .hover\:border-https-light-gray:hover {
   border-color: #efefef;
+}
+
+.hover\:border-alpha-pink:hover {
+  border-color: #f90277;
 }
 
 .hover\:border-black:hover {
@@ -3587,11 +3603,15 @@ label {
 }
 
 .text-https-dark-gray {
-  color: #999;
+  color: #888;
 }
 
 .text-https-light-gray {
   color: #efefef;
+}
+
+.text-alpha-pink {
+  color: #f90277;
 }
 
 .text-black {
@@ -3779,11 +3799,15 @@ label {
 }
 
 .hover\:text-https-dark-gray:hover {
-  color: #999;
+  color: #888;
 }
 
 .hover\:text-https-light-gray:hover {
   color: #efefef;
+}
+
+.hover\:text-alpha-pink:hover {
+  color: #f90277;
 }
 
 .hover\:text-black:hover {
@@ -4360,11 +4384,15 @@ label {
   }
 
   .sm\:bg-https-dark-gray {
-    background-color: #999;
+    background-color: #888;
   }
 
   .sm\:bg-https-light-gray {
     background-color: #efefef;
+  }
+
+  .sm\:bg-alpha-pink {
+    background-color: #f90277;
   }
 
   .sm\:bg-black {
@@ -4552,11 +4580,15 @@ label {
   }
 
   .sm\:hover\:bg-https-dark-gray:hover {
-    background-color: #999;
+    background-color: #888;
   }
 
   .sm\:hover\:bg-https-light-gray:hover {
     background-color: #efefef;
+  }
+
+  .sm\:hover\:bg-alpha-pink:hover {
+    background-color: #f90277;
   }
 
   .sm\:hover\:bg-black:hover {
@@ -4808,11 +4840,15 @@ label {
   }
 
   .sm\:border-https-dark-gray {
-    border-color: #999;
+    border-color: #888;
   }
 
   .sm\:border-https-light-gray {
     border-color: #efefef;
+  }
+
+  .sm\:border-alpha-pink {
+    border-color: #f90277;
   }
 
   .sm\:border-black {
@@ -5000,11 +5036,15 @@ label {
   }
 
   .sm\:hover\:border-https-dark-gray:hover {
-    border-color: #999;
+    border-color: #888;
   }
 
   .sm\:hover\:border-https-light-gray:hover {
     border-color: #efefef;
+  }
+
+  .sm\:hover\:border-alpha-pink:hover {
+    border-color: #f90277;
   }
 
   .sm\:hover\:border-black:hover {
@@ -6933,11 +6973,15 @@ label {
   }
 
   .sm\:text-https-dark-gray {
-    color: #999;
+    color: #888;
   }
 
   .sm\:text-https-light-gray {
     color: #efefef;
+  }
+
+  .sm\:text-alpha-pink {
+    color: #f90277;
   }
 
   .sm\:text-black {
@@ -7125,11 +7169,15 @@ label {
   }
 
   .sm\:hover\:text-https-dark-gray:hover {
-    color: #999;
+    color: #888;
   }
 
   .sm\:hover\:text-https-light-gray:hover {
     color: #efefef;
+  }
+
+  .sm\:hover\:text-alpha-pink:hover {
+    color: #f90277;
   }
 
   .sm\:hover\:text-black:hover {
@@ -7707,11 +7755,15 @@ label {
   }
 
   .md\:bg-https-dark-gray {
-    background-color: #999;
+    background-color: #888;
   }
 
   .md\:bg-https-light-gray {
     background-color: #efefef;
+  }
+
+  .md\:bg-alpha-pink {
+    background-color: #f90277;
   }
 
   .md\:bg-black {
@@ -7899,11 +7951,15 @@ label {
   }
 
   .md\:hover\:bg-https-dark-gray:hover {
-    background-color: #999;
+    background-color: #888;
   }
 
   .md\:hover\:bg-https-light-gray:hover {
     background-color: #efefef;
+  }
+
+  .md\:hover\:bg-alpha-pink:hover {
+    background-color: #f90277;
   }
 
   .md\:hover\:bg-black:hover {
@@ -8155,11 +8211,15 @@ label {
   }
 
   .md\:border-https-dark-gray {
-    border-color: #999;
+    border-color: #888;
   }
 
   .md\:border-https-light-gray {
     border-color: #efefef;
+  }
+
+  .md\:border-alpha-pink {
+    border-color: #f90277;
   }
 
   .md\:border-black {
@@ -8347,11 +8407,15 @@ label {
   }
 
   .md\:hover\:border-https-dark-gray:hover {
-    border-color: #999;
+    border-color: #888;
   }
 
   .md\:hover\:border-https-light-gray:hover {
     border-color: #efefef;
+  }
+
+  .md\:hover\:border-alpha-pink:hover {
+    border-color: #f90277;
   }
 
   .md\:hover\:border-black:hover {
@@ -10280,11 +10344,15 @@ label {
   }
 
   .md\:text-https-dark-gray {
-    color: #999;
+    color: #888;
   }
 
   .md\:text-https-light-gray {
     color: #efefef;
+  }
+
+  .md\:text-alpha-pink {
+    color: #f90277;
   }
 
   .md\:text-black {
@@ -10472,11 +10540,15 @@ label {
   }
 
   .md\:hover\:text-https-dark-gray:hover {
-    color: #999;
+    color: #888;
   }
 
   .md\:hover\:text-https-light-gray:hover {
     color: #efefef;
+  }
+
+  .md\:hover\:text-alpha-pink:hover {
+    color: #f90277;
   }
 
   .md\:hover\:text-black:hover {
@@ -11054,11 +11126,15 @@ label {
   }
 
   .lg\:bg-https-dark-gray {
-    background-color: #999;
+    background-color: #888;
   }
 
   .lg\:bg-https-light-gray {
     background-color: #efefef;
+  }
+
+  .lg\:bg-alpha-pink {
+    background-color: #f90277;
   }
 
   .lg\:bg-black {
@@ -11246,11 +11322,15 @@ label {
   }
 
   .lg\:hover\:bg-https-dark-gray:hover {
-    background-color: #999;
+    background-color: #888;
   }
 
   .lg\:hover\:bg-https-light-gray:hover {
     background-color: #efefef;
+  }
+
+  .lg\:hover\:bg-alpha-pink:hover {
+    background-color: #f90277;
   }
 
   .lg\:hover\:bg-black:hover {
@@ -11502,11 +11582,15 @@ label {
   }
 
   .lg\:border-https-dark-gray {
-    border-color: #999;
+    border-color: #888;
   }
 
   .lg\:border-https-light-gray {
     border-color: #efefef;
+  }
+
+  .lg\:border-alpha-pink {
+    border-color: #f90277;
   }
 
   .lg\:border-black {
@@ -11694,11 +11778,15 @@ label {
   }
 
   .lg\:hover\:border-https-dark-gray:hover {
-    border-color: #999;
+    border-color: #888;
   }
 
   .lg\:hover\:border-https-light-gray:hover {
     border-color: #efefef;
+  }
+
+  .lg\:hover\:border-alpha-pink:hover {
+    border-color: #f90277;
   }
 
   .lg\:hover\:border-black:hover {
@@ -13627,11 +13715,15 @@ label {
   }
 
   .lg\:text-https-dark-gray {
-    color: #999;
+    color: #888;
   }
 
   .lg\:text-https-light-gray {
     color: #efefef;
+  }
+
+  .lg\:text-alpha-pink {
+    color: #f90277;
   }
 
   .lg\:text-black {
@@ -13819,11 +13911,15 @@ label {
   }
 
   .lg\:hover\:text-https-dark-gray:hover {
-    color: #999;
+    color: #888;
   }
 
   .lg\:hover\:text-https-light-gray:hover {
     color: #efefef;
+  }
+
+  .lg\:hover\:text-alpha-pink:hover {
+    color: #f90277;
   }
 
   .lg\:hover\:text-black:hover {
@@ -14401,11 +14497,15 @@ label {
   }
 
   .xl\:bg-https-dark-gray {
-    background-color: #999;
+    background-color: #888;
   }
 
   .xl\:bg-https-light-gray {
     background-color: #efefef;
+  }
+
+  .xl\:bg-alpha-pink {
+    background-color: #f90277;
   }
 
   .xl\:bg-black {
@@ -14593,11 +14693,15 @@ label {
   }
 
   .xl\:hover\:bg-https-dark-gray:hover {
-    background-color: #999;
+    background-color: #888;
   }
 
   .xl\:hover\:bg-https-light-gray:hover {
     background-color: #efefef;
+  }
+
+  .xl\:hover\:bg-alpha-pink:hover {
+    background-color: #f90277;
   }
 
   .xl\:hover\:bg-black:hover {
@@ -14849,11 +14953,15 @@ label {
   }
 
   .xl\:border-https-dark-gray {
-    border-color: #999;
+    border-color: #888;
   }
 
   .xl\:border-https-light-gray {
     border-color: #efefef;
+  }
+
+  .xl\:border-alpha-pink {
+    border-color: #f90277;
   }
 
   .xl\:border-black {
@@ -15041,11 +15149,15 @@ label {
   }
 
   .xl\:hover\:border-https-dark-gray:hover {
-    border-color: #999;
+    border-color: #888;
   }
 
   .xl\:hover\:border-https-light-gray:hover {
     border-color: #efefef;
+  }
+
+  .xl\:hover\:border-alpha-pink:hover {
+    border-color: #f90277;
   }
 
   .xl\:hover\:border-black:hover {
@@ -16974,11 +17086,15 @@ label {
   }
 
   .xl\:text-https-dark-gray {
-    color: #999;
+    color: #888;
   }
 
   .xl\:text-https-light-gray {
     color: #efefef;
+  }
+
+  .xl\:text-alpha-pink {
+    color: #f90277;
   }
 
   .xl\:text-black {
@@ -17166,11 +17282,15 @@ label {
   }
 
   .xl\:hover\:text-https-dark-gray:hover {
-    color: #999;
+    color: #888;
   }
 
   .xl\:hover\:text-https-light-gray:hover {
     color: #efefef;
+  }
+
+  .xl\:hover\:text-alpha-pink:hover {
+    color: #f90277;
   }
 
   .xl\:hover\:text-black:hover {
