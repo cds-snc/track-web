@@ -243,7 +243,7 @@ $(function () {
     var all = [];
     var number = hosts.length;
 
-    var csv = "/data/hosts/" + base_domain + "/https.csv";
+    var csv = "/data/hosts/" + base_domain + "/compliance.csv";
 
     var link = text.link_1[language] + number + text.link_2[language] + base_domain + ".&nbsp;&nbsp;";
     link += l(csv, text.link_3[language] + base_domain + text.link_4[language]) + ".";
