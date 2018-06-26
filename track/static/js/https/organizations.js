@@ -19,6 +19,7 @@ $(document).ready(function () {
         {
           data: "name_" + language,
           cellType: "td",
+          width: "240px",
           render: eligibleHttps,
           createdCell: function (td) {td.scope = "row";}
         },

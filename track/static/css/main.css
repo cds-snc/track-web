@@ -29,7 +29,9 @@ th {
   vertical-align: middle; }
 
 #goc-footer {
-  margin-top: 0rem !important; }
+  margin-top: 0rem !important;
+  border-color: #999999 !important;
+  border-top-width: 0.05rem !important; }
 
 #modal {
   background-color: black;
@@ -103,14 +105,14 @@ table caption {
         font-weight: normal !important; }
     .dataTables_wrapper table.dataTable a {
       text-decoration: underline;
-      color: #3490dc !important; }
+      color: #4499EE !important; }
     .dataTables_wrapper table.dataTable a:hover {
-      color: #22292F !important; }
+      color: black !important; }
     .dataTables_wrapper table.dataTable a.loading {
       text-decoration: none !important;
       color: black !important; }
     .dataTables_wrapper table.dataTable th, .dataTables_wrapper table.dataTable td {
-      border-bottom: 2px solid #EEE !important;
+      border-bottom: 1px solid #888 !important;
       padding: 8px 0 8px 40px; }
     .dataTables_wrapper table.dataTable td:first {
       padding: 8px 0 8px 30px !important; }
@@ -160,7 +162,7 @@ table caption {
         .dataTables_wrapper table.dataTable.organization td:first-child:before {
           top: 15px !important; } }
     .dataTables_wrapper table.dataTable.organization .progress-bar-indication, .dataTables_wrapper table.dataTable.domain .progress-bar-indication {
-      background-color: #B8C2CC;
+      background-color: #888888;
       border-radius: 20px;
       width: 70%;
       position: relative;
@@ -169,7 +171,7 @@ table caption {
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        background-color: #3D4852;
+        background-color: #4499EE;
         background-repeat: repeat-x;
         background-size: 40px 40px;
         border-radius: 20px 0 0 20px;
@@ -197,12 +199,12 @@ table caption {
     font-size: 0.875em;
     border: none !important; }
     .dataTables_wrapper .dataTables_paginate a.paginate_button.current {
-      background: #3D4852 !important;
+      background: #4499EE !important;
       color: white !important; }
       .dataTables_wrapper .dataTables_paginate a.paginate_button.current:hover {
         color: white !important; }
     .dataTables_wrapper .dataTables_paginate a.paginate_button:hover, .dataTables_wrapper .dataTables_paginate a.paginate_button:focus {
-      background: #3D4852 !important;
+      background: #4499EE !important;
       color: white !important; }
     .dataTables_wrapper .dataTables_paginate a.paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate a.paginate_button.disabled:focus {
       background: transparent !important; }
