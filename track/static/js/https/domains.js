@@ -115,18 +115,13 @@ $(function () {
     },
 
     link_2: {
-      en: " publicly discoverable services within ",
-      fr: " services publiquement repérables dans "
+      en: " service(s) within ",
+      fr: " service(s) dans "
     },
 
     link_3: {
-      en: "Download all ",
-      fr: "Télécharger toutes les données "
-    },
-
-    link_4: {
-      en: " data as a CSV",
-      fr: " sous forme de fichier CSV."
+      en: "Download CSV",
+      fr: "Télécharger CSV"
     },
 
     fetch: {
@@ -245,12 +240,6 @@ $(function () {
 
     var csv = "/data/hosts/" + base_domain + "/https.csv";
 
-    var link = text.link_1[language] + number + text.link_2[language] + base_domain + ".&nbsp;&nbsp;";
-    link += l(csv, text.link_3[language] + base_domain + text.link_4[language]) + ".";
-
-    var download = $("<tr></tr>").addClass("subdomain").html("<td class=\"link\" colspan=6>" + link + "</td>");
-    all.push(download);
-
     for (i=0; i<hosts.length; i++) {
       var host = hosts[i];
       var details = $("<tr/>").addClass("host");
@@ -278,6 +267,12 @@ $(function () {
 
       all.push(details);
     }
+
+    var link = text.link_1[language] + number + text.link_2[language] + base_domain;
+    link += l(csv, text.link_3[language], "class=\"float-right mr-4\"");
+
+    var download = $("<tr></tr>").addClass("subdomain").html("<td class=\"link bg-https-light-gray\" colspan=6><strong>" + link + "</strong></td>");
+    all.push(download);
 
     tr.child(all, "child");
   };
