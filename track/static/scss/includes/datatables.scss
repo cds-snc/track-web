@@ -16,6 +16,13 @@ table caption {
   word-break: break-word;
 }
 
+.subdomain {
+  .link {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+}
+
 .rotated {
   -ms-transform: rotate(-90deg); /* IE 9 */
   -webkit-transform: rotate(-90deg); /* Safari */
@@ -110,7 +117,7 @@ table caption {
     td.compliant {
       border-left: 0px solid black;
       border-right: 0px solid black;
-      background-color: #eee;
+      background-color: #EFEFEF;
     }
 
     thead {
@@ -163,10 +170,10 @@ table caption {
             td { border-bottom: none !important; }
           }
           &:hover {
-            background-color: $light-gray;
+            background-color: #EFEFEF;
             cursor: pointer;
             +.child {
-              background-color: $light-gray;
+              background-color: #EFEFEF;
             }
           }
         }
