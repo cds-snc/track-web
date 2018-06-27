@@ -7,7 +7,7 @@ $(function () {
   $.get("/data/domains/https.json", function(data) {
     table = Tables.init(data.data, {
 
-      csv: "/data/hosts/https.csv",
+      csv: "/data/hosts/compliance.csv",
 
       responsive: {
           details: {
@@ -238,7 +238,7 @@ $(function () {
     var all = [];
     var number = hosts.length;
 
-    var csv = "/data/hosts/" + base_domain + "/https.csv";
+    var csv = "/data/hosts/" + base_domain + "/compliance.csv";
 
     for (i=0; i<hosts.length; i++) {
       var host = hosts[i];
