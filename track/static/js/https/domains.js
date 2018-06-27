@@ -168,14 +168,14 @@ $(function () {
 
     enforces: {
       en: {
-        0: "No", // No (no HTTPS)
-        1: "No", // Present, not default
+        0: "<strong>No</strong>", // No (no HTTPS)
+        1: "<strong>No</strong>", // Present, not default
         2: "Yes", // Defaults eventually to HTTPS
         3: "Yes" // Defaults eventually + redirects immediately
       },
       fr: {
-        0: "Non", 
-        1: "Non", 
+        0: "<strong>Non</strong>", 
+        1: "<strong>Non</strong>", 
         2: "Oui", 
         3: "Oui" 
       },
@@ -183,16 +183,16 @@ $(function () {
 
     hsts: {
       en: {
-        "-1": "No", // No (no HTTPS)
-        0: "No",  // No
-        1: "No", // No, HSTS with short max-age (for canonical endpoint)
+        "-1": "<strong>No</strong>", // No (no HTTPS)
+        0: "<strong>No</strong>",  // No
+        1: "<strong>No</strong>", // No, HSTS with short max-age (for canonical endpoint)
         2: "Yes", // Yes, HSTS for >= 1 year (for canonical endpoint)
         3: "Preloaded" // Yes, via preloading (subdomains only)
       },
       fr: {
-        "-1": "Non", 
-        0: "Non",
-        1: "Non",
+        "-1": "<strong>Non</strong>", 
+        0: "<strong>Non</strong>",
+        1: "<strong>Non</strong>",
         2: "Oui",
         3: "Préchargé"
       }
@@ -205,8 +205,8 @@ $(function () {
         1: "Yes"
       },
       fr: {
-        "-1": "S. O.",
-        0: "<strong>Non</strong>, download CSV for details",
+        "-1": "S.&nbsp;O.",
+        0: "<strong>Non</strong>, télécharger le fichier CSV pour plus de détails",
         1: "Oui"
       }
     },
@@ -214,12 +214,12 @@ $(function () {
     good_cert: {
       en: {
         "-1": "N/A",
-        0: "<strong>No</strong>",
+        0: "<strong>No</strong>, download CSV for details",
         1: "Yes",
       },
       fr: {
-        "-1": "S. O.",
-        0: "<strong>Non</strong>",
+        "-1": "S.&nbsp;O.",
+        0: "<strong>Non</strong>, télécharger le fichier CSV pour plus de détails",
         1: "Oui",
       }
     }

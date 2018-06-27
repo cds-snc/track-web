@@ -1,9 +1,9 @@
 {% extends "en/layout-en.html" %}
 
-{% block title %}Track digital security compliance{% endblock %}
+{% block title %}Check compliance - By Organization{% endblock %}
 
 {% block pageid_en %}organizations{% endblock %}
-{% block pageid_fr %}organizations{% endblock %}
+{% block pageid_fr %}organisations{% endblock %}
 
 {% block content %}
 
@@ -13,7 +13,7 @@
 
 	<header class="bg-https-light-gray pt-6">
 
-		{% include 'includes/https/en/header.html' %}
+		{% include 'includes/en/header.html' %}
 
 		<div class="text-center mt-8 font-bold">
 			<div class="inline-block border-b-4 border-https-blue h-10 mr-4">By Organization</div>
@@ -30,7 +30,7 @@
 	        <tr>
 	          <th class="never"></th>
 	          <th class="all" scope="col">Organization</th>
-	          <th class="min-tablet" scope="col">ITPIN Compliant</th>
+	          <th class="min-tablet" scope="col"><abbr title="Information Technology Policy Implementation Notice">ITPIN</abbr> Compliant</th>
 	          <th class="desktop" scope="col">Enforces HTTPS</th>
 	          <th class="desktop" scope="col">HSTS</th>
 	          <th class="desktop" scope="col">Free of known weak protocols and ciphers</th>
