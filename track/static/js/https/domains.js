@@ -7,7 +7,7 @@ $(function () {
   $.get("/data/domains/https.json", function(data) {
     table = Tables.init(data.data, {
 
-      csv: "/data/hosts/https.csv",
+      csv: "/data/hosts/compliance.csv",
 
       responsive: {
           details: {
@@ -205,7 +205,7 @@ $(function () {
         1: "Yes"
       },
       fr: {
-        "-1": "ND",
+        "-1": "S.&nbsp;O.",
         0: "<strong>Non</strong>, télécharger le fichier CSV pour plus de détails",
         1: "Oui"
       }
@@ -218,7 +218,7 @@ $(function () {
         1: "Yes",
       },
       fr: {
-        "-1": "ND",
+        "-1": "S.&nbsp;O.",
         0: "<strong>Non</strong>, télécharger le fichier CSV pour plus de détails",
         1: "Oui",
       }
@@ -238,7 +238,7 @@ $(function () {
     var all = [];
     var number = hosts.length;
 
-    var csv = "/data/hosts/" + base_domain + "/https.csv";
+    var csv = "/data/hosts/" + base_domain + "/compliance.csv";
 
     for (i=0; i<hosts.length; i++) {
       var host = hosts[i];

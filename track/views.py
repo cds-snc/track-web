@@ -74,6 +74,8 @@ def register(app):
     @app.route("/data/reports/<report_name>.json")
     @cache.cached()
     def report(report_name):
+        report_name = 'https' if report_name == 'compliance' else report_name
+
         response = Response(ujson.dumps(models.Report.latest().get(report_name, {})))
         response.headers['Content-Type'] = 'application/json'
         return response
@@ -82,6 +84,8 @@ def register(app):
     @app.route("/data/domains/<report_name>.<ext>")
     @cache.cached()
     def domain_report(report_name, ext):
+        report_name = 'https' if report_name == 'compliance' else report_name
+
         domains = models.Domain.eligible_parents(report_name)
         domains = sorted(domains, key=lambda k: k['domain'])
 
@@ -151,6 +155,8 @@ def register(app):
     @app.route("/data/hosts/<report_name>.<ext>")
     @cache.cached()
     def hostname_report(report_name, ext):
+        report_name = 'https' if report_name == 'compliance' else report_name
+
         domains = models.Domain.eligible(report_name)
 
         # sort by base domain, but subdomain within them
@@ -169,6 +175,8 @@ def register(app):
     @app.route("/data/hosts/<domain>/<report_name>.<ext>")
     @cache.cached()
     def hostname_report_for_domain(domain, report_name, ext):
+        report_name = 'https' if report_name == 'compliance' else report_name
+
         domains = models.Domain.eligible_for_domain(domain, report_name)
 
         # sort by hostname, but put the parent at the top if it exist
@@ -186,6 +194,8 @@ def register(app):
     @app.route("/data/organizations/<report_name>.json")
     @cache.cached()
     def organization_report(report_name):
+        report_name = 'https' if report_name == 'compliance' else report_name
+
         domains = models.Organization.eligible(report_name)
         response = Response(ujson.dumps({'data': domains}))
         response.headers['Content-Type'] = 'application/json'
