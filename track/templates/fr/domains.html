@@ -1,6 +1,6 @@
 {% extends "fr/layout-fr.html" %}
 
-{% block title %}Consulter la conformité liée à la sécurité numérique{% endblock %}
+{% block title %}Vérifier la conformité - Par domaine{% endblock %}
 {% block pageid_en %}domains{% endblock %}
 {% block pageid_fr %}domaines{% endblock %}
 
@@ -15,8 +15,8 @@
 		{% include 'includes/fr/header.html' %}
 
 		<div class="text-center mt-8 font-bold">
-			<div class="inline-block h-10 mr-4"><a href="/fr/organisations/" class="text-black no-underline hover:text-https-blue font-medium">Par Organisation</a></div>
-			<div class="inline-block border-b-4 border-https-blue h-10 ml-4">Par Domaine</div>
+			<div class="inline-block h-10 mr-4"><a href="/fr/organisations/" class="text-black no-underline hover:text-https-blue font-medium">Par organisation</a></div>
+			<div class="inline-block border-b-4 border-https-blue h-10 ml-4">Par domaine</div>
 		</div>
 
 	</header>
@@ -29,7 +29,7 @@
 	          <th class="never"></th>
 	          <th class="all">Domaine</th>
 	          <th class="never">Organisation</th>
-	          <th class="min-tablet">ITPIN Compliant</th>
+	          <th class="min-tablet">Conforme à l’AMPTI</th>
 	          <th class="min-tablet-l">Applique le protocole HTTPS</th>
 	          <th class="min-tablet-l">HSTS</th>
 	          <th class="min-tablet-l">Absence de protocoles ou de suites de chiffrement ayant des vulnérabilités connues</th>
