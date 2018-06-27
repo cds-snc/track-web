@@ -205,7 +205,7 @@ $(function () {
         1: "Yes"
       },
       fr: {
-        "-1": "ND",
+        "-1": "S. O.",
         0: "<strong>Non</strong>, download CSV for details",
         1: "Oui"
       }
@@ -218,7 +218,7 @@ $(function () {
         1: "Yes",
       },
       fr: {
-        "-1": "ND",
+        "-1": "S. O.",
         0: "<strong>Non</strong>",
         1: "Oui",
       }

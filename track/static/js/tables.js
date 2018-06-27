@@ -116,7 +116,7 @@ var Tables = {
       // don't divide by 0!
       if (denominator == 0) {
         if (type == "sort") return -1; // shrug?
-        else return {en: "N/A", fr: "ND"}[language]
+        else return {en: "N/A", fr: "S. O."}[language]
       }
 
       var percent = Utils.percent(numerator, denominator);
