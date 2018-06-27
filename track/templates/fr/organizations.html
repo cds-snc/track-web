@@ -3,7 +3,7 @@
 {% block title %}Consulter la conformité liée à la sécurité numérique{% endblock %}
 
 {% block pageid_en %}organizations{% endblock %}
-{% block pageid_fr %}organizations{% endblock %}
+{% block pageid_fr %}organisations{% endblock %}
 
 {% block content %}
 
@@ -16,7 +16,7 @@
 		{% include 'includes/fr/header.html' %}
 
 		<div class="text-center mt-8 font-bold">
-			<div class="inline-block border-b-4 border-https-blue h-10 mr-4">Par Organization</div>
+			<div class="inline-block border-b-4 border-https-blue h-10 mr-4">Par Organisation</div>
 			<div class="inline-block h-10 ml-4"><a href="/fr/domaines/" class="text-black no-underline hover:text-https-blue font-medium">Par Domaine</a></div>
 		</div>
 
@@ -33,8 +33,8 @@
 	          <th class="min-tablet" scope="col">ITPIN Compliant</th>
 	          <th class="desktop" scope="col">Applique le protocole HTTPS</th>
 	          <th class="desktop" scope="col">HSTS</th>
-	          <th class="desktop" scope="col">Free of known weak protocols and ciphers</th>
-	          <th class="desktop" scope="col">Uses approved certificates</th>
+	          <th class="desktop" scope="col">Absence de protocoles ou de suites de chiffrement ayant des vulnérabilités connues</th>
+	          <th class="desktop" scope="col">Utilise des certificats approuvés</th>
 	        </tr>
 	      </thead>
     	</table>
