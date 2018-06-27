@@ -18,7 +18,7 @@ $(document).ready(function () {
         },
         {
           data: "name_" + language,
-          cellType: "td",
+          cellType: "th",
           width: "240px",
           render: eligibleHttps,
           createdCell: function (td) {td.scope = "row";}
