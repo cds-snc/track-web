@@ -3,7 +3,7 @@
 
 #menu-content{
   $sliding-panel-width: 220px;
-  background: #F8FAFC;
+  background: #FFFFFF;
   overflow-y: auto;
   z-index: 999999;
   -webkit-overflow-scrolling: touch;
@@ -18,19 +18,5 @@
   }
 }
 
-.overlay {
-  background: #000;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 9999;
-
-  @include position(fixed, 0 0 0 0);
-  @include transition;
-
-  &.is-visible {
-    visibility: visible;
-  }
-}
-  // Based on code by Diego Eis
 
 
