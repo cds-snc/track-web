@@ -186,8 +186,9 @@ class TestDomain():
         assert 'test1.test.gc.ca' in domains
         assert 'test2.test.gc.ca' in domains
 
-    def test_to_csv(self, domain) -> None: # pylint: disable=no-self-use
-        csv_string = models.Domain.to_csv([domain], 'https')
+    def test_to_csv_en(self, domain) -> None: # pylint: disable=no-self-use
+        csv_string = models.Domain.to_csv([domain], 'https', 'en')
+
         with io.StringIO() as sio:
             sio.write(csv_string)
             sio.seek(0)
@@ -237,6 +238,60 @@ class TestDomain():
                 'Approved Certificate': 'Yes',
                 'Preloaded': 'No',
                 'Unsupported TLS Cipher Suites': 'TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA',
+            }
+
+    def test_to_csv_fr(self, domain) -> None: # pylint: disable=no-self-use
+        csv_string = models.Domain.to_csv([domain], 'https', 'fr')
+        with io.StringIO() as sio:
+            sio.write(csv_string)
+            sio.seek(0)
+            reader = csv.DictReader(sio)
+            assert sorted(reader.fieldnames) == [
+                '3DES',
+                'Absence de protocoles ou de suites de chiffrement ayant des vulnérabilités connues',
+                'Certificats approuvés',
+                "Conforme à l'AMPTI",
+                'Digital Signature Algorithm',
+                'Domaine',
+                'Domaine de base',
+                'Exécute HTTPS',
+                'Organisation anglaise',
+                'Organisation française',
+                'Préchargés',
+                'RC4',
+                'SSLv2',
+                'SSLv3',
+                'Sources',
+                'Strict Transport Security (HSTS)',
+                'Suites de chiffrement TLS non supportées',
+                'TLSv1.0',
+                'TLSv1.1',
+                'URL',
+                'Utilise des chiffrements supportés seulement',
+            ]
+
+            assert next(reader) == {
+                'Domaine': 'test.gc.ca',
+                'Domaine de base': 'test.gc.ca',
+                'URL': 'http://test.gc.ca',
+                'Organisation anglaise': 'Department of Test',
+                'Organisation française': 'Department of French Test',
+                'Sources': 'canada-gov',
+                "Conforme à l'AMPTI": 'Non',
+                'Utilise des chiffrements supportés seulement': 'Non',
+                'Digital Signature Algorithm': 'sha256',
+                'Exécute HTTPS': 'Non',
+                'Strict Transport Security (HSTS)': 'Non',
+                'Absence de protocoles ou de suites de chiffrement ayant des vulnérabilités connues': 'Oui',
+                '3DES': 'Non',
+                'RC4': 'Non',
+                'SSLv2': 'Non',
+                'SSLv3': 'Non',
+                'TLSv1.0': 'Non',
+                'TLSv1.1': 'Non',
+                'Certificats approuvés': 'Oui',
+                'Préchargés': 'Non',
+                'Suites de chiffrement TLS non supportées': 'TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA',
             }
 
 
