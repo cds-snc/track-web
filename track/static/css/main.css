@@ -105,11 +105,9 @@ table caption {
     .dataTables_wrapper table.dataTable .indents {
       padding-left: 80px;
       line-height: 23px; }
-      .dataTables_wrapper table.dataTable .indents a {
-        font-weight: normal !important; }
     .dataTables_wrapper table.dataTable a {
       text-decoration: underline;
-      color: #4499EE !important; }
+      color: #0071E1 !important; }
     .dataTables_wrapper table.dataTable a:hover {
       color: black !important; }
     .dataTables_wrapper table.dataTable a.loading {
@@ -117,7 +115,8 @@ table caption {
       color: black !important; }
     .dataTables_wrapper table.dataTable th, .dataTables_wrapper table.dataTable td {
       border-bottom: 1px solid #888 !important;
-      padding: 8px 0 8px 40px; }
+      padding: 8px 0 8px 40px;
+      font-weight: normal; }
     .dataTables_wrapper table.dataTable td:first {
       padding: 8px 0 8px 30px !important; }
     .dataTables_wrapper table.dataTable td.compliant {
@@ -175,7 +174,7 @@ table caption {
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        background-color: #4499EE;
+        background-color: #0071E1;
         background-repeat: repeat-x;
         background-size: 40px 40px;
         border-radius: 20px 0 0 20px;
@@ -203,12 +202,12 @@ table caption {
     font-size: 0.875em;
     border: none !important; }
     .dataTables_wrapper .dataTables_paginate a.paginate_button.current {
-      background: #4499EE !important;
+      background: #0071E1 !important;
       color: white !important; }
       .dataTables_wrapper .dataTables_paginate a.paginate_button.current:hover {
         color: white !important; }
     .dataTables_wrapper .dataTables_paginate a.paginate_button:hover, .dataTables_wrapper .dataTables_paginate a.paginate_button:focus {
-      background: #4499EE !important;
+      background: #0071E1 !important;
       color: white !important; }
     .dataTables_wrapper .dataTables_paginate a.paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate a.paginate_button.disabled:focus {
       background: transparent !important; }
