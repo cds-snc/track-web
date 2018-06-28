@@ -93,7 +93,7 @@ table caption {
 
     a {
       text-decoration: underline;
-      color: #4499EE !important;
+      color: #398CDF !important;
     }
 
     a:hover {
@@ -105,9 +105,19 @@ table caption {
       color: black !important;
     }
 
+    // th {
+
+    //   font-weight: normal;
+
+    //   .all, .min-tablet, .desktop {
+    //     font-weight: bold !important;
+    //   }
+    // }
+
     th, td {
       border-bottom: 1px solid #888 !important;
       padding: 8px 0 8px 40px;
+      font-weight: normal;
     }
 
     td:first {
@@ -217,7 +227,7 @@ table caption {
 
         > .meter {
           @include box-sizing(border-box);
-          background-color: #4499EE;
+          background-color: #398CDF;
           background-repeat: repeat-x;
           background-size: 40px 40px;
           border-radius: 20px 0 0 20px;
@@ -251,14 +261,14 @@ table caption {
       font-size: 0.875em;
       border: none !important;
       &.current {
-        background: #4499EE !important;
+        background: #398CDF !important;
         color: white !important;
         &:hover {
           color: white !important;
         }
       }
       &:hover, &:focus {
-        background: #4499EE !important;
+        background: #398CDF !important;
         color: white !important;
       }
       &.disabled {
