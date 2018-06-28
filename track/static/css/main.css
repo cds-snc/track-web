@@ -76,10 +76,12 @@ table caption {
     padding-left: 10px; }
     .dataTables_wrapper .dataTables_length a {
       text-decoration: underline;
-      cursor: pointer; }
+      cursor: pointer;
+      font-weight: bold; }
     .dataTables_wrapper .dataTables_length a.active, .dataTables_wrapper .dataTables_length a.active:hover {
       text-decoration: none;
-      color: black !important; }
+      color: black !important;
+      font-weight: bold; }
     .dataTables_wrapper .dataTables_length select {
       border: none;
       display: inline-block;
@@ -106,9 +108,10 @@ table caption {
       padding-left: 80px;
       line-height: 23px; }
       .dataTables_wrapper table.dataTable .indents a {
-        font-weight: normal !important; }
+        font-weight: bold !important; }
     .dataTables_wrapper table.dataTable a {
       text-decoration: underline;
+      font-weight: bold;
       color: #398CDF !important; }
     .dataTables_wrapper table.dataTable a:hover {
       color: black !important; }

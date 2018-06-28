@@ -41,11 +41,13 @@ table caption {
     a {
       text-decoration: underline;
       cursor: pointer;
+      font-weight: bold;
     }
 
     a.active, a.active:hover {
       text-decoration: none;
       color: black !important;
+      font-weight: bold;
     }
 
     select {
@@ -87,12 +89,13 @@ table caption {
       line-height: 23px;
 
       a {
-        font-weight: normal !important;
+        font-weight: bold !important;
       }
     }
 
     a {
       text-decoration: underline;
+      font-weight: bold;
       color: #398CDF !important;
     }
 
