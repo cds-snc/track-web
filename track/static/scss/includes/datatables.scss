@@ -41,13 +41,11 @@ table caption {
     a {
       text-decoration: underline;
       cursor: pointer;
-      font-weight: bold;
     }
 
     a.active, a.active:hover {
       text-decoration: none;
       color: black !important;
-      font-weight: bold;
     }
 
     select {
@@ -88,15 +86,11 @@ table caption {
       padding-left: 80px;
       line-height: 23px;
 
-      a {
-        font-weight: bold !important;
-      }
     }
 
     a {
       text-decoration: underline;
-      font-weight: bold;
-      color: #398CDF !important;
+      color: #0071E1 !important;
     }
 
     a:hover {
@@ -107,15 +101,6 @@ table caption {
       text-decoration: none !important;
       color: black !important;
     }
-
-    // th {
-
-    //   font-weight: normal;
-
-    //   .all, .min-tablet, .desktop {
-    //     font-weight: bold !important;
-    //   }
-    // }
 
     th, td {
       border-bottom: 1px solid #888 !important;
@@ -224,13 +209,14 @@ table caption {
       .progress-bar-indication {
         background-color: #888888;
         border-radius: 20px;
+        //border: 0.5rem solid #888888;
         width: 70%;
         position: relative;
         left: 35px;
 
         > .meter {
           @include box-sizing(border-box);
-          background-color: #398CDF;
+          background-color: #0071E1;
           background-repeat: repeat-x;
           background-size: 40px 40px;
           border-radius: 20px 0 0 20px;
@@ -264,14 +250,14 @@ table caption {
       font-size: 0.875em;
       border: none !important;
       &.current {
-        background: #398CDF !important;
+        background: #0071E1 !important;
         color: white !important;
         &:hover {
           color: white !important;
         }
       }
       &:hover, &:focus {
-        background: #398CDF !important;
+        background: #0071E1 !important;
         color: white !important;
       }
       &.disabled {
