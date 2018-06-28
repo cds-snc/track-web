@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     Tables.initAgency(data.data, {
 
-      csv: "/data/hosts/compliance.csv",
+      csv: "/data/hosts/" + language + "/compliance.csv",
 
       prefix: language,
 

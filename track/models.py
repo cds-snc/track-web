@@ -155,7 +155,7 @@ class Domain:
         return db.db.meta.find({'_collection': 'domains'}, {'_id': False, '_collection': False})
 
     @staticmethod
-    def to_csv(domains: typing.Iterable[typing.Dict], report_type: str) -> str:
+    def to_csv(domains: typing.Iterable[typing.Dict], report_type: str, language: str) -> str:
         output = io.StringIO()
         writer = csv.writer(output, quoting=csv.QUOTE_NONNUMERIC)
 
@@ -165,7 +165,11 @@ class Domain:
                 value = [str(x) for x in value]
                 value = ", ".join(value)
             elif isinstance(value, bool):
-                value = {True: 'Yes', False: 'No'}[value]
+                if language == 'en':
+                    value = {True: 'Yes', False: 'No'}[value]
+                else:
+                    value = {True: 'Oui', False: 'Non'}[value]
+
             return value
 
         # initialize with a header row
@@ -174,7 +178,11 @@ class Domain:
         # Common fields, and report-specific fields
         for category in ['common', report_type]:
             for field in track.data.CSV_FIELDS[category]:
-                header.append(track.data.LABELS[category][field])
+                if language == 'en':
+                    header.append(track.data.LABELS[category][field].english)
+                else:
+                    header.append(track.data.LABELS[category][field].french)
+
         writer.writerow(header)
 
         for domain in domains:
@@ -198,7 +206,11 @@ class Domain:
                             track.data.FIELD_MAPPING[category].get(field) and
                             (track.data.FIELD_MAPPING[category][field].get(value) is not None)
                         ):
-                        value = track.data.FIELD_MAPPING[category][field][value]
+                        if language == 'en':
+                            value = track.data.FIELD_MAPPING[category][field][value].english
+                        else:
+                            value = track.data.FIELD_MAPPING[category][field][value].french
+
 
                     row.append(value_for(value))
 

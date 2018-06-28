@@ -1,72 +1,79 @@
 import typing
 # Mapping report/domain/organization field names to display names.
+
+class MultiLingualString:
+    def __init__(self, english, french) -> None:
+        self.english = english
+        self.french = french
+
+
 LABELS = {
     # used in export CSVs
     "common": {
-        "domain": "Domain",
-        "canonical": "URL",
-        "organization_name_en": "English Organization",
-        "organization_name_fr": "French Organization",
-        "base_domain": "Base Domain",
-        "sources": "Sources",
-        "total_domains": "Number of Domains",
+        "domain": MultiLingualString("Domain", "Domaine"),
+        "canonical": MultiLingualString("URL", "URL"),
+        "organization_name_en": MultiLingualString("English Organization", "Organisation anglaise"),
+        "organization_name_fr": MultiLingualString("French Organization", "Organisation française"),
+        "base_domain": MultiLingualString("Base Domain", ""),
+        "sources": MultiLingualString("Sources", ""),
     },
     "https": {
-        "compliant": "ITPIN Compliant",
-        "uses": "Uses HTTPS",
-        "enforces": "Enforces HTTPS",
-        "hsts": "Strict Transport Security (HSTS)",
-        "preloaded": "Preloaded",
-        "bod_crypto": "Free of known weak protocols and ciphers",
-        "hsts_age": "HSTS max-age",
-        "bod_organizations": "Free of known weak protocols and ciphers",
-        "3des": "3DES",
-        "rc4": "RC4",
-        "sslv2": "SSLv2",
-        "sslv3": "SSLv3",
-        "accepted_ciphers": "Only Uses Supported Ciphers",
-        "tlsv10": "TLSv1.0",
-        "tlsv11": "TLSv1.1",
-        "good_cert": "Approved Certificate",
-        "signature_algorithm": "Digital Signature Algorithm",
-        "bad_ciphers": "Unsupported TLS Cipher Suites",
+        "compliant": MultiLingualString("ITPIN Compliant", "Conforme à l'AMPTI"),
+        "uses": MultiLingualString("Uses HTTPS", ""),
+        "enforces": MultiLingualString("Enforces HTTPS", "Applique le protocole HTTPS"),
+        "hsts": MultiLingualString("Strict Transport Security (HSTS)", "Strict Transport Security (HSTS)"),
+        "preloaded": MultiLingualString("Preloaded", "Préchargés"),
+        "bod_crypto": MultiLingualString("Free of known weak protocols and ciphers", "Absence de protocoles ou de suites de chiffrement ayant des vulnérabilités connues"),
+        "hsts_age": MultiLingualString("HSTS max-age", "HSTS max-age"),
+        "3des": MultiLingualString("3DES", "3DES"),
+        "rc4": MultiLingualString("RC4", "RC4"),
+        "sslv2": MultiLingualString("SSLv2", "SSLv2"),
+        "sslv3": MultiLingualString("SSLv3", "SSLv3"),
+        "accepted_ciphers": MultiLingualString("Only Uses Supported Ciphers", ""),
+        "tlsv10": MultiLingualString("TLSv1.0", "TLSv1.0"),
+        "tlsv11": MultiLingualString("TLSv1.1", "TLSv1.1"),
+        "good_cert": MultiLingualString("Approved Certificate", "Certificats approuvés"),
+        "signature_algorithm": MultiLingualString("Digital Signature Algorithm", "Digital Signature Algorithm"),
+        "bad_ciphers": MultiLingualString("Unsupported TLS Cipher Suites", ""),
     },
 }
 
 
+NO = MultiLingualString("No", "Non")
+YES = MultiLingualString("Yes", "Oui")
 FIELD_MAPPING = {
     "common": {},
     "https": {
         "compliant": {
-            0: "No",
-            1: "Yes",
+            0: NO,
+            1: YES,
         },
         "uses": {
-            -1: "No",
-            0: "No",  # Downgrades HTTPS -> HTTP
-            1: "Yes",  # (with certificate chain issues)
-            2: "Yes",
+            -1: NO,
+            0: NO,  # Downgrades HTTPS -> HTTP
+            1: YES,  # (with certificate chain issues)
+            2: YES,
         },
         "enforces": {
-            0: "No",  # N/A (no HTTPS)
-            1: "No",  # Present, not default
-            2: "Yes",  # Defaults eventually to HTTPS
-            3: "Yes",  # Defaults eventually + redirects immediately
+            0: NO,  # N/A (no HTTPS)
+            1: NO,  # Present, not default
+            2: YES,  # Defaults eventually to HTTPS
+            3: YES,  # Defaults eventually + redirects immediately
         },
         "hsts": {
-            -1: "No",  # N/A
-            0: "No",  # No
-            1: "No",  # No, HSTS with short max-age (for canonical endpoint)
-            2: "Yes",  # Yes, HSTS for >= 1 year (for canonical endpoint)
-            3: "Preloaded",  # Yes, via preloading (subdomains only)
+            -1: NO,  # N/A
+            0: NO,  # No
+            1: NO,  # No, HSTS with short max-age (for canonical endpoint)
+            2: YES,  # Yes, HSTS for >= 1 year (for canonical endpoint)
+            3: MultiLingualString("Preloaded", "Préchargés"),  # Yes, via preloading (subdomains only)
         },
         "good_cert": {
-            -1: "No",
-            0: "No",
-            1: "Yes",
+            -1: NO,
+            0: NO,
+            1: YES,
         },
-        "preloaded": {0: "No", 1: "Ready", 2: "Yes"},  # No  # Preload-ready  # Yes
-        "bod_crypto": {-1: "", 0: "No", 1: "Yes"},
+        "preloaded": {0: NO, 1: MultiLingualString("Ready", "Prêt"), 2: YES},  # No  # Preload-ready  # Yes
+        "bod_crypto": {-1: MultiLingualString("", ""), 0: NO, 1: YES},
     },
 }
 
