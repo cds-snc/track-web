@@ -14,7 +14,12 @@ If you need to make an addition or edit to the frontend content, it will likely 
 To make an edit to the copy, simply find where it is in the `templates` directory, and make the edit (remembering to do so in both languages).
 To make an edit to the page behavior or style, it is likely that an edit will need to be made to some of the static files.
 
-**DESCRIPTION OF WHERE KEY FUNCTIONALITY IS LOCATED IN STATIC**
+#### CSS
+
+This project includes a precompiled [Tailwind](https://tailwindcss.com/docs/what-is-tailwind/) css file. Tailwind is a utility-first CSS framework for rapidly building custom user interfaces. 
+Any utility classes listed in their documentation can be used in this project, and you will see them throughout the markup. For example, a link definition may look like this:
+
+```<a tabindex="-1" class="text-xl text-https-blue no-underline hover:underline" href="/en/guidance/">```
 
 ### Routing, page rending, and data retrieval
 
