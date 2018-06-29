@@ -64,6 +64,7 @@ jobs:
               tar -czvf track-web.tar.gz .venv track
       - store_artifacts:
           path: /home/DEV.T1.TBS-SCT.GC.CA/dsamojle-ps/track-web.tar.gz
+          destination: track-web.tar.gz
           
 workflows:
   version: 2
