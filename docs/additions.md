@@ -50,14 +50,6 @@ The datatables in this project are powered by [DataTables](https://datatables.ne
 
 For the most part, you should only need to touch domains.js and organizations.js. These are the scripts you'll go to to change text, add new columns, etc. When adding a new column, you'll also need to add it to the page template (`templates/domains.html` & `templates/organizations.html`).
 
-### Updating Packages
-
-This project includes several scripts/packages that should be updated manually when new versions come out. 
-
-* [jQuery](https://jquery.com/): `static/js/vendor/jquery-3.2.1.min.js.js`
-* [D3](https://d3js.org/): `static/js/vendor/d3.min.js`
-* [Datables](https://datatables.net/):  `static/DataTables-1.10.12`
-
 ## Routing, page rending, and data retrieval
 
 To make a change to the backend of the dashboard, the `.py` files in `track` contain what you need.  
