@@ -14,12 +14,29 @@ If you need to make an addition or edit to the frontend content, it will likely 
 To make an edit to the copy, simply find where it is in the `templates` directory, and make the edit (remembering to do so in both languages).
 To make an edit to the page behavior or style, it is likely that an edit will need to be made to some of the static files.
 
-#### CSS
+#### Styles
 
-This project includes a precompiled [Tailwind](https://tailwindcss.com/docs/what-is-tailwind/) css file. Tailwind is a utility-first CSS framework for rapidly building custom user interfaces. 
-Any utility classes listed in their documentation can be used in this project, and you will see them throughout the markup. For example, a link definition may look like this:
+This project includes a precompiled [Tailwind CSS](https://tailwindcss.com/docs/what-is-tailwind/) file in `static/css/cds.min.css`. Tailwind is a utility-first CSS framework for rapidly building custom user interfaces. Any utility classes listed in their documentation can be used in this project, and you will see them throughout the markup. For example, a link definition may look like this:
 
-```<a tabindex="-1" class="text-xl text-https-blue no-underline hover:underline" href="/en/guidance/">```
+`<a class="text-xl text-https-blue hover:text-black font-bold" href="/en/guidance/">`
+
+`text-xl`, `text-https-blue`, `hover:text-black`, and `font-bold` are all Tailwind classes that build up the resulting look & behavior of the link. To keep new content in sync with current content, we recommend looking at the current styles and copying them as needed.
+
+If you need to write any custom classes, `static/scss/` includes several scss files that can be modified to create custom styles. When making changes to .scss files, make sure to be running the `make watch` command, which will watch the scss files for updates and compile them automatically to the `static/css/main.css` file for you.
+
+Most notably, `datatables.scss` contains almost all the styling for the datatables.
+
+#### Donut charts
+
+The donut charts in this project are powered by [D3](https://d3js.org/), a JavaScript library for manipulating documents based on data. The script is contained in `templates/includes/donut.html`. To change the data displayed by the chart or create new charts displaying different data, you need to modify the line that calculates the percent:
+
+`var compliant = Math.round((data.compliant / data.eligible) * 100);`, where you would swap data.compliant to the field from the data that you want to display. 
+
+D3 works by selecting a div with a specific class and using it to render the chart. 
+
+`var chart = d3.select('.compliant');`
+
+If you're adding multiple charts to a page, you'll need to make sure that each chart has a unique class that D3 can select.
 
 ### Routing, page rending, and data retrieval
 
