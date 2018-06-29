@@ -1,10 +1,10 @@
-## Making Additions
+# Making Additions
 
 This document is meant to give an explanation of the location of various components of the system, and how one would change or add to them.
 
 The dashboard is a [Flask](http://flask.pocoo.org/) application, meaning that it uses python for page routing, data retrieval, and to render [Jinja2](http://jinja.pocoo.org/docs/latest/) templates into html that is then served to the user. The resulting HTML pages use javascript to request and display the data and handle interactions with the pages.
 
-### Frontend Content
+## Frontend Content
 
 The frontend content is located within the `track` subdirectory, in the `templates` and `static` directoriies.
 * `static` - for static content such as javascript, css, images, etc.
@@ -14,7 +14,7 @@ If you need to make an addition or edit to the frontend content, it will likely 
 To make an edit to the copy, simply find where it is in the `templates` directory, and make the edit (remembering to do so in both languages).
 To make an edit to the page behavior or style, it is likely that an edit will need to be made to some of the static files.
 
-#### Styles
+### Styles
 
 This project includes a precompiled [Tailwind CSS](https://tailwindcss.com/docs/what-is-tailwind/) file in `static/css/cds.min.css`. Tailwind is a utility-first CSS framework for rapidly building custom user interfaces. Any utility classes listed in their documentation can be used in this project, and you will see them throughout the markup. For example, a link definition may look like this:
 
@@ -26,7 +26,7 @@ If you need to write any custom classes, `static/scss/` includes several scss fi
 
 Most notably, `datatables.scss` contains almost all the styling for the datatables.
 
-#### Donut charts
+### Donut charts
 
 The donut charts in this project are powered by [D3](https://d3js.org/), a JavaScript library for manipulating documents based on data. The script is contained in `templates/includes/donut.html`. To change the data displayed by the chart or create new charts displaying different data, you need to modify the line that calculates the percent:
 
@@ -38,7 +38,7 @@ D3 works by selecting a div with a specific class and using it to render the cha
 
 If you're adding multiple charts to a page, you'll need to make sure that each chart has a unique class that D3 can select.
 
-#### Datatables
+### Datatables
 
 The datatables in this project are powered by [DataTables](https://datatables.net/), a jQuery Javascript library to add advanced features to HTML tables. It is what powers the data display, searching, etc. The key scripts related to DataTables are:
 
@@ -50,7 +50,15 @@ The datatables in this project are powered by [DataTables](https://datatables.ne
 
 For the most part, you should only need to touch domains.js and organizations.js. These are the scripts you'll go to to change text, add new columns, etc. When adding a new column, you'll also need to add it to the page template (`templates/domains.html` & `templates/organizations.html`).
 
-### Routing, page rending, and data retrieval
+### Updating Packages
+
+This project includes several scripts/packages that should be updated manually when new versions come out. 
+
+* [jQuery](https://jquery.com/): `static/js/vendor/jquery-3.2.1.min.js.js`
+* [D3](https://d3js.org/): `static/js/vendor/d3.min.js`
+* [Datables](https://datatables.net/):  `static/DataTables-1.10.12`
+
+## Routing, page rending, and data retrieval
 
 To make a change to the backend of the dashboard, the `.py` files in `track` contain what you need.  
 * `__init__.py` - function for creating and initializing the flask application
