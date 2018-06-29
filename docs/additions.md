@@ -38,6 +38,18 @@ D3 works by selecting a div with a specific class and using it to render the cha
 
 If you're adding multiple charts to a page, you'll need to make sure that each chart has a unique class that D3 can select.
 
+#### Datatables
+
+The datatables in this project are powered by [DataTables](https://datatables.net/), a jQuery Javascript library to add advanced features to HTML tables. It is what powers the data display, searching, etc. The key scripts related to DataTables are:
+
+* `static/js/https/domains.js`: generates the domains view datatable 
+* `static/js/https/organizations.js`: generates the organizations view datatable
+* `static/js/tables.js`: handles general table functions like initialization, percent calculation for bars, syncing url to search etc
+* `static/js/utils.js`: general table utilities 
+* `static/js/dataTables.downloads.js`: generates the csv download links
+
+For the most part, you should only need to touch domains.js and organizations.js. These are the scripts you'll go to to change text, add new columns, etc. When adding a new column, you'll also need to add it to the page template (`templates/domains.html` & `templates/organizations.html`).
+
 ### Routing, page rending, and data retrieval
 
 To make a change to the backend of the dashboard, the `.py` files in `track` contain what you need.  
