@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     Tables.initAgency(data.data, {
 
-      csv: "/data/hosts/compliance.csv",
+      csv: "/data/hosts/" + language + "/compliance.csv",
 
       prefix: language,
 
@@ -18,7 +18,7 @@ $(document).ready(function () {
         },
         {
           data: "name_" + language,
-          cellType: "td",
+          cellType: "th",
           width: "240px",
           render: eligibleHttps,
           createdCell: function (td) {td.scope = "row";}
@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var link = function(link_text) {
       return "" +
-        "<a href=\"/" + language + "/" + text.domains[language] + "/#" +
+        "<a onClick=\"gtag('event', 'Search', { event_category: 'Search for Organization', event_action: 'Search for " + row["name_" + language] + " domains'});\" href=\"/" + language + "/" + text.domains[language] + "/#" +
           QueryString.stringify({q: row["name_" + language]}) + "\">" +
            link_text +
         "</a>";

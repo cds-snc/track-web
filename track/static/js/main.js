@@ -4,8 +4,8 @@ $(function(){
 
   // Mobile menu
 
-  $('#menu-btn, .overlay, .sliding-panel-close').on('click touchstart',function (e) {
-    $('#menu-content, .overlay').toggleClass('is-visible');
+  $('#menu-btn, .sliding-panel-close').on('click touchstart',function (e) {
+    $('#menu-content').toggleClass('is-visible');
 
     if($('#menu-content').hasClass('is-visible')) {
       $('#menu-content a').attr('tabindex', '0');
@@ -35,6 +35,9 @@ $(function(){
   $(document).click(function(e) {
     if (!$(event.target).closest("#modal-content, #modal-btn").length && $('#modal').hasClass('flex')){
       toggleModal('hide');
+    }
+    else if(!$(event.target).closest("#menu-content, #menu-btn").length && $('#menu-content').hasClass('is-visible')){
+      $('#menu-content').toggleClass('is-visible')
     }
   });
 

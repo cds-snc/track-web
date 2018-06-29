@@ -86,14 +86,11 @@ table caption {
       padding-left: 80px;
       line-height: 23px;
 
-      a {
-        font-weight: normal !important;
-      }
     }
 
     a {
       text-decoration: underline;
-      color: #4499EE !important;
+      color: #0071E1 !important;
     }
 
     a:hover {
@@ -108,6 +105,7 @@ table caption {
     th, td {
       border-bottom: 1px solid #888 !important;
       padding: 8px 0 8px 40px;
+      font-weight: normal;
     }
 
     td:first {
@@ -211,13 +209,14 @@ table caption {
       .progress-bar-indication {
         background-color: #888888;
         border-radius: 20px;
+        //border: 0.5rem solid #888888;
         width: 70%;
         position: relative;
         left: 35px;
 
         > .meter {
           @include box-sizing(border-box);
-          background-color: #4499EE;
+          background-color: #0071E1;
           background-repeat: repeat-x;
           background-size: 40px 40px;
           border-radius: 20px 0 0 20px;
@@ -251,14 +250,14 @@ table caption {
       font-size: 0.875em;
       border: none !important;
       &.current {
-        background: #4499EE !important;
+        background: #0071E1 !important;
         color: white !important;
         &:hover {
           color: white !important;
         }
       }
       &:hover, &:focus {
-        background: #4499EE !important;
+        background: #0071E1 !important;
         color: white !important;
       }
       &.disabled {

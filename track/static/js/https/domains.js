@@ -7,7 +7,7 @@ $(function () {
   $.get("/data/domains/https.json", function(data) {
     table = Tables.init(data.data, {
 
-      csv: "/data/hosts/compliance.csv",
+      csv: "/data/hosts/" + language + "/compliance.csv",
 
       responsive: {
           details: {
@@ -31,7 +31,7 @@ $(function () {
         {
           data: "domain",
           width: "240px",
-          cellType: "td",
+          cellType: "th",
           render: showDomain,
 
           createdCell: function (td) {
@@ -168,14 +168,14 @@ $(function () {
 
     enforces: {
       en: {
-        0: "No", // No (no HTTPS)
-        1: "No", // Present, not default
+        0: "<strong>No</strong>", // No (no HTTPS)
+        1: "<strong>No</strong>", // Present, not default
         2: "Yes", // Defaults eventually to HTTPS
         3: "Yes" // Defaults eventually + redirects immediately
       },
       fr: {
-        0: "Non", 
-        1: "Non", 
+        0: "<strong>Non</strong>", 
+        1: "<strong>Non</strong>", 
         2: "Oui", 
         3: "Oui" 
       },
@@ -183,16 +183,16 @@ $(function () {
 
     hsts: {
       en: {
-        "-1": "No", // No (no HTTPS)
-        0: "No",  // No
-        1: "No", // No, HSTS with short max-age (for canonical endpoint)
+        "-1": "<strong>No</strong>", // No (no HTTPS)
+        0: "<strong>No</strong>",  // No
+        1: "<strong>No</strong>", // No, HSTS with short max-age (for canonical endpoint)
         2: "Yes", // Yes, HSTS for >= 1 year (for canonical endpoint)
         3: "Preloaded" // Yes, via preloading (subdomains only)
       },
       fr: {
-        "-1": "Non", 
-        0: "Non",
-        1: "Non",
+        "-1": "<strong>Non</strong>", 
+        0: "<strong>Non</strong>",
+        1: "<strong>Non</strong>",
         2: "Oui",
         3: "Préchargé"
       }
@@ -205,8 +205,8 @@ $(function () {
         1: "Yes"
       },
       fr: {
-        "-1": "S. O.",
-        0: "<strong>Non</strong>, download CSV for details",
+        "-1": "S.&nbsp;O.",
+        0: "<strong>Non</strong>, télécharger le fichier CSV pour plus de détails",
         1: "Oui"
       }
     },
@@ -214,12 +214,12 @@ $(function () {
     good_cert: {
       en: {
         "-1": "N/A",
-        0: "<strong>No</strong>",
+        0: "<strong>No</strong>, download CSV for details",
         1: "Yes",
       },
       fr: {
-        "-1": "S. O.",
-        0: "<strong>Non</strong>",
+        "-1": "S.&nbsp;O.",
+        0: "<strong>Non</strong>, télécharger le fichier CSV pour plus de détails",
         1: "Oui",
       }
     }
@@ -238,7 +238,7 @@ $(function () {
     var all = [];
     var number = hosts.length;
 
-    var csv = "/data/hosts/" + base_domain + "/compliance.csv";
+    var csv = "/data/hosts/" + base_domain + "/" + language + "/compliance.csv";
 
     for (i=0; i<hosts.length; i++) {
       var host = hosts[i];
@@ -269,7 +269,7 @@ $(function () {
     }
 
     var link = text.link_1[language] + number + text.link_2[language] + base_domain;
-    link += l(csv, text.link_3[language], "class=\"float-right mr-4\"");
+    link += l(base_domain, csv, text.link_3[language], "class=\"float-right mr-4\"");
 
     var download = $("<tr></tr>").addClass("subdomain").html("<td class=\"link bg-https-light-gray\" colspan=6><strong>" + link + "</strong></td>");
     all.push(download);
@@ -287,16 +287,16 @@ $(function () {
     // determines whether remote fetching has to happen
     var fetch = !(loneDomain(row));
 
-    return n(row.domain) + "<div class=\"mt-2\">" + l("#", showHideText(true, row), "onclick=\"return false\" data-fetch=\"" + fetch + "\" data-domain=\"" + row.domain + "\"") + "</div>";
+    return n(row.domain) + "<div class=\"mt-2\">" + l("", "#", showHideText(true, row), "onclick=\"return false\" data-fetch=\"" + fetch + "\" data-domain=\"" + row.domain + "\"") + "</div>";
   };
 
   var showHideText = function(show, row) {
     if (loneDomain(row))
-      return (show ? "<img src=\"/static/images/arrow.png\" class=\"rotated pb-1 mr-1 h-2\">" + text.show[language] : "<img src=\"/static/images/arrow.png\" class=\"mr-2 h-2\">" + text.hide[language]) + " " + text.details[language];
+      return (show ? "<img src=\"/static/images/arrow.png\" aria-hidden=\"true\" class=\"rotated pb-1 mr-1 h-2\">" + text.show[language] : "<img src=\"/static/images/arrow.png\" class=\"mr-2 h-2\">" + text.hide[language]) + " " + text.details[language];
     else if(row.totals.https.eligible == 1)
-      return (show ? "<img src=\"/static/images/arrow.png\" class=\"rotated pb-1 mr-1 h-2\">" + {en: "Show", fr: "Montrer le"}[language] : "<img src=\"/static/images/arrow.png\" class=\"mr-2 h-2\">" + {en: "Hide", fr: "Cacher le"}[language]) + " " + {en: "1", fr:""}[language] + text.subdomain[language];
+      return (show ? "<img src=\"/static/images/arrow.png\" aria-hidden=\"true\" class=\"rotated pb-1 mr-1 h-2\">" + {en: "Show", fr: "Montrer le"}[language] : "<img src=\"/static/images/arrow.png\" class=\"mr-2 h-2\">" + {en: "Hide", fr: "Cacher le"}[language]) + " " + {en: "1", fr:""}[language] + text.subdomain[language];
     else
-      return (show ? "<img src=\"/static/images/arrow.png\" class=\"rotated pb-1 mr-1 h-2\">" + text.show[language] : "<img src=\"/static/images/arrow.png\" class=\"mr-2 h-2\">" + text.hide[language]) + " " + row.totals.https.eligible + text.subdomains[language];
+      return (show ? "<img src=\"/static/images/arrow.png\" aria-hidden=\"true\" class=\"rotated pb-1 mr-1 h-2\">" + text.show[language] : "<img src=\"/static/images/arrow.png\" class=\"mr-2 h-2\">" + text.hide[language]) + " " + row.totals.https.eligible + text.subdomains[language];
   };
 
   var initExpansions = function() {
@@ -321,7 +321,7 @@ $(function () {
 
         if (fetch) {
           console.log(text.fetch[language] + base_domain + "...");
-          link.addClass("loading").html("<img src=\"/static/images/arrow.png\" class=\"mr-2 h-2\">" + text.loading[language] + base_domain + " services...");
+          link.addClass("loading").html("<img src=\"/static/images/arrow.png\" aria-hidden=\"true\" class=\"mr-2 h-2\">" + text.loading[language] + base_domain + " services...");
 
           $.ajax({
             url: "/data/hosts/" + base_domain + "/https.json",
@@ -368,7 +368,10 @@ $(function () {
     });
   };
 
-  var l = function(href, text, extra) {
+  var l = function(base_domain, href, text, extra) {
+    // if base domain is provided, CSV download, so track with gtag
+    if(base_domain != "") return "<a onClick=\"gtag('event', 'download', { event_category: 'Downloads', event_action: 'Download CSV for " + base_domain + "'});\" href=\"" + href + "\" target=\"blank\" " + extra + ">" + text + "</a>";
+    
     return "<a href=\"" + href + "\" target=\"blank\" " + extra + ">" + text + "</a>";
   };
 
