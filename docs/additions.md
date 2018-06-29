@@ -19,10 +19,11 @@ To make an edit to the page behavior or style, it is likely that an edit will ne
 New pages can be added by creating a new page in `templates/en` and `templates/fr`. A fresh, basic page layout will look like this:
 
 ```{% extends "en/layout-en.html" %}
-{% block title %}Check compliance - By Domain{% endblock %}
+{% block title %} {% endblock %}
 
-{% block pageid_en %}domains{% endblock %}
-{% block pageid_fr %}domaines{% endblock %}
+{% block pageid_en %} {% endblock %}
+{% block pageid_fr %} {% endblock %}
+{% block description %} {% endblock description %}
 
 {% block content %}
 
@@ -39,6 +40,7 @@ where:
 * `{% extends "en/layout-en.html" %}` sets the page to inherit all the content from the base layout (in the case of a french page, it'll extend `fr/layout-fr.html`)
 * `{% block title %}` contains the title of the page that will be put in the `title` tag
 * `{% block pageid_en %} / {% block pageid_fr %}` contains the id of the page. It is **very** important that this matches the route name assigned to the page in `views.py`, because this is how the language switcher determines the URL of the opposite language page
+* `{% block description %}` contains the content that will go into the description meta tag
 * `{% block content %}` contains all the content for the page. Make sure to keep the section tag 
 
 Once a new page is added, you will need to create a new route for it in `views.py`, and add it to the navigation in `templates/en/layout-en.html` and `templates/fr/layout-fr.html`.
