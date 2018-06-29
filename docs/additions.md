@@ -14,6 +14,19 @@ If you need to make an addition or edit to the frontend content, it will likely 
 To make an edit to the copy, simply find where it is in the `templates` directory, and make the edit (remembering to do so in both languages).
 To make an edit to the page behavior or style, it is likely that an edit will need to be made to some of the static files.
 
+### Adding new pages
+
+New pages can be added by creating a new page in `templates/en` and `templates/fr`. A fresh, basic page layout will look like this:
+
+`
+{% extends "en/layout-en.html" %}
+
+{% block title %}Check compliance - By Domain{% endblock %}
+{% block pageid_en %}domains{% endblock %}
+{% block pageid_fr %}domaines{% endblock %}
+
+`
+
 ### Styles
 
 This project includes a precompiled [Tailwind CSS](https://tailwindcss.com/docs/what-is-tailwind/) file in `static/css/cds.min.css`. Tailwind is a utility-first CSS framework for rapidly building custom user interfaces. Any utility classes listed in their documentation can be used in this project, and you will see them throughout the markup. For example, a link definition may look like this:
