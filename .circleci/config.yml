@@ -74,3 +74,6 @@ workflows:
       - build_package:
          requires:
             - track_web
+         filters:
+           branches:
+             only: master
