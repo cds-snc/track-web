@@ -83,7 +83,7 @@ def register(app):
     # Detailed data per-parent-domain.
     @app.route("/data/domains/<report_name>.json")
     @cache.cached()
-    def domain_report(report_name, ext):
+    def domain_report(report_name):
         report_name = 'https' if report_name == 'compliance' else report_name
 
         domains = models.Domain.eligible_parents(report_name)
