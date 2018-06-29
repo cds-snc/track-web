@@ -30,7 +30,7 @@ def register(app):
         return render_template(generate_path(prefix, "index"))
 
     @app.route("/en/organizations/")
-    @app.route("/fr/organizations/")
+    @app.route("/fr/organisations/")
     def organizations():
         prefix = request.path[1:3]
         return render_template(generate_path(prefix, "organizations"))
@@ -41,8 +41,8 @@ def register(app):
         prefix = request.path[1:3]
         return render_template(generate_path(prefix, "domains"))
 
-    @app.route("/en/implementation-guidance/")
-    @app.route("/fr/mettre-en-oeuvre/")
+    @app.route("/en/guidance/")
+    @app.route("/fr/directives/")
     def guidance():
         prefix = request.path[1:3]
         return render_template(generate_path(prefix, "guidance"))
