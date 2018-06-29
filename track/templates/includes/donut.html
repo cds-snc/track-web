@@ -26,7 +26,7 @@ function generate_chart() {
         .attr("transform", "translate(" + (width / 2) + "," + (height / 2) + ")");
     d3.json("/data/reports/https.json", function (error, data) {
         // calculate % client-side
-        var compliant = Math.round((data.compliant / data.eligible) * 100);
+        var compliant = Math.round((data.enforces / data.eligible) * 100);
         // just abort and leave it blank if something's wrong
         // (instead of showing "NaN%" visually)
         if (isNaN(compliant))
