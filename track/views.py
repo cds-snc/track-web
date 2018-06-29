@@ -81,7 +81,7 @@ def register(app):
         return response
 
     # Detailed data per-parent-domain.
-    @app.route("/data/domains/<report_name>.<ext>")
+    @app.route("/data/domains/<report_name>.json")
     @cache.cached()
     def domain_report(report_name, ext):
         report_name = 'https' if report_name == 'compliance' else report_name
@@ -89,13 +89,20 @@ def register(app):
         domains = models.Domain.eligible_parents(report_name)
         domains = sorted(domains, key=lambda k: k['domain'])
 
-        if ext == "json":
-          response = Response(ujson.dumps({'data': domains}))
-          response.headers['Content-Type'] = 'application/json'
-        elif ext == "csv":
-          response = Response(models.Domain.to_csv(domains, report_name))
-          response.headers['Content-Type'] = 'text/csv'
+        response = Response(ujson.dumps({'data': domains}))
+        response.headers['Content-Type'] = 'application/json'
         return response
+
+    @app.route("/data/domains/<language>/<report_name>.csv")
+    @cache.cached()
+    def domain_report_csv(report_name, language):
+        report_name = 'https' if report_name == 'compliance' else report_name
+
+        domains = models.Domain.eligible_parents(report_name)
+        domains = sorted(domains, key=lambda k: k['domain'])
+
+        response = Response(models.Domain.to_csv(domains, report_name, language))
+        response.headers['Content-Type'] = 'text/csv'
 
     @app.route("/data/domains-table.json")
     def domains_table():
@@ -151,10 +158,11 @@ def register(app):
         response.headers['Content-Type'] = 'application/json'
         return response
 
+
     # Detailed data per-host for a given report.
-    @app.route("/data/hosts/<report_name>.<ext>")
+    @app.route("/data/hosts/<report_name>.json")
     @cache.cached()
-    def hostname_report(report_name, ext):
+    def hostname_report(report_name):
         report_name = 'https' if report_name == 'compliance' else report_name
 
         domains = models.Domain.eligible(report_name)
@@ -163,18 +171,31 @@ def register(app):
         domains = sorted(domains, key=lambda k: k['domain'])
         domains = sorted(domains, key=lambda k: k['base_domain'])
 
-        if ext == "json":
-          response = Response(ujson.dumps({'data': domains}))
-          response.headers['Content-Type'] = 'application/json'
-        elif ext == "csv":
-          response = Response(models.Domain.to_csv(domains, report_name))
-          response.headers['Content-Type'] = 'text/csv'
+        response = Response(ujson.dumps({'data': domains}))
+        response.headers['Content-Type'] = 'application/json'
         return response
 
-    # Detailed data for all subdomains of a given parent domain, for a given report.
-    @app.route("/data/hosts/<domain>/<report_name>.<ext>")
+
+    @app.route("/data/hosts/<language>/<report_name>.csv")
     @cache.cached()
-    def hostname_report_for_domain(domain, report_name, ext):
+    def hostname_report_csv(language, report_name):
+        report_name = 'https' if report_name == 'compliance' else report_name
+
+        domains = models.Domain.eligible(report_name)
+
+        # sort by base domain, but subdomain within them
+        domains = sorted(domains, key=lambda k: k['domain'])
+        domains = sorted(domains, key=lambda k: k['base_domain'])
+
+        response = Response(models.Domain.to_csv(domains, report_name, language))
+        response.headers['Content-Type'] = 'text/csv'
+        return response
+
+
+    # Detailed data for all subdomains of a given parent domain, for a given report.
+    @app.route("/data/hosts/<domain>/<report_name>.json")
+    @cache.cached()
+    def hostname_report_for_domain(domain, report_name):
         report_name = 'https' if report_name == 'compliance' else report_name
 
         domains = models.Domain.eligible_for_domain(domain, report_name)
@@ -183,13 +204,26 @@ def register(app):
         domains = sorted(domains, key=lambda k: k['domain'])
         domains = sorted(domains, key=lambda k: k['is_parent'], reverse=True)
 
-        if ext == "json":
-            response = Response(ujson.dumps({'data': domains}))
-            response.headers['Content-Type'] = 'application/json'
-        elif ext == "csv":
-            response = Response(models.Domain.to_csv(domains, report_name))
-            response.headers['Content-Type'] = 'text/csv'
+        response = Response(ujson.dumps({'data': domains}))
+        response.headers['Content-Type'] = 'application/json'
         return response
+
+    # Detailed data for all subdomains of a given parent domain, for a given report.
+    @app.route("/data/hosts/<domain>/<language>/<report_name>.csv")
+    @cache.cached()
+    def hostname_report_for_domain_csv(domain, language, report_name):
+        report_name = 'https' if report_name == 'compliance' else report_name
+
+        domains = models.Domain.eligible_for_domain(domain, report_name)
+
+        # sort by hostname, but put the parent at the top if it exist
+        domains = sorted(domains, key=lambda k: k['domain'])
+        domains = sorted(domains, key=lambda k: k['is_parent'], reverse=True)
+
+        response = Response(models.Domain.to_csv(domains, report_name, language))
+        response.headers['Content-Type'] = 'text/csv'
+        return response
+
 
     @app.route("/data/organizations/<report_name>.json")
     @cache.cached()
