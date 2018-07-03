@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var link = function(link_text) {
       return "" +
-        "<a onClick=\"gtag('event', 'Search', { event_category: 'Search for Organization', event_action: 'Search for " + row["name_" + language] + " domains'});\" href=\"/" + language + "/" + text.domains[language] + "/#" +
+        "<a onClick=\"gtag('event', 'Search', { event_category: 'Search / Rechercher', event_action: 'Search / Rechercher " + row["name_" + language] + " domains'});\" href=\"/" + language + "/" + text.domains[language] + "/#" +
           QueryString.stringify({q: row["name_" + language]}) + "\">" +
            link_text +
         "</a>";
