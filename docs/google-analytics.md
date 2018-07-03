@@ -6,7 +6,7 @@ Two custom events are included to help track how users are interacting with the 
 
 ## CSV Download
 
-There are two events for CSV downloads: full CSV & specific domain CSV. This are categorized under "Download" actions.
+There are two events for CSV downloads: full CSV & specific domain CSV. These are categorized under "Download" actions.
 
 ## Filtering by Organization
 
