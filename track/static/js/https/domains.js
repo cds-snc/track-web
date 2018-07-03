@@ -370,7 +370,7 @@ $(function () {
 
   var l = function(base_domain, href, text, extra) {
     // if base domain is provided, CSV download, so track with gtag
-    if(base_domain != "") return "<a onClick=\"gtag('event', 'download', { event_category: 'Downloads', event_action: 'Download CSV for " + base_domain + "'});\" href=\"" + href + "\" target=\"blank\" " + extra + ">" + text + "</a>";
+    if(base_domain != "") return "<a onClick=\"gtag('event', 'download', { event_category: 'Download / Télécharger', event_action: 'Download / Télécharger CSV " + base_domain + "'});\" href=\"" + href + "\" target=\"blank\" " + extra + ">" + text + "</a>";
     
     return "<a href=\"" + href + "\" target=\"blank\" " + extra + ">" + text + "</a>";
   };
