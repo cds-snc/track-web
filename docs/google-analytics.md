@@ -5,11 +5,9 @@ This project includes a Google Analytics set up with custom events for CSV downl
 Two custom events are included to help track how users are interacting with the product. 
 
 ## CSV Download
-![alt text](download-csv.png "Example image showing download CSV events in Google Analytics")
 
 There are two events for CSV downloads: full CSV & specific domain CSV. This are categorized under "Download" actions.
 
 ## Filtering by Organization
-![alt text](search.png "Example image showing search events in Google Analytics")
 
 There is one event for searching/filtering, which is triggered when a user clicks on a "Show domains" link on the Organization view of the dashboard. It tracks which Organizations the users are most interested in, and are categorized under "Search" actions. Please note that this doesn't track users manually inputting searches in the search bar. 
