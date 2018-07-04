@@ -57,9 +57,10 @@ jobs:
           command: |
               apt-get update
               apt-get install -y python3 python3-venv python3-dev build-essential
+              apt-get install -y python3-pip
               python3 -m venv .venv
               . .venv/bin/activate
-              pip install wheel
+              pip install --upgrade pip
               pip install -r requirements.txt
               tar -czvf track-web.tar.gz .venv track
       - store_artifacts:
