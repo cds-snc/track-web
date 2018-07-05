@@ -7,6 +7,6 @@ Here you will find the following documents to help gain an understanding around 
 | -------- | ----------- | 
 | [additions.md](additions.md) | This document outlines the location of key functionality to facilitate making additions or changes to the system. |
 | [deploy.md](deploy.md) | This document outlines a basic deployment workflow. |
-| [google-analytics.md](google-analytics.md) | This document outlines the custom google analytics events that we have bundled into the project, |
-| [local-instructions.md](local-instructions.md) | This document contains step-by-step instructions on how to setup a development verison of the project locally, |
-| [updating-packages.md](updating-packages.md) | This document is a note of all javascript packages that have been included in the `static` folder and should be updated when new versions come out. |
+| [google-analytics.md](google-analytics.md) | This document outlines the custom Google Analytics events that we have bundled into the project. |
+| [local-instructions.md](local-instructions.md) | This document contains step-by-step instructions on how to setup a development verison of the project locally. |
+| [updating-packages.md](updating-packages.md) | This document is a note of all JavaScript packages that have been included in the `static` folder and should be updated when new versions come out. |
