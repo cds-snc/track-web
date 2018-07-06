@@ -4,7 +4,9 @@
 
 ## Track Government of Canada domains's adherence to web security practices
 
-This repository is one component of _Track web security compliance_, a web-based application that scans Government of Canada websites and reports how they are meeting good web security practices, as outlined in [Information Technology Policy Implementation Notice (ITPIN): Implementing HTTPS for Secure Web Connections](https://www.canada.ca/en/treasury-board-secretariat/services/information-technology/policy-implementation-notices.html). `track-web` is a web application that displays the results of [tracker](https://github.com/cds-snc/tracker), the domain scanner. This is what it looks like, in English and French, with demo data: 
+This repository is one component of _Track web security compliance_, a web-based application that scans Government of Canada websites and reports how they are meeting good web security practices, as outlined in [Information Technology Policy Implementation Notice (ITPIN): Implementing HTTPS for Secure Web Connections](https://www.canada.ca/en/treasury-board-secretariat/services/information-technology/policy-implementation-notices.html). `track-web` is a web application that displays the results of [tracker](https://github.com/cds-snc/tracker), the domain scanner. 
+
+This is what it looks like with demo data: 
 
 | English | French |
 |---------|--------|
