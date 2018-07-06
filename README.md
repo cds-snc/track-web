@@ -73,7 +73,7 @@ This will run the app with `DEBUG` mode on, showing full error messages in-brows
 
 When running in development mode it is expected that you have a database running locally, accessible via `localhost:27017`.
 
-To produce some data for the Flask app to display, follow the instructions in the following section.
+To produce some data for the Flask app to display, follow the instructions in [tracker](https://github.com/cds-snc/tracker).
 
 ## Public domain
 
