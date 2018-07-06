@@ -1,4 +1,4 @@
-WORKDIR=${1:-"/home/DEV.T1.TBS-SCT.GC.CA/dsamojle-ps/"}
+WORKDIR=${1:-"/opt/apps/track-web"}
 mkdir -p $WORKDIR
 cd $WORKDIR
 python3 -m venv .venv

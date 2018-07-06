@@ -49,22 +49,14 @@ jobs:
     working_directory: ~/repo
   build_package:
     docker:
-      - image: ubuntu:xenial
-    working_directory: /home/DEV.T1.TBS-SCT.GC.CA/dsamojle-ps
+      - image: cdssnc/track-web-build:0.1.0
+    working_directory: /opt/apps/track-web
     steps:
       - checkout
       - run:
-          command: |
-              apt-get update
-              apt-get install -y python3 python3-venv python3-dev build-essential
-              apt-get install -y python3-pip
-              python3 -m venv .venv
-              . .venv/bin/activate
-              pip install --upgrade pip
-              pip install -r requirements.txt
-              tar -czvf track-web.tar.gz .venv track
+          command: sh deploy/build-env.sh
       - store_artifacts:
-          path: /home/DEV.T1.TBS-SCT.GC.CA/dsamojle-ps/track-web.tar.gz
+          path: /opt/apps/track-web/track-web.tar.gz
           destination: track-web.tar.gz
           
 workflows:
