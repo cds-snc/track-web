@@ -2,9 +2,18 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/cds-snc/track-web/badge.svg)](https://snyk.io/test/github/cds-snc/track-web)
 
 
-## Track Government of Canada domains's adherance to digital security practices
+## Track Government of Canada domains's adherence to web security practices
 
-How the GC domain space is doing at best practices and federal requirements.
+This repository is one component of _Track web security compliance_, a web-based application that scans Government of Canada websites and reports how they are meeting good web security practices, as outlined in [Information Technology Policy Implementation Notice (ITPIN): Implementing HTTPS for Secure Web Connections](https://www.canada.ca/en/treasury-board-secretariat/services/information-technology/policy-implementation-notices.html). `track-web` is a web application that displays the results of [tracker](https://github.com/cds-snc/tracker), the domain scanner. This is what it looks like, in English and French, with demo data: 
+
+| English | French |
+|---------|--------|
+|![English landing page: header with title, some text, and a chart showing number of domains that enforce HTTPS](/docs/img/en-landing.png)  |  ![French landing page: header with title, some text, and a chart showing number of domains that enforce HTTPS](/docs/img/fr-landing.png) |
+|![English dashboard page: text, a search bar, and a table with columns: Organization, ITPIN Compliant, Enforces HTTPS, HSTS, Free of known weak protocols and ciphers, Uses approved certificates](/docs/img/en-dashboard.png) | ![French dashboard page: text, a search bar, and a table with columns: Organization, ITPIN Compliant, Enforces HTTPS, HSTS, Free of known weak protocols and ciphers, Uses approved certificates](/docs/img/fr-dashboard.png) |
+
+
+
+-------
 
 | Documentation                                           |
 | ------------------------------------------------------- |
