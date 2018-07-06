@@ -2,12 +2,12 @@
 
 This document is meant to give an explanation of the location of various components of the system, and how one would change or add to them.
 
-The dashboard is a [Flask](http://flask.pocoo.org/) application, meaning that it uses python for page routing, data retrieval, and to render [Jinja2](http://jinja.pocoo.org/docs/latest/) templates into html that is then served to the user. The resulting HTML pages use javascript to request and display the data and handle interactions with the pages.
+The dashboard is a [Flask](http://flask.pocoo.org/) application, meaning that it uses python for page routing, data retrieval, and to render [Jinja2](http://jinja.pocoo.org/docs/latest/) templates into HTML that is then served to the user. The resulting HTML pages use JavaScript to request and display the data and handle interactions with the pages.
 
 ## Frontend Content
 
-The frontend content is located within the `track` subdirectory, in the `templates` and `static` directoriies.
-* `static` - for static content such as javascript, css, images, etc.
+The frontend content is located within the `track` subdirectory, in the `templates` and `static` directories.
+* `static` - for static content such as JavaScript, CSS, images, etc.
 * `templates` - for the Jinja2 templates
 
 If you need to make an addition or edit to the frontend content, it will likely be isolated to one or both of these folders.  
@@ -37,7 +37,7 @@ New pages can be added by creating a new page in `templates/en` and `templates/f
 
 where: 
 
-* `{% extends "en/layout-en.html" %}` sets the page to inherit all the content from the base layout (in the case of a french page, it'll extend `fr/layout-fr.html`)
+* `{% extends "en/layout-en.html" %}` sets the page to inherit all the content from the base layout (in the case of a French page, it'll extend `fr/layout-fr.html`)
 * `{% block title %}` contains the title of the page that will be put in the `title` tag
 * `{% block pageid_en %} / {% block pageid_fr %}` contains the id of the page. It is **very** important that this matches the route name assigned to the page in `views.py`, because this is how the language switcher determines the URL of the opposite language page
 * `{% block description %}` contains the content that will go into the description meta tag
@@ -67,30 +67,30 @@ The donut charts in this project are powered by [D3](https://d3js.org/), a JavaS
 
 `var compliant = Math.round((data.compliant / data.eligible) * 100);`, where you would swap data.compliant to the field from the data that you want to display. 
 
-D3 works by selecting a div with a specific class and using it to render the chart. 
+D3 works by selecting a `div` with a specific `class` and using it to render the chart. 
 
 `var chart = d3.select('.compliant');`
 
-If you're adding multiple charts to a page, you'll need to make sure that each chart has a unique class that D3 can select.
+If you're adding multiple charts to a page, you'll need to make sure that each chart has a unique `class` that D3 can select.
 
 ### Datatables
 
-The datatables in this project are powered by [DataTables](https://datatables.net/), a jQuery Javascript library to add advanced features to HTML tables. It is what powers the data display, searching, etc. The key scripts related to DataTables are:
+The datatables in this project are powered by [DataTables](https://datatables.net/), a jQuery JavaScript library to add advanced features to HTML tables. It is what powers the data display, searching, etc. The key scripts related to DataTables are:
 
 * `static/js/https/domains.js`: generates the domains view datatable 
 * `static/js/https/organizations.js`: generates the organizations view datatable
-* `static/js/tables.js`: handles general table functions like initialization, percent calculation for bars, syncing url to search etc
+* `static/js/tables.js`: handles general table functions like initialization, percent calculation for bars, syncing URL to search, etc.
 * `static/js/utils.js`: general table utilities 
-* `static/js/dataTables.downloads.js`: generates the csv download links
+* `static/js/dataTables.downloads.js`: generates the CSV download links
 
-For the most part, you should only need to touch domains.js and organizations.js. These are the scripts you'll go to to change text, add new columns, etc. When adding a new column, you'll also need to add it to the page template (`templates/domains.html` & `templates/organizations.html`).
+For the most part, you should only need to touch domains.js and organizations.js. These are the scripts you'll go to change text, add new columns, etc. When adding a new column, you'll also need to add it to the page template (`templates/domains.html` & `templates/organizations.html`).
 
 ## Routing, page rending, and data retrieval
 
 To make a change to the backend of the dashboard, the `.py` files in `track` contain what you need.  
 * `__init__.py` - function for creating and initializing the flask application
-* `data.py` - mappings from database document property names to human readable names for the CSV export and frontend.
-* `helpers.py` - small number of helper functions for the template rendering.
-* `models.py` - abstraction layer on top of the database. Application makes calls into this module to interact with the database.
-* `views.py` - route definitions. Code that will be executing when users attempt to visit paths (such as `/en/domains/`, which displays the English domains page).
-* `wsgi.py` - simple module that just creates and holds a reference to the flask app.
+* `data.py` - mappings from database document property names to human readable names for the CSV export and frontend
+* `helpers.py` - small number of helper functions for the template rendering
+* `models.py` - abstraction layer on top of the database. Application makes calls into this module to interact with the database
+* `views.py` - route definitions. Code that will be executing when users attempt to visit paths (such as `/en/domains/`, which displays the English domains page)
+* `wsgi.py` - simple module that just creates and holds a reference to the Flask app
