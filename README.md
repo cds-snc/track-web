@@ -26,17 +26,17 @@ This is what it looks like with demo data:
 ## Developer Notes
 
 This repository is using [snyk](https://snyk.io/org/cds-snc) to scan our dependencies for vulnerabilities.  
-Unfortunatly Synk lacks the ability to detect the dependencies listed in the `setup.py` file.
+Unfortunately Synk lacks the ability to detect the dependencies listed in the `setup.py` file.
 To get around this we are have the dependencies synced between the `setup.py` and `requirements.txt` (which snyk can scan) files.  
-If you are developing this and add an aditional dependency, make sure to add it to both locations
+If you are developing this and add an additional dependency, make sure to add it to both locations
 
 ## Development Setup
 
-For development purposes it is recommended that you install [mongodb](https://www.mongodb.com/) and run the database locally.
+For development purposes it is recommended that you install [MongoDB](https://www.mongodb.com/) and run the database locally.
 
 This dashboard is a [Flask](http://flask.pocoo.org/) app written for **Python 3.5 and up**. We recommend [pyenv](https://github.com/yyuu/pyenv) for easy Python version management.
 
-To setup local python dependencies you can run `make setup` from the root of the repository. We recommend that this is done from within a virtual environment
+To setup local python dependencies, you can run `make setup` from the root of the repository. We recommend that this is done from within a virtual environment
 
 To prepare data for presentation, please see the [tracker](https://github.com/cds-snc/tracker) repository.
 
@@ -71,9 +71,9 @@ make debug
 
 This will run the app with `DEBUG` mode on, showing full error messages in-browser when they occur.
 
-When running in development mode it is expected that you have a database running locally, accessable via `localhost:27017`.
+When running in development mode it is expected that you have a database running locally, accessible via `localhost:27017`.
 
-To produce some data for the flask app to display, follow the instructions in the following section.
+To produce some data for the Flask app to display, follow the instructions in the following section.
 
 ## Public domain
 
