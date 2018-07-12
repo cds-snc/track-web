@@ -23,7 +23,7 @@ def register(app):
 
     @app.route("/ping")
     def health_check():
-        return 'PONG' # We Redis now
+        return 'PONG'
 
     @app.route("/en/")
     @app.route("/fr/")
