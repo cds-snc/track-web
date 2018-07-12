@@ -21,6 +21,10 @@ def register(app):
         else:
             return redirect("/en/index/")
 
+    @app.route("/ping")
+    def health_check():
+        return 'PONG' # We Redis now
+
     @app.route("/en/")
     @app.route("/fr/")
     @app.route("/en/index/")
