@@ -11,27 +11,33 @@
 
 <!-- CSS
 ================================================== -->
-<!-- <link rel="stylesheet" href="/static/css/normalize.min.css">
-<link rel="stylesheet" href="/static/css/google-fonts.css"> -->
 <link rel="stylesheet" href="/static/css/main.css">
 <link rel="stylesheet" href="/static/css/cds.min.css?{{ now() | date("%Y%m%j%H%M%S") }}">
 
 <!-- Scripts
 ================================================== -->
-<script src="/static/js/vendor/modernizr-2.8.3.min.js"></script>
-<script src="/static/js/vendor/jquery-3.2.1.min.js"></script>
+<script src="/static/js/vendor/jquery-3.3.1.min.js"></script>
 
 <script src="/static/js/vendor/d3.min.js"></script>
 <script src="/static/js/vendor/querystring.js"></script>
 <script src="/static/js/utils.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-102484926-7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-102484926-7');
+</script>
 
 <!-- sigh, datatables -->
 
-<link rel="stylesheet" type="text/css" href="/static/DataTables-1.10.12/css/jquery.dataTables.min.css"/>
-<link rel="stylesheet" type="text/css" href="/static/Responsive-2.1.0/css/responsive.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="/static/DataTables-1.10.18/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="/static/Responsive-2.2.2/css/responsive.dataTables.min.css"/>
 
-<script type="text/javascript" src="/static/DataTables-1.10.12/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/static/Responsive-2.1.0/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="/static/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/static/Responsive-2.2.2/js/dataTables.responsive.min.js"></script>
 
 <script src="/static/js/dataTables.downloads.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>

@@ -1,7 +1,7 @@
 <!-- The Modal -->
 <div id="modal" class="hidden fixed pin z-50">
 
-	  <!-- Modal content --> 
+	  <!-- Modal content -->
 	  <div id="modal-content" tabindex="-1" role="dialog" aria-labelledby="table compliance definitions" class="relative bg-white w-3/4 m-auto flex-col py-2 overflow-auto flex-initial">
 	  	<div id="close" class="w-full text-right pr-6"><span class="close-symbol"><a id="close-btn" class="no-underline text-black text-3xl lg:text-5xl" href="#">&times;</a></span></div>
 	  	<div class="container lg:w-5/6 mx-auto">
@@ -12,8 +12,8 @@
 		    <p class="text-base lg:text-lg">Whether a domain is compliant with the entire <abbr title="Information Technology Policy Implementation Notice">ITPIN</abbr> 2018-01 direction.</p>
 		    <p class="text-base lg:text-lg underline">Values</p>
 		    <ul class="list-reset text-base lg:text-lg">
-		    	<li class="mb-2">No: the domain is not compliant with <abbr title="Information Technology Policy Implementation Notice">ITPIN</abbr> 2018-01.</li>
-		    	<li>Yes: the domain is compliant with <abbr title="Information Technology Policy Implementation Notice">ITPIN</abbr> 2018-01.</li>
+		    	<li class="mb-2">Yes: the domain is compliant with <abbr title="Information Technology Policy Implementation Notice">ITPIN</abbr> 2018-01.</li>
+		    	<li>No: the domain is not compliant with <abbr title="Information Technology Policy Implementation Notice">ITPIN</abbr> 2018-01.</li>
 		    </ul>
 
 			<hr class="border mt-6 mb-6">
@@ -22,8 +22,8 @@
 		    <p class="text-base lg:text-lg">Whether a domain uses and enforces HTTPS by default. This can be done by redirecting HTTP endpoints to HTTPS, or by only being available over HTTPS.</p>
 		    <p class="text-base lg:text-lg underline">Values</p>
 		    <ul class="list-reset text-base lg:text-lg">
-		    	<li class="mb-2">No: the domain does not enforce HTTPS by default.</li>
-		    	<li>Yes: the domain does enforce HTTPS by default.</li>
+		    	<li class="mb-2">Yes: the domain does enforce HTTPS by default.</li>
+		    	<li>No: the domain does not enforce HTTPS by default.</li>
 		    </ul>
 
 		    <hr class="border mt-6 mb-6">
@@ -32,18 +32,18 @@
 		    <p class="text-base lg:text-lg">Whether a domain has implemented HTTP Strict Transport Security, which ensures that modern web browsers will only communicate with the domain over HTTPS (even if the user tries to access an HTTP link). </p>
 		    <p class="text-base lg:text-lg underline">Values</p>
 		    <ul class="list-reset text-base lg:text-lg">
-		    	<li class="mb-2">Preloaded: the subdomain is considered to be HSTS-compliant due to its parent domain having been preloaded in modern browsers.</li>
-		    	<li class="mb-2">Yes: a valid <span class="font-mono">Strict-Transport-Security</span> header with a <span class="font-mono">max-age</span> value of at least 18 weeks (listed as 10886400 seconds) is present on the domain’s default endpoint.</li>
-		    	<li>No: the <span class="font-mono">Strict-Transport-Security</span> header is either missing our using a <span class="font-mono">max-age</span> of less than 18 weeks.</li>
+		    	<li class="mb-2">Yes: a valid <span class="font-mono">Strict-Transport-Security</span> header with a <span class="font-mono">max-age</span> value of at least 1 year (listed as 31536000 seconds) is present on the domain’s default endpoint.</li>
+		    	<li class="mb-2">No: the <span class="font-mono">Strict-Transport-Security</span> header is either missing our using a <span class="font-mono">max-age</span> of less than 1 year.</li>
+					<li>Preloaded: the subdomain is considered to be HSTS-compliant due to its parent domain having been preloaded in modern browsers.</li>
 		    </ul>
 
 		    <hr class="border mt-6 mb-6">
 
 		    <h3 class="text-xl lg:text-2xl font-bold mb-4">Free of known weak protocols and ciphers</h3>
-		    <p class="text-base lg:text-lg">Whether a domain is free of known weak protocols and ciphers, including RC4 and 3DES ciphers and SSLv2, SSLv3, TLSv1.1 and TLSv1.2 protocols.</p>
+		    <p class="text-base lg:text-lg">Whether a domain is free of known weak protocols and ciphers, including RC4 and 3DES ciphers and SSLv2, SSLv3, TLSv1.0 and TLSv1.1 protocols.</p>
 		    <p class="text-base lg:text-lg underline">Values</p>
 		    <ul class="list-reset text-base lg:text-lg">
-		    	<li class="mb-2">Yes: the domain’s primary endpoint does not use the RC4 or 3DES ciphers, and has disabled the SSLv2, SSLv3, TLSv1.1 and TLSv1.2 protocols.</li>
+		    	<li class="mb-2">Yes: the domain’s primary endpoint does not use the RC4 or 3DES ciphers, and has disabled the SSLv2, SSLv3, TLSv1.0 and TLSv1.1 protocols.</li>
 		    	<li class="mb-2">No, download CSV for details: known-weak ciphers and/or protocols are still in use, and the CSV download will list the deprecated ciphers and/or protocols.</li>
 		    	<li>N/A: protocols and ciphers are not applicable for this domain since it does not offer HTTPS</li>
 		    </ul>

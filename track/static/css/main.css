@@ -43,6 +43,9 @@ th {
 .modal-open {
   overflow: hidden; }
 
+.beta-badge {
+  background-color: #22A7F0; }
+
 table caption {
   left: -10000px;
   height: 1px;
