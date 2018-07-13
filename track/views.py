@@ -247,3 +247,11 @@ def register(app):
     @app.errorhandler(404)
     def page_not_found(e):
         return render_template('404.html'), HTTPStatus.NOT_FOUND
+
+    @app.after_request
+    def apply_headers(response):
+        response.headers["X-Frame-Options"] = "SAMEORIGIN"
+        response.headers["X-XSS-Protection"] = 1
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["Content-Security-Policy"] = "default-src 'self' https://www.googletagmanager.com/"
+        return response
