@@ -11,7 +11,7 @@ def create_app(environment='default'):
         'text/html', 'text/css', 'text/xml',
         'text/csv', 'application/json', 'application/javascript'
     ]
-    configuration = config.get(environment)
+    configuration = config.get(environment, 'default')
     app.config.from_object(configuration)
     configuration.init_app(app)
 
