@@ -22,6 +22,7 @@ setuptools.setup(
         'gunicorn==19.6.0',
         'pyyaml==3.12',
         'python-slugify==1.2.1',
+        'pymongo==3.7.0',
         'Flask-PyMongo==0.5.1',
         'ujson==1.35',
         'flask-compress==1.4.0',

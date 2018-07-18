@@ -245,5 +245,10 @@ def register(app):
         return render_template("feed.xml")
 
     @app.errorhandler(404)
-    def page_not_found(e):
+    def page_not_found(error):
+        return render_template('404.html'), HTTPStatus.NOT_FOUND
+
+    @app.errorhandler(models.QueryError)
+    def handle_invalid_usage(error):
+        app.logger.error(error)
         return render_template('404.html'), HTTPStatus.NOT_FOUND
