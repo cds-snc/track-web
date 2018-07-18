@@ -3,6 +3,7 @@ import datetime
 import csv
 import typing
 from flask_pymongo import PyMongo
+from pymongo.errors import PyMongoError
 import track.data
 
 # These functions are meant to be the only ones that access the g.db.db
@@ -10,6 +11,8 @@ import track.data
 # coordinated here.
 
 db = PyMongo()
+
+QueryError = PyMongoError
 
 # Data loads should clear the entire database first.
 def clear_database():
