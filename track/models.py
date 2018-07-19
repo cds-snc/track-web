@@ -3,6 +3,7 @@ import datetime
 import csv
 import typing
 from flask_pymongo import PyMongo
+from pymongo.errors import PyMongoError
 import track.data
 
 # These functions are meant to be the only ones that access the g.db.db
@@ -10,6 +11,8 @@ import track.data
 # coordinated here.
 
 db = PyMongo()
+
+QueryError = PyMongoError
 
 # Data loads should clear the entire database first.
 def clear_database():
@@ -278,3 +281,16 @@ class Organization:
     @staticmethod
     def all() -> typing.Iterable[typing.Dict]:
         return db.db.meta.find({'_collection': 'organizations'}, {'_id': False, '_collection': False})
+
+
+class Flag:
+
+    @staticmethod
+    def get_cache() -> bool:
+        flags = db.db.meta.find_one({"_collection": "flags"})
+        return flags['cache'] if flags else False
+
+    @staticmethod
+    def set_cache(state: bool) -> None:
+        db.db.meta.update_one({"_collection": "flags"}, {"$set": {"cache": state}}, upsert=True)
+

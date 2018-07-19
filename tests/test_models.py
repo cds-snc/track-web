@@ -378,3 +378,15 @@ class TestOrganizations():
         clean_model.Organization.create(organization)
         all_organizations = [organization for organization in clean_model.Organization.all()]
         assert len(all_organizations) == 2
+
+
+class TestFlag():
+
+    def test_get_cache_not_set(self, clean_model) -> None: # pylint: disable=no-self-use
+        assert not clean_model.Flag.get_cache()
+
+    def test_get_cache_set(self, clean_model) -> None: # pylint: disable=no-self-use
+        clean_model.Flag.set_cache(True)
+        assert clean_model.Flag.get_cache()
+        clean_model.Flag.set_cache(False)
+        assert not clean_model.Flag.get_cache()
