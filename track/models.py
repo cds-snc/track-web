@@ -288,10 +288,7 @@ class Flag:
     @staticmethod
     def get_cache() -> bool:
         flags = db.db.meta.find_one({"_collection": "flags"})
-        if flags:
-            return flags['cache']
-        else:
-            Flag.set_cache(True)
+        return flags['cache'] if flags else False
 
     @staticmethod
     def set_cache(state: bool) -> None:
