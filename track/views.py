@@ -244,13 +244,13 @@ def register(app):
         response.headers["X-Content-Type-Options"] = "nosniff"
         return response
 
+    @app.errorhandler(404)
     def page_not_found(error):
-        return render_template('404.html'), HTTPStatus.NOT_FOUND
+        return render_template("404.html"), HTTPStatus.NOT_FOUND
 
     @app.errorhandler(models.QueryError)
     def handle_invalid_usage(error):
         app.logger.error(error)
-        return render_template('404.html'), HTTPStatus.NOT_FOUND
 
     @app.before_request
     def verify_cache():
