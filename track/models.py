@@ -281,3 +281,16 @@ class Organization:
     @staticmethod
     def all() -> typing.Iterable[typing.Dict]:
         return db.db.meta.find({'_collection': 'organizations'}, {'_id': False, '_collection': False})
+
+
+class Flag:
+
+    @staticmethod
+    def get_cache() -> bool:
+        flags = db.db.meta.find_one({"_collection": "flags"})
+        return flags['cache'] if flags else False
+
+    @staticmethod
+    def set_cache(state: bool) -> None:
+        db.db.meta.update_one({"_collection": "flags"}, {"$set": {"cache": state}}, upsert=True)
+

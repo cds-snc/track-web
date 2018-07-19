@@ -239,11 +239,6 @@ def register(app):
         response.headers['Content-Type'] = 'application/json'
         return response
 
-    # Sanity-check RSS feed, shows the latest report.
-    @app.route("/data/reports/feed/")
-    def report_feed():
-        return render_template("feed.xml")
-
     @app.errorhandler(404)
     def page_not_found(error):
         return render_template('404.html'), HTTPStatus.NOT_FOUND
@@ -252,3 +247,10 @@ def register(app):
     def handle_invalid_usage(error):
         app.logger.error(error)
         return render_template('404.html'), HTTPStatus.NOT_FOUND
+
+    @app.before_request
+    def verify_cache():
+        if not models.Flag.get_cache():
+            app.logger.info('Clearing cache...')
+            cache.clear()
+            models.Flag.set_cache(True)
