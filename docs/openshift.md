@@ -1,7 +1,7 @@
 ## OpenShift deployment
 
 ### Before you start
-Please make sure you have the docker image pre-built in a docker registry that your enviornment can pull from.
+Please make sure you have the docker image pre-built in a docker registry that your environment can pull from.
 
 ### Setup
 
@@ -123,4 +123,11 @@ spec:
 Deploy the route yaml file
 ```
 oc -n track-web create -f route.yaml
+```
+
+### Usage
+
+To find the URL the application should be accessible at look at the route created for the host/port name
+```
+oc -n track-web get routes
 ```
