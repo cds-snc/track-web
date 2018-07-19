@@ -251,6 +251,7 @@ def register(app):
     @app.errorhandler(models.QueryError)
     def handle_invalid_usage(error):
         app.logger.error(error)
+        return render_template("404.html"), HTTPStatus.NOT_FOUND
 
     @app.before_request
     def verify_cache():
