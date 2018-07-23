@@ -1,10 +1,9 @@
-from flask import render_template, Response, abort, request, redirect
-from track import models
-from track.data import FIELD_MAPPING
 from http import HTTPStatus
 import os
-from flask import render_template, Response, abort, request
+
+from flask import render_template, Response, abort, request, redirect
 import ujson
+
 from track.data import FIELD_MAPPING
 from track import models
 from track.cache import cache
