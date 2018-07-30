@@ -1,3 +1,5 @@
+[Français](docs/fr)
+
 # Track-web documentation
 
 Welcome to the [`track-web`](https://github.com/cds-snc/track-web) documentation!  
