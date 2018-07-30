@@ -1,4 +1,4 @@
-[Français](/fr/README.md)
+[Français](/fr/)
 
 # Track-web documentation
 
@@ -7,7 +7,7 @@ Here you will find the following documents to help gain an understanding around 
 
 | document | description |
 | -------- | ----------- |
-| [en/additions.md](additions.md) | This document outlines the location of key functionality to facilitate making additions or changes to the system. |
-| [en/google-analytics.md](google-analytics.md) | This document outlines the custom Google Analytics events that we have bundled into the project. |
-| [en/local-instructions.md](local-instructions.md) | This document contains step-by-step instructions on how to setup a development verison of the project locally. |
-| [en/updating-packages.md](updating-packages.md) | This document is a note of all JavaScript packages that have been included in the `static` folder and should be updated when new versions come out. |
+| [additions.md](en/additions.md) | This document outlines the location of key functionality to facilitate making additions or changes to the system. |
+| [google-analytics.md](en/google-analytics.md) | This document outlines the custom Google Analytics events that we have bundled into the project. |
+| [local-instructions.md](len/ocal-instructions.md) | This document contains step-by-step instructions on how to setup a development verison of the project locally. |
+| [updating-packages.md](en/updating-packages.md) | This document is a note of all JavaScript packages that have been included in the `static` folder and should be updated when new versions come out. |
