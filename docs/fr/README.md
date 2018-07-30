@@ -1,4 +1,4 @@
-[English](docs/en)
+[English](../en)
 
 # Documents sur track-web
 
