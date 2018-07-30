@@ -1,4 +1,4 @@
-[Français](/fr)
+[Français](./fr)
 
 # Track-web documentation
 
