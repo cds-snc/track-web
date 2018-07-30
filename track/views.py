@@ -109,6 +109,7 @@ def register(app):
         response.headers["Content-Type"] = "text/csv"
 
     @app.route("/data/domains-table.json")
+    @cache.cached()
     def domains_table():
         domains = models.Domain.find_all(
             {"https.eligible_zone": True, "is_parent": True},
@@ -140,6 +141,7 @@ def register(app):
         return response
 
     @app.route("/data/organizations-table.json")
+    @cache.cached()
     def organizations_table():
         organizations = models.Organization.find_all(
             {"https.eligible": {"$gt": 0}},
