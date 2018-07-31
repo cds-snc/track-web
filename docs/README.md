@@ -1,4 +1,4 @@
-[La version française suit.](#Documents sur track-web)
+[La version française suit](#Documents-sur-track-web)
 
 # Track-web documentation
 
