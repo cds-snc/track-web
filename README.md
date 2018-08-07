@@ -20,8 +20,7 @@ This is what it looks like with demo data:
 | Documentation                                           |
 | ------------------------------------------------------- |
 | [Development Setup Instructions](#development-setup)    |
-| [Local Deploy Step-by-step](docs/local-instructions.md) |
-| [Deployment Docs](docs/deploy.md)                       |
+| [Local Deploy Step-by-step](docs/en/local-instructions.md) |
 
 ## Developer Notes
 
