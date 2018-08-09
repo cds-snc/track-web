@@ -164,7 +164,7 @@ Pour produire certaines données en vue de l’affichage par l’application Fla
 
 ## Domaine public
 
-Ce projet fait partie du [domaine public](LICENSE.md) mondial. Comme l’indique le fil [CONTRIBUTING](CONTRIBUTING.md) :
+Ce projet fait partie du [domaine public](LICENSE.md#---------------------------------------------------------------------) mondial. Comme l’indique le fil [CONTRIBUTING](CONTRIBUTING.md#---------------------------------------------------------------------) :
 
 > Le projet fait partie du domaine public; l’auteur renonce dans le mode entier au droit d’auteur et aux droits connexes sur l’œuvre par voie de la licence [CC0 1.0 Universel – Transfert dans le domaine public](https://creativecommons.org/publicdomain/zero/1.0/deed.fr).
 >
