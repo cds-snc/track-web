@@ -9,10 +9,10 @@ This repository is one component of _Track web security compliance_, a web-based
 
 This is what it looks like with demo data:
 
-| English | French |
-|---------|--------|
-|![English landing page: header with title, some text, and a chart showing number of domains that enforce HTTPS](/docs/img/en-landing.png)  |  ![French landing page: header with title, some text, and a chart showing number of domains that enforce HTTPS](/docs/img/fr-landing.png) |
-|![English dashboard page: text, a search bar, and a table with columns: Organization, ITPIN Compliant, Enforces HTTPS, HSTS, Free of known weak protocols and ciphers, Uses approved certificates](/docs/img/en-dashboard.png) | ![French dashboard page: text, a search bar, and a table with columns: Organization, ITPIN Compliant, Enforces HTTPS, HSTS, Free of known weak protocols and ciphers, Uses approved certificates](/docs/img/fr-dashboard.png) |
+|         | 
+|---------|
+|![English landing page: header with title, some text, and a chart showing number of domains that enforce HTTPS](/docs/img/en-landing.png)  |  
+|![English dashboard page: text, a search bar, and a table with columns: Organization, ITPIN Compliant, Enforces HTTPS, HSTS, Free of known weak protocols and ciphers, Uses approved certificates](/docs/img/en-dashboard.png) | 
 
 
 
@@ -95,10 +95,10 @@ Ce dépôt est l’un des éléments du _Suivre la conformité en matière de s�
 
 Voici à quoi cela ressemble avec les données de démonstration :
 
-| English | French |
-|---------|--------|
-|![English landing page: header with title, some text, and a chart showing number of domains that enforce HTTPS](/docs/img/en-landing.png)  |  ![French landing page: header with title, some text, and a chart showing number of domains that enforce HTTPS](/docs/img/fr-landing.png) |
-|![English dashboard page: text, a search bar, and a table with columns: Organization, ITPIN Compliant, Enforces HTTPS, HSTS, Free of known weak protocols and ciphers, Uses approved certificates](/docs/img/en-dashboard.png) | ![French dashboard page: text, a search bar, and a table with columns: Organization, ITPIN Compliant, Enforces HTTPS, HSTS, Free of known weak protocols and ciphers, Uses approved certificates](/docs/img/fr-dashboard.png) |
+|         |
+|---------|
+|![French landing page: header with title, some text, and a chart showing number of domains that enforce HTTPS](/docs/img/fr-landing.png) |
+|![French dashboard page: text, a search bar, and a table with columns: Organization, ITPIN Compliant, Enforces HTTPS, HSTS, Free of known weak protocols and ciphers, Uses approved certificates](/docs/img/fr-dashboard.png) |
 
 
 
@@ -106,7 +106,7 @@ Voici à quoi cela ressemble avec les données de démonstration :
 
 | Documentation                                           |
 | ------------------------------------------------------- |
-| [Instructions de configuration du développement](#configuration-du-developpement)    |
+| [Instructions de configuration du développement](#configuration-du-développement)    |
 | [Déploiement local étape par étape](docs/fr/directives-locales.md) |
 
 ## Remarques à l’intention des développeurs
@@ -118,7 +118,7 @@ Si vous procédez au développement et ajoutez une dépendance supplémentaire, 
 
 ## Configuration du développement
 
-À des fins de développement, il vous est recommandé d’installer  [MongoDB](https://www.mongodb.com/) et d’exécuter la base de données localement.
+À des fins de développement, il vous est recommandé d’installer [MongoDB](https://www.mongodb.com/) et d’exécuter la base de données localement.
 
 Ce tableau de bord est une application [Flask](http://flask.pocoo.org/) écrite pour **Python 3.5 et les versions subséquentes**. Nous recommandons [pyenv](https://github.com/yyuu/pyenv) pour une gestion facile des versions de Python.
 
