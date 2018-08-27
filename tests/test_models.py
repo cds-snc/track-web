@@ -63,7 +63,7 @@ class TestReport():
         }
 
     def test_create_data_is_latest(self, clean_model, report): # pylint: disable=no-self-use
-        clean_model.Report.create(report)
+        clean_model.db.db.meta.insert_one({'_collection': 'reports', **report})
         assert clean_model.Report.latest() == report
 
     def test_report_time(self, report_date: str) -> None: # pylint: disable=no-self-use
@@ -130,45 +130,26 @@ class TestDomain():
             }
         }
 
-    def test_create(self, clean_model, domain) -> None: # pylint: disable=no-self-use
-        clean_model.Domain.create(domain)
-        assert len([document for document in clean_model.Domain.all()]) == 1
-        assert clean_model.Domain.find('test.gc.ca')['organization_name_en'] == 'Department of Test'
-
-    def test_create_all(self, clean_model, domain) -> None: # pylint: disable=no-self-use
-        clean_model.Domain.create_all([domain.copy(), domain.copy(), domain.copy()])
-        assert len([document for document in clean_model.Domain.all()]) == 3
-
-    def test_update(self, clean_model, domain) -> None: # pylint: disable=no-self-use
-        clean_model.Domain.create(domain)
-        clean_model.Domain.update('test.gc.ca', {'organization_name_en': 'Department of NotTest'})
-        assert clean_model.Domain.find('test.gc.ca')['organization_name_en'] == 'Department of NotTest'
-
-    def test_add_report(self, clean_model, domain) -> None: # pylint: disable=no-self-use
-        clean_model.Domain.create(domain)
-        clean_model.Domain.add_report('test.gc.ca', 'test_report', {'key': 'value'})
-        assert clean_model.Domain.find('test.gc.ca').get('test_report') == {'key': 'value'}
-
     def test_find(self, clean_model, domain) -> None: # pylint: disable=no-self-use
-        clean_model.Domain.create(domain)
+        clean_model.db.db.meta.insert_one({'_collection': 'domains', **domain})
         assert clean_model.Domain.find('test.gc.ca') == domain
 
     def test_eligible(self, clean_model, domain) -> None: # pylint: disable=no-self-use
-        clean_model.Domain.create(domain)
-        clean_model.Domain.create(domain)
+        clean_model.db.db.meta.insert_one({'_collection': 'domains', **domain})
+        clean_model.db.db.meta.insert_one({'_collection': 'domains', **domain})
         eligible_domains = [domain for domain in clean_model.Domain.eligible('https')]
         assert len(eligible_domains) == 2
 
     def test_eligible_parents(self, clean_model, domain) -> None: # pylint: disable=no-self-use
-        clean_model.Domain.create(domain)
-        clean_model.Domain.create(domain)
+        clean_model.db.db.meta.insert_one({'_collection': 'domains', **domain})
+        clean_model.db.db.meta.insert_one({'_collection': 'domains', **domain})
 
         eligible_parents = [domain for domain in clean_model.Domain.eligible_parents('https')]
         assert len(eligible_parents) == 2
 
     def test_eligible_for_domain(self, clean_model, domain) -> None: # pylint: disable=no-self-use
-        clean_model.Domain.create(domain)
-        clean_model.Domain.create(domain)
+        clean_model.db.db.meta.insert_one({'_collection': 'domains', **domain})
+        clean_model.db.db.meta.insert_one({'_collection': 'domains', **domain})
 
         eligible_for_domain = [domain for domain in clean_model.Domain.eligible_for_domain('test.gc.ca', 'https')]
         assert len(eligible_for_domain) == 2
@@ -178,7 +159,8 @@ class TestDomain():
         domain_two = domain.copy()
         domain_one['domain'] = 'test1.test.gc.ca'
         domain_two['domain'] = 'test2.test.gc.ca'
-        clean_model.Domain.create_all([domain_one, domain_two])
+        clean_model.db.db.meta.insert_one({'_collection': 'domains', **domain_one})
+        clean_model.db.db.meta.insert_one({'_collection': 'domains', **domain_two})
 
         all_documents = [domain for domain in clean_model.Domain.all()]
         assert len(all_documents) == 2
@@ -335,20 +317,9 @@ class TestOrganizations():
             }
         }
 
-    def test_create(self, clean_model, organization) -> None: # pylint: disable=no-self-use
-        clean_model.Organization.create(organization)
-        assert len([document for document in clean_model.Organization.all()]) == 1
-        assert clean_model.Organization.find('test-organization')['name_en'] == 'Test Organization'
-
-
-    def test_create_all(self, clean_model, organization) -> None: # pylint: disable=no-self-use
-        clean_model.Organization.create_all([organization.copy(), organization.copy(), organization.copy()])
-        assert len([document for document in clean_model.Organization.all()]) == 3
-
-
     def test_eligible(self, clean_model, organization) -> None: # pylint: disable=no-self-use
-        clean_model.Organization.create(organization)
-        clean_model.Organization.create(organization)
+        clean_model.db.db.meta.insert_one({'_collection': 'organizations', **organization})
+        clean_model.db.db.meta.insert_one({'_collection': 'organizations', **organization})
 
         eligible = [organization for organization in clean_model.Organization.eligible('https')]
         assert len(eligible) == 2
@@ -356,26 +327,22 @@ class TestOrganizations():
     def test_not_eligible(self, clean_model, organization) -> None: # pylint: disable=no-self-use
         not_eligible = copy.deepcopy(organization)
         not_eligible['https']['eligible'] = 0
-        clean_model.Organization.create_all([organization, not_eligible])
+        clean_model.db.db.meta.insert_one({'_collection': 'organizations', **organization})
+        clean_model.db.db.meta.insert_one({'_collection': 'organizations', **not_eligible})
 
         eligible = [organization for organization in clean_model.Organization.eligible('https')]
         assert len(eligible) == 1
 
-    def test_add_report(self, clean_model, organization) -> None: # pylint: disable=no-self-use
-        clean_model.Organization.create(organization)
-        clean_model.Organization.add_report('test-organization', 'test_report', {'key': 'value'})
-        assert clean_model.Organization.find('test-organization').get('test_report') == {'key': 'value'}
-
     def test_find(self, clean_model, organization) -> None: # pylint: disable=no-self-use
-        clean_model.Organization.create(organization)
-        different = organization.copy()
+        clean_model.db.db.meta.insert_one({'_collection': 'organizations', **organization})
+        different = organization
         different['slug'] = 'test-organization2'
-        clean_model.Organization.create(different)
+        clean_model.db.db.meta.insert_one({'_collection': 'organizations', **different})
         assert clean_model.Organization.find('test-organization')['slug'] == 'test-organization'
 
     def test_all(self, clean_model, organization) -> None: # pylint: disable=no-self-use
-        clean_model.Organization.create(organization)
-        clean_model.Organization.create(organization)
+        clean_model.db.db.meta.insert_one({'_collection': 'organizations', **organization})
+        clean_model.db.db.meta.insert_one({'_collection': 'organizations', **organization})
         all_organizations = [organization for organization in clean_model.Organization.all()]
         assert len(all_organizations) == 2
 
