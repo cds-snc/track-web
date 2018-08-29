@@ -27,11 +27,6 @@ class Report:
     # https.hsts (number)
     # https.bod (number)
 
-    # Initialize a report with a given date.
-    @staticmethod
-    def create(data: typing.Dict) -> None:
-        return db.db.meta.insert_one({'_collection': 'reports', **data})
-
     @staticmethod
     def report_time(report_date: str) -> datetime.datetime:
         return datetime.datetime.strptime(report_date, "%Y-%m-%d")
@@ -64,28 +59,6 @@ class Domain:
     #
     # https: { ... }
     #
-
-    @staticmethod
-    def create(data: typing.Dict) -> None:
-        return db.db.meta.insert_one({'_collection': 'domains', **data})
-
-    @staticmethod
-    def create_all(iterable: typing.Iterable[typing.Dict]) -> None:
-        return db.db.meta.insert_many({'_collection': 'domains', **document} for document in iterable)
-
-    @staticmethod
-    def update(domain_name: str, data: typing.Dict) -> None:
-        return db.db.meta.update_one(
-            {'_collection': 'domains', 'domain': domain_name},
-            {'$set': data},
-        )
-
-    @staticmethod
-    def add_report(domain_name: str, report_name: str, report: typing.Dict) -> None:
-        return db.db.meta.update_one(
-            {'_collection': 'domains', 'domain': domain_name},
-            {'$set': {report_name: report}}
-        )
 
     @staticmethod
     def find(domain_name: str) -> typing.Dict:
@@ -247,23 +220,6 @@ class Organization:
             '_id': False,
             '_collection': False
         })
-
-    # Create a new Organization record with a given name, slug, and total domain count.
-    @staticmethod
-    def create(data: typing.Dict) -> None:
-        return db.db.meta.insert_one({'_collection': 'organizations', **data})
-
-    @staticmethod
-    def create_all(iterable: typing.Iterable[typing.Dict]) -> None:
-        return db.db.meta.insert_many({'_collection': 'organizations', **document} for document in iterable)
-
-    # For a given organization, add a report.
-    @staticmethod
-    def add_report(slug: str, report_name: str, report: typing.Dict) -> None:
-        return db.db.meta.update_one(
-            {'_collection': 'organizations', 'slug': slug},
-            {'$set': {report_name: report}}
-        )
 
     @staticmethod
     def find(slug: str) -> typing.Dict:
