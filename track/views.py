@@ -255,7 +255,9 @@ def register(app):
         return render_template("404.html"), HTTPStatus.NOT_FOUND
 
     @app.before_request
+    @cache.cached(timeout=300, key_prefix='cache_timer')
     def verify_cache():
+        # Set reasonable cache validation timer. Query per lookup is unnecessary 
         if not models.Flag.get_cache():
             app.logger.info('Clearing cache...')
             cache.clear()
