@@ -170,9 +170,9 @@ class TestDomain():
 
     def test_to_csv_en(self, domain) -> None: # pylint: disable=no-self-use
         csv_string = models.Domain.to_csv([domain], 'https', 'en')
-        bytes_in = io.BytesIO(csv_string, encoding='utf-8-sig', newline='')
+        bytes_in = io.BytesIO(csv_string)
 
-        with io.TextIOWrapper(bytes_in) as wrapped_io:
+        with io.TextIOWrapper(bytes_in, encoding='utf-8-sig', newline='') as wrapped_io:
             reader = csv.DictReader(wrapped_io)
             assert sorted(reader.fieldnames) == [
                 '3DES',
@@ -223,9 +223,9 @@ class TestDomain():
 
     def test_to_csv_fr(self, domain) -> None: # pylint: disable=no-self-use
         csv_string = models.Domain.to_csv([domain], 'https', 'fr')
-        bytes_in = io.BytesIO(csv_string, encoding='utf-8-sig', newline='')
+        bytes_in = io.BytesIO(csv_string)
 
-        with io.TextIOWrapper(bytes_in) as wrapped_io:
+        with io.TextIOWrapper(bytes_in, encoding='utf-8-sig', newline='') as wrapped_io:
             reader = csv.DictReader(wrapped_io)
             assert sorted(reader.fieldnames) == [
                 '3DES',
