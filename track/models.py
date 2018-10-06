@@ -133,7 +133,7 @@ class Domain:
     @staticmethod
     def to_csv(domains: typing.Iterable[typing.Dict], report_type: str, language: str) -> str:
         output = io.BytesIO()
-        iowrap = io.TextIOWrapper(output, encoding='utf-8-sig', newline='', write_through=True))
+        iowrap = io.TextIOWrapper(output, encoding='utf-8-sig', newline='', write_through=True)
         
         writer = csv.writer(iowrap, quoting=csv.QUOTE_NONNUMERIC)
 

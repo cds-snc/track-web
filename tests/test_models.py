@@ -170,11 +170,10 @@ class TestDomain():
 
     def test_to_csv_en(self, domain) -> None: # pylint: disable=no-self-use
         csv_string = models.Domain.to_csv([domain], 'https', 'en')
+        bytes_in = io.BytesIO(csv_string, encoding='utf-8-sig', newline='')
 
-        with io.StringIO() as sio:
-            sio.write(csv_string)
-            sio.seek(0)
-            reader = csv.DictReader(sio)
+        with io.TextIOWrapper(bytes_in) as wrapped_io:
+            reader = csv.DictReader(wrapped_io)
             assert sorted(reader.fieldnames) == [
                 '3DES',
                 'Approved Certificate',
@@ -224,10 +223,10 @@ class TestDomain():
 
     def test_to_csv_fr(self, domain) -> None: # pylint: disable=no-self-use
         csv_string = models.Domain.to_csv([domain], 'https', 'fr')
-        with io.StringIO() as sio:
-            sio.write(csv_string)
-            sio.seek(0)
-            reader = csv.DictReader(sio)
+        bytes_in = io.BytesIO(csv_string, encoding='utf-8-sig', newline='')
+
+        with io.TextIOWrapper(bytes_in) as wrapped_io:
+            reader = csv.DictReader(wrapped_io)
             assert sorted(reader.fieldnames) == [
                 '3DES',
                 'Absence de protocoles ou de suites de chiffrement ayant des vulnérabilités connues',
