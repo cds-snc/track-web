@@ -132,8 +132,10 @@ class Domain:
 
     @staticmethod
     def to_csv(domains: typing.Iterable[typing.Dict], report_type: str, language: str) -> str:
-        output = io.StringIO()
-        writer = csv.writer(output, quoting=csv.QUOTE_NONNUMERIC)
+        output = io.BytesIO()
+        iowrap = io.TextIOWrapper(output, encoding='utf-8-sig', newline='', write_through=True))
+        
+        writer = csv.writer(iowrap, quoting=csv.QUOTE_NONNUMERIC)
 
         def value_for(value: typing.Union[str, list, bool]) -> str:
             # if it's a list, convert it to a list of strings and join
