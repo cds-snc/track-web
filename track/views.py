@@ -4,6 +4,8 @@ import os
 from flask import render_template, Response, abort, request, redirect
 import ujson
 
+from datetime import datetime
+
 from track.data import FIELD_MAPPING
 from track import models
 from track.cache import cache
@@ -256,7 +258,25 @@ def register(app):
 
     @app.before_request
     def verify_cache():
-        if not models.Flag.get_cache():
-            app.logger.info('Clearing cache...')
-            cache.clear()
-            models.Flag.set_cache(True)
+        cur_time = datetime.now()
+        
+        if cache.get('last-cache-bump') is None:
+            cache.set('last-cache-bump', cur_time)
+
+        if cache.get('cache-timer') is None:
+            # Set up a 5 minute timer to minimize flailing.
+            cache.set('cache-timer', cur_time, 5 * 60)
+
+            # Let's check the remote cache flag (time value)
+            remote_signal = datetime.strptime(models.Flag.get_cache(), "%Y-%m-%d %H:%M")
+            app.logger.warn("TRACK_CACHE: remote signal @ {}".format(remote_signal))
+
+            if remote_signal is not None:
+                if cache.get('last-cache-bump') < remote_signal:
+                    app.logger.warn("TRACK_CACHE: Cache reset @ {} due to signal @ {}".format(cur_time, remote_signal))
+                    cache.clear()
+                    # We've blown the whole cache, so reset the cache timer, and the remote val.
+                    cache.set('cache-timer', cur_time, 5 * 60)
+                    cache.set('last-cache-bump', remote_signal)
+            else:
+                app.logger.error("TRACK_CACHE: remote cache datetime was None. Danger Will Robinson.")
