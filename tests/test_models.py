@@ -350,10 +350,4 @@ class TestOrganizations():
 class TestFlag():
 
     def test_get_cache_not_set(self, clean_model) -> None: # pylint: disable=no-self-use
-        assert not clean_model.Flag.get_cache()
-
-    def test_get_cache_set(self, clean_model) -> None: # pylint: disable=no-self-use
-        clean_model.Flag.set_cache(True)
-        assert clean_model.Flag.get_cache()
-        clean_model.Flag.set_cache(False)
-        assert not clean_model.Flag.get_cache()
+        assert clean_model.Flag.get_cache() == datetime.datetime.strptime("1999-12-31 23:59", "%Y-%m-%d %H:%M")
