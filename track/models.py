@@ -242,11 +242,6 @@ class Organization:
 class Flag:
 
     @staticmethod
-    def get_cache() -> bool:
+    def get_cache() -> str:
         flags = db.db.meta.find_one({"_collection": "flags"})
-        return flags['cache'] if flags else False
-
-    @staticmethod
-    def set_cache(state: bool) -> None:
-        db.db.meta.update_one({"_collection": "flags"}, {"$set": {"cache": state}}, upsert=True)
-
+        return flags['cache'] if flags else "1999-12-31 23:59"
