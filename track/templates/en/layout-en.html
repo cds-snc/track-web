@@ -4,6 +4,10 @@
 <head>
 	
 	<title>{% block title %}{% endblock title %}</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' ; script-src 'self' *.googletagmanager.com *.google-analytics.com ;
+          img-src 'self' *.google-analytics.com;style-src 'self' 'unsafe-inline';form-action 'self'
+    ">
+
 	
 	{% include 'includes/head.html' %}
 
