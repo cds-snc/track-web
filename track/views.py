@@ -6,7 +6,7 @@ import ujson
 
 from datetime import datetime
 
-from track.data import FIELD_MAPPING
+from track.data import REPORTS_NAME_WHITELIST
 from track import models
 from track.cache import cache
 
@@ -102,6 +102,9 @@ def register(app):
     @app.route("/data/domains/<language>/<report_name>.csv")
     @cache.cached()
     def domain_report_csv(report_name, language):
+        if report_name not in REPORTS_NAME_WHITELIST:
+            return page_not_found(404)
+
         report_name = "https" if report_name == "compliance" else report_name
 
         domains = models.Domain.eligible_parents(report_name)
@@ -185,6 +188,9 @@ def register(app):
     @app.route("/data/hosts/<language>/<report_name>.csv")
     @cache.cached()
     def hostname_report_csv(language, report_name):
+        if report_name not in REPORTS_NAME_WHITELIST:
+            return page_not_found(404)
+
         report_name = "https" if report_name == "compliance" else report_name
 
         domains = models.Domain.eligible(report_name)
@@ -217,6 +223,9 @@ def register(app):
     @app.route("/data/hosts/<domain>/<language>/<report_name>.csv")
     @cache.cached()
     def hostname_report_for_domain_csv(domain, language, report_name):
+        if report_name not in REPORTS_NAME_WHITELIST:
+            return page_not_found(404)
+
         report_name = "https" if report_name == "compliance" else report_name
 
         domains = models.Domain.eligible_for_domain(domain, report_name)
