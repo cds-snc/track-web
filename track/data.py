@@ -97,3 +97,5 @@ CSV_FIELDS = {
         "preloaded",
     ],
 }
+
+REPORTS_NAME_WHITELIST = ['compliance']
