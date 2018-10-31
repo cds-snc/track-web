@@ -74,6 +74,9 @@ workflows:
   tracker:
     jobs:
       - track_web
-      - build_package:
+      - build_internal_package:
+         requires:
+            - track_web
+      - build_external_package:
          requires:
             - track_web
