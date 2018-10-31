@@ -59,9 +59,9 @@ jobs:
           path: /opt/apps/track-web/track-web.tar.gz
           destination: track-web.tar.gz
   build_external_package:
-      docker:
-        - image: cdssnc/track-web-build:0.1.0
-      working_directory: /opt/apps/track-web-public
+    docker:
+      - image: cdssnc/track-web-build:0.1.0
+    working_directory: /opt/apps/track-web-public
     steps:
       - checkout
       - run:
@@ -69,7 +69,6 @@ jobs:
       - store_artifacts:
           path: /opt/apps/track-web-public/track-web-public.tar.gz
           destination: track-web-public.tar.gz
-
 workflows:
   version: 2
   tracker:
