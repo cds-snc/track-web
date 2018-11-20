@@ -1,8 +1,11 @@
 import os
 import random
 
+from azure.keyvault import KeyVaultClient
+from msrestazure.azure_active_directory import MSIAuthentication, ServicePrincipalCredentials
 
 class Config:
+
     DEBUG = False
     TESTING = False
     MONGO_URI = "mongodb://localhost:27017/track"
@@ -14,11 +17,23 @@ class Config:
 
 
 A_DAY = 60 * 60 * 24
+
 class ProductionConfig(Config):
-    MONGO_URI = os.environ.get("TRACKER_MONGO_URI", None)
+    
+    if os.environ.get("TRACKER_KEYVAULT_URI", None) != None:
+        creds = MSIAuthentication(resource='https://vault.azure.net')
+        keyvault = KeyVaultClient(creds)
+        KV_URI = os.environ.get("TRACKER_KEYVAULT_URI")
+        MONGO_URI = keyvault.get_secret(KV_URI, "cosmosdb-ro-conn-string", "").value
+
+    else:
+        MONGO_URI = os.environ.get("TRACKER_MONGO_URI", None)
+        
+
     CACHE_TYPE = "filesystem"
     CACHE_DIR = os.environ.get("TRACKER_CACHE_DIR", "./.cache")
     CACHE_DEFAULT_TIMEOUT = int(os.environ.get("TRACKER_CACHE_TIMEOUT", A_DAY))
+
 
     @staticmethod
     def init_app(app):
