@@ -29,6 +29,8 @@ setuptools.setup(
         'click==6.7',
         'Babel==2.6.0',
         'Flask-Caching==1.4.0',
+        'azure-keyvault=1.1.0',
+        'msrestazure==0.5.1'
     ],
     extras_require={
         'development': [
