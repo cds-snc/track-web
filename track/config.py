@@ -1,6 +1,9 @@
 import os
 import random
 
+from azure.keyvault import KeyVaultClient
+from msrestazure.azure_active_directory import MSIAuthentication, ServicePrincipalCredentials
+
 
 class Config:
     DEBUG = False
@@ -14,8 +17,19 @@ class Config:
 
 
 A_DAY = 60 * 60 * 24
+
+
 class ProductionConfig(Config):
-    MONGO_URI = os.environ.get("TRACKER_MONGO_URI", None)
+    if os.environ.get("TRACKER_KEYVAULT_URI", None) is not None and os.environ.get("SECRET_NAME_RO", None) is not None:
+        KV_URI = os.environ.get("TRACKER_KEYVAULT_URI")
+        SECRET_NAME = os.environ.get("SECRET_NAME_RO")
+        creds = MSIAuthentication(resource='https://vault.azure.net')
+        keyvault = KeyVaultClient(creds)
+        MONGO_URI = keyvault.get_secret(KV_URI, SECRET_NAME, "").value
+
+    else:
+        MONGO_URI = os.environ.get("TRACKER_MONGO_URI", None)
+
     CACHE_TYPE = "filesystem"
     CACHE_DIR = os.environ.get("TRACKER_CACHE_DIR", "./.cache")
     CACHE_DEFAULT_TIMEOUT = int(os.environ.get("TRACKER_CACHE_TIMEOUT", A_DAY))
