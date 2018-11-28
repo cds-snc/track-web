@@ -188,11 +188,17 @@ def register(app):
     #@cache.cached()
     def hostname_report_csv(language, report_name):
         report_name = "https" if report_name == "compliance" else report_name
-        query = str(request.headers.environ.get('QUERY_STRING'))
+
+        try:
+            query = request.args["q"]
+        except KeyError:
+            query = ""
+
+        field_name = "organization_name_"+language
         # make sure that return string decode space and accent properly
         query=urllib.parse.unquote(query)
-        org_name="organization_name_"+language
-        domains = models.Domain.eligible(report_name,{org_name: {"$regex": ""+query+"", "$options": "i"}})
+        # to match front end.. .search in org and domain field
+        domains = models.Domain.eligible(report_name, {"$or":[{'domain':{"$regex": "" + query + "", "$options": "i"}},{field_name:{"$regex": "" + query + "", "$options": "i"}}]})
         # sort by base domain, but subdomain within them
         domains = sorted(domains, key=lambda k: k["domain"])
         domains = sorted(domains, key=lambda k: k["base_domain"])

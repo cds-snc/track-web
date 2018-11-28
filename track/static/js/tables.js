@@ -153,7 +153,7 @@ $(function() {
       var myDown=$("#csvdownload");
       if(myDown[0]) {
           var href_orig =  myDown[0].pathname;
-          myDown[0].href = href_orig + "?" + query;
+          myDown[0].href = href_orig + "?q=" + query;
       }
     // TODO: Disabled because this callback runs on table init,
     // and zeroes out the location hash. Should be addressed.

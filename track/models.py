@@ -85,7 +85,7 @@ class Domain:
     # such as reports which only look at parent domains, or
     # a flat CSV of all hostnames that match a report.
     @staticmethod
-    def eligible(report_name: str, query: typing.Dict) -> typing.Iterable[typing.Dict]:
+    def eligible(report_name: str, query: typing.Dict = {}) -> typing.Iterable[typing.Dict]:
         return db.db.meta.find(
             {
                 '_collection': 'domains',
@@ -230,12 +230,6 @@ class Organization:
 
     @staticmethod
     def find_all(query: typing.Dict, projection: typing.Dict={'_id': False, '_collection': False}) -> typing.Dict:
-
-        test =  {
-                '_collection': 'organizations',
-                **query,
-            }
-
         return db.db.meta.find(
             {
                 '_collection': 'organizations',
