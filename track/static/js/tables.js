@@ -150,6 +150,11 @@ $(function() {
     var query = $("input[type=search]").val();
     if (query)
       location.hash = QueryString.stringify({q: query});
+      var myDown=$("#csvdownload");
+      if(myDown[0]) {
+          var href_orig =  myDown[0].pathname;
+          myDown[0].href = href_orig + "?" + query;
+      }
     // TODO: Disabled because this callback runs on table init,
     // and zeroes out the location hash. Should be addressed.
     // else
