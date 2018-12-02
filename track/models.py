@@ -154,7 +154,7 @@ class Domain:
         return db.db.meta.find({'_collection': 'domains'}, {'_id': False, '_collection': False})
 
     @staticmethod
-    def to_csv(domains: typing.Iterable[typing.Dict], report_type: str, language: str) -> str:
+    def to_csv(domains: typing.Iterable[typing.Dict], report_type: str, language: str) -> bytes:
         output = io.BytesIO()
         iowrap = io.TextIOWrapper(output, encoding='utf-8-sig', newline='', write_through=True)
 

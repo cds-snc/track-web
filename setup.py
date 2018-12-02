@@ -24,11 +24,12 @@ setuptools.setup(
         'python-slugify==1.2.1',
         'pymongo==3.7.0',
         'Flask-PyMongo==0.5.1',
-        'ujson==1.35',
         'flask-compress==1.4.0',
         'click==6.7',
         'Babel==2.6.0',
         'Flask-Caching==1.4.0',
+        'azure-keyvault==1.1.0',
+        'msrestazure==0.5.1'
     ],
     extras_require={
         'development': [

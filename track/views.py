@@ -2,7 +2,7 @@ from http import HTTPStatus
 import os
 
 from flask import render_template, Response, abort, request, redirect
-import ujson
+import json
 
 from datetime import datetime
 
@@ -82,7 +82,7 @@ def register(app):
     def report(report_name):
         report_name = "https" if report_name == "compliance" else report_name
 
-        response = Response(ujson.dumps(models.Report.latest().get(report_name, {})))
+        response = Response(json.dumps(models.Report.latest().get(report_name, {})))
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -95,7 +95,7 @@ def register(app):
         domains = models.Domain.eligible_parents(report_name)
         domains = sorted(domains, key=lambda k: k["domain"])
 
-        response = Response(ujson.dumps({"data": domains}))
+        response = Response(json.dumps({"data": domains}))
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -122,7 +122,6 @@ def register(app):
                 "organization_name_fr": True,
                 "is_parent": True,
                 "base_domain": True,
-                "https.bod_crypto": True,
                 "https.eligible": True,
                 "https.enforces": True,
                 "https.hsts": True,
@@ -138,7 +137,7 @@ def register(app):
                 "totals.crypto.eligible": True,
             },
         )
-        response = Response(ujson.dumps({"data": domains}))
+        response = Response(json.dumps({"data": domains}))
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -162,7 +161,7 @@ def register(app):
             },
         )
         # app.logger.debug([o for o in organizations])
-        response = Response(ujson.dumps({"data": organizations}))
+        response = Response(json.dumps({"data": organizations}))
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -178,7 +177,7 @@ def register(app):
         domains = sorted(domains, key=lambda k: k["domain"])
         domains = sorted(domains, key=lambda k: k["base_domain"])
 
-        response = Response(ujson.dumps({"data": domains}))
+        response = Response(json.dumps({"data": domains}))
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -209,7 +208,7 @@ def register(app):
         domains = sorted(domains, key=lambda k: k["domain"])
         domains = sorted(domains, key=lambda k: k["is_parent"], reverse=True)
 
-        response = Response(ujson.dumps({"data": domains}))
+        response = Response(json.dumps({"data": domains}))
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -235,7 +234,7 @@ def register(app):
         report_name = "https" if report_name == "compliance" else report_name
 
         domains = models.Organization.eligible(report_name)
-        response = Response(ujson.dumps({"data": domains}))
+        response = Response(json.dumps({"data": domains}))
         response.headers["Content-Type"] = "application/json"
         return response
 
