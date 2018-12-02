@@ -137,7 +137,7 @@ def register(app):
                 "totals.crypto.eligible": True,
             },
         )
-        response = Response(json.dumps({"data": domains}))
+        response = Response(json.dumps({"data": list(domains)}))
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -161,7 +161,7 @@ def register(app):
             },
         )
         # app.logger.debug([o for o in organizations])
-        response = Response(json.dumps({"data": organizations}))
+        response = Response(json.dumps({"data": list(organizations)}))
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -234,7 +234,7 @@ def register(app):
         report_name = "https" if report_name == "compliance" else report_name
 
         domains = models.Organization.eligible(report_name)
-        response = Response(json.dumps({"data": domains}))
+        response = Response(json.dumps({"data": list(domains)}))
         response.headers["Content-Type"] = "application/json"
         return response
 
