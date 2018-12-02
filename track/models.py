@@ -1,18 +1,35 @@
 import io
 import datetime
 import csv
+import logging
 import typing
 from flask_pymongo import PyMongo
-from pymongo.errors import PyMongoError
+from pymongo.errors import PyMongoError, OperationFailure, ConnectionFailure
 import track.data
+
 
 # These functions are meant to be the only ones that access the g.db.db
 # directly. If we ever decide to migrate from tinyg.db.db, that can all be
 # coordinated here.
 
 db = PyMongo()
-
 QueryError = PyMongoError
+logger = logging.getLogger(__name__)
+
+def retry(num_tries, exceptions):
+    def decorator(func):
+        def f_retry(*args, **kwargs):
+            for i in range(num_tries):
+                try:
+                    return func(*args, **kwargs)
+                except exceptions as e:
+                    logging.exception("Exception hit in retry handler.")
+                    continue
+        return f_retry
+    return decorator
+
+retry_on_failure = retry(3, (PyMongoError, OperationFailure, ConnectionFailure,))
+
 
 # Data loads should clear the entire database first.
 def clear_database():
@@ -32,6 +49,7 @@ class Report:
         return datetime.datetime.strptime(report_date, "%Y-%m-%d")
 
     @staticmethod
+    @retry_on_failure
     # There's only ever one.
     def latest() -> typing.Dict:
         return db.db.meta.find_one({'_collection': 'reports'}, {'_id': False, '_collection': False})
@@ -59,8 +77,8 @@ class Domain:
     #
     # https: { ... }
     #
-
     @staticmethod
+    @retry_on_failure
     def find(domain_name: str) -> typing.Dict:
         return db.db.meta.find_one(
             {
@@ -73,7 +91,8 @@ class Domain:
         )
 
     @staticmethod
-    def find_all(query: typing.Dict, projection: typing.Dict={'_id': False, '_collection': False}) -> typing.Dict:
+    @retry_on_failure
+    def find_all(query: typing.Dict, projection: typing.Dict = {'_id': False, '_collection': False}) -> typing.Dict:
         return db.db.meta.find(
             {
                 '_collection': 'domains',
@@ -85,6 +104,7 @@ class Domain:
     # such as reports which only look at parent domains, or
     # a flat CSV of all hostnames that match a report.
     @staticmethod
+    @retry_on_failure
     def eligible(report_name: str) -> typing.Iterable[typing.Dict]:
         return db.db.meta.find(
             {
@@ -99,6 +119,7 @@ class Domain:
     # Useful when you have mixed parent/subdomain reporting,
     # used for HTTPS but not yet others.
     @staticmethod
+    @retry_on_failure
     def eligible_parents(report_name: str) -> typing.Iterable[typing.Dict]:
         return db.db.meta.find(
             {
@@ -114,6 +135,7 @@ class Domain:
     # Useful when you want to pull down subdomains of a particular
     # parent domain. Used for HTTPS expanded reports.
     @staticmethod
+    @retry_on_failure
     def eligible_for_domain(domain: str, report_name: str) -> typing.Iterable[typing.Dict]:
         return db.db.meta.find(
             {
@@ -127,6 +149,7 @@ class Domain:
         )
 
     @staticmethod
+    @retry_on_failure
     def all() -> typing.Iterable[typing.Dict]:
         return db.db.meta.find({'_collection': 'domains'}, {'_id': False, '_collection': False})
 
@@ -134,7 +157,7 @@ class Domain:
     def to_csv(domains: typing.Iterable[typing.Dict], report_type: str, language: str) -> str:
         output = io.BytesIO()
         iowrap = io.TextIOWrapper(output, encoding='utf-8-sig', newline='', write_through=True)
-        
+
         writer = csv.writer(iowrap, quoting=csv.QUOTE_NONNUMERIC)
 
         def value_for(value: typing.Union[str, list, bool]) -> str:
@@ -214,6 +237,7 @@ class Organization:
 
     # An organization which had at least 1 eligible domain.
     @staticmethod
+    @retry_on_failure
     def eligible(report_name: str) -> typing.Iterable[typing.Dict]:
         return db.db.meta.find({
             '_collection': 'organizations',
@@ -224,11 +248,13 @@ class Organization:
         })
 
     @staticmethod
+    @retry_on_failure
     def find(slug: str) -> typing.Dict:
         return db.db.meta.find_one({'_collection': 'organizations', 'slug': slug}, {'_id': False, '_collection': False})
 
     @staticmethod
-    def find_all(query: typing.Dict, projection: typing.Dict={'_id': False, '_collection': False}) -> typing.Dict:
+    @retry_on_failure
+    def find_all(query: typing.Dict, projection: typing.Dict = {'_id': False, '_collection': False}) -> typing.Dict:
         return db.db.meta.find(
             {
                 '_collection': 'organizations',
@@ -237,6 +263,7 @@ class Organization:
         )
 
     @staticmethod
+    @retry_on_failure
     def all() -> typing.Iterable[typing.Dict]:
         return db.db.meta.find({'_collection': 'organizations'}, {'_id': False, '_collection': False})
 
@@ -244,6 +271,7 @@ class Organization:
 class Flag:
 
     @staticmethod
+    @retry_on_failure
     def get_cache() -> str:
         flags = db.db.meta.find_one({"_collection": "flags"})
         return flags['cache'] if flags else "1999-12-31 23:59"
