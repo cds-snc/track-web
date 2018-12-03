@@ -14,7 +14,7 @@ import track.data
 
 db = PyMongo()
 QueryError = PyMongoError
-logger = logging.getLogger(__name__)
+LOGGER = logging.getLogger(__name__)
 
 def retry(num_tries, exceptions):
     def decorator(func):
@@ -23,7 +23,7 @@ def retry(num_tries, exceptions):
                 try:
                     return func(*args, **kwargs)
                 except exceptions as e:
-                    logging.exception("Exception hit in retry handler.")
+                    LOGGER.exception("Exception hit in retry handler.")
                     continue
         return f_retry
     return decorator
