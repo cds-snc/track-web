@@ -6,7 +6,6 @@ import json
 
 from datetime import datetime
 
-from track.data import FIELD_MAPPING
 from track import models
 from track.cache import cache
 
