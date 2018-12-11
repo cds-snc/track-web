@@ -6,7 +6,6 @@ import ujson
 
 from datetime import datetime
 
-from track.data import FIELD_MAPPING
 from track import models
 from track.cache import cache
 
@@ -162,7 +161,6 @@ def register(app):
                 "crypto.eligible": True,
             },
         )
-        # app.logger.debug([o for o in organizations])
         response = Response(ujson.dumps({"data": organizations}))
         response.headers["Content-Type"] = "application/json"
         return response
