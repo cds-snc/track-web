@@ -109,6 +109,7 @@ def register(app):
 
         response = Response(models.Domain.to_csv(domains, report_name, language))
         response.headers["Content-Type"] = "text/csv"
+        return response
 
     @app.route("/data/domains-table.json")
     @cache.cached()
