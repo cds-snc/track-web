@@ -11,7 +11,6 @@ import track.data
 # coordinated here.
 
 db = PyMongo()
-
 QueryError = PyMongoError
 
 # Data loads should clear the entire database first.
@@ -59,7 +58,6 @@ class Domain:
     #
     # https: { ... }
     #
-
     @staticmethod
     def find(domain_name: str) -> typing.Dict:
         return db.db.meta.find_one(
@@ -73,7 +71,7 @@ class Domain:
         )
 
     @staticmethod
-    def find_all(query: typing.Dict, projection: typing.Dict={'_id': False, '_collection': False}) -> typing.Dict:
+    def find_all(query: typing.Dict, projection: typing.Dict = {'_id': False, '_collection': False}) -> typing.Dict:
         return db.db.meta.find(
             {
                 '_collection': 'domains',
@@ -131,12 +129,13 @@ class Domain:
         return db.db.meta.find({'_collection': 'domains'}, {'_id': False, '_collection': False})
 
     @staticmethod
-    def to_csv(domains: typing.Iterable[typing.Dict], report_type: str, language: str) -> str:
+    def to_csv(domains: typing.Iterable[typing.Dict], report_type: str, language: str) -> bytes:
         if report_type not in track.data.CSV_FIELDS:
             return {}
+
         output = io.BytesIO()
         iowrap = io.TextIOWrapper(output, encoding='utf-8-sig', newline='', write_through=True)
-        
+
         writer = csv.writer(iowrap, quoting=csv.QUOTE_NONNUMERIC)
 
         def value_for(value: typing.Union[str, list, bool]) -> str:
@@ -230,7 +229,7 @@ class Organization:
         return db.db.meta.find_one({'_collection': 'organizations', 'slug': slug}, {'_id': False, '_collection': False})
 
     @staticmethod
-    def find_all(query: typing.Dict, projection: typing.Dict={'_id': False, '_collection': False}) -> typing.Dict:
+    def find_all(query: typing.Dict, projection: typing.Dict = {'_id': False, '_collection': False}) -> typing.Dict:
         return db.db.meta.find(
             {
                 '_collection': 'organizations',
