@@ -20,7 +20,7 @@ setuptools.setup(
     install_requires=[
         'flask==0.12.4',
         'gunicorn==19.6.0',
-        'pyyaml==3.12',
+        'pyyaml==3.13',
         'python-slugify==1.2.1',
         'pymongo==3.7.0',
         'Flask-PyMongo==0.5.1',
