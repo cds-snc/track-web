@@ -241,9 +241,6 @@ def register(app):
     # Every response back to the browser will include these web response headers
     @app.after_request
     def apply_headers(response):
-        response.headers["X-Frame-Options"] = "SAMEORIGIN"
-        response.headers["X-XSS-Protection"] = 1
-        response.headers["X-Content-Type-Options"] = "nosniff"
         return response
 
     @app.errorhandler(404)
