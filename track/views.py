@@ -2,11 +2,10 @@ from http import HTTPStatus
 import os
 
 from flask import render_template, Response, abort, request, redirect
-import ujson
+import json
 
 from datetime import datetime
 
-from track.data import REPORTS_NAME_WHITELIST
 from track import models
 from track.cache import cache
 
@@ -88,7 +87,7 @@ def register(app):
     def report(report_name):
         report_name = "https" if report_name == "compliance" else report_name
 
-        response = Response(ujson.dumps(models.Report.latest().get(report_name, {})))
+        response = Response(json.dumps(models.Report.latest().get(report_name, {})))
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -101,16 +100,13 @@ def register(app):
         domains = models.Domain.eligible_parents(report_name)
         domains = sorted(domains, key=lambda k: k["domain"])
 
-        response = Response(ujson.dumps({"data": domains}))
+        response = Response(json.dumps({"data": domains}))
         response.headers["Content-Type"] = "application/json"
         return response
 
     @app.route("/data/domains/<language>/<report_name>.csv")
     @cache.cached()
     def domain_report_csv(report_name, language):
-        if report_name not in REPORTS_NAME_WHITELIST:
-            return page_not_found(404)
-
         report_name = "https" if report_name == "compliance" else report_name
 
         domains = models.Domain.eligible_parents(report_name)
@@ -118,6 +114,7 @@ def register(app):
 
         response = Response(models.Domain.to_csv(domains, report_name, language))
         response.headers["Content-Type"] = "text/csv"
+        return response
 
     @app.route("/data/domains-table.json")
     @cache.cached()
@@ -131,7 +128,6 @@ def register(app):
                 "organization_name_fr": True,
                 "is_parent": True,
                 "base_domain": True,
-                "https.bod_crypto": True,
                 "https.eligible": True,
                 "https.enforces": True,
                 "https.hsts": True,
@@ -147,7 +143,7 @@ def register(app):
                 "totals.crypto.eligible": True,
             },
         )
-        response = Response(ujson.dumps({"data": domains}))
+        response = Response(json.dumps({"data": list(domains)}))
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -171,7 +167,7 @@ def register(app):
             },
         )
         # app.logger.debug([o for o in organizations])
-        response = Response(ujson.dumps({"data": organizations}))
+        response = Response(json.dumps({"data": list(organizations)}))
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -187,16 +183,13 @@ def register(app):
         domains = sorted(domains, key=lambda k: k["domain"])
         domains = sorted(domains, key=lambda k: k["base_domain"])
 
-        response = Response(ujson.dumps({"data": domains}))
+        response = Response(json.dumps({"data": domains}))
         response.headers["Content-Type"] = "application/json"
         return response
 
     @app.route("/data/hosts/<language>/<report_name>.csv")
     @cache.cached()
     def hostname_report_csv(language, report_name):
-        if report_name not in REPORTS_NAME_WHITELIST:
-            return page_not_found(404)
-
         report_name = "https" if report_name == "compliance" else report_name
 
         domains = models.Domain.eligible(report_name)
@@ -221,7 +214,7 @@ def register(app):
         domains = sorted(domains, key=lambda k: k["domain"])
         domains = sorted(domains, key=lambda k: k["is_parent"], reverse=True)
 
-        response = Response(ujson.dumps({"data": domains}))
+        response = Response(json.dumps({"data": domains}))
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -229,9 +222,6 @@ def register(app):
     @app.route("/data/hosts/<domain>/<language>/<report_name>.csv")
     @cache.cached()
     def hostname_report_for_domain_csv(domain, language, report_name):
-        if report_name not in REPORTS_NAME_WHITELIST:
-            return page_not_found(404)
-
         report_name = "https" if report_name == "compliance" else report_name
 
         domains = models.Domain.eligible_for_domain(domain, report_name)
@@ -250,7 +240,7 @@ def register(app):
         report_name = "https" if report_name == "compliance" else report_name
 
         domains = models.Organization.eligible(report_name)
-        response = Response(ujson.dumps({"data": domains}))
+        response = Response(json.dumps({"data": list(domains)}))
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -274,7 +264,7 @@ def register(app):
     @app.before_request
     def verify_cache():
         cur_time = datetime.now()
-
+        
         if cache.get('last-cache-bump') is None:
             cache.set('last-cache-bump', cur_time)
 

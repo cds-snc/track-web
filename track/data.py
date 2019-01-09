@@ -1,4 +1,3 @@
-import typing
 # Mapping report/domain/organization field names to display names.
 
 class MultiLingualString:
