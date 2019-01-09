@@ -28,3 +28,6 @@ pip-selfcheck.json
 todo.txt
 node_modules
 instance
+track_web.egg-info
+.env
+track/static/js/https/https.json

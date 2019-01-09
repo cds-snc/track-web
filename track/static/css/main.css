@@ -215,6 +215,10 @@ table caption {
     .dataTables_wrapper .dataTables_paginate a.paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate a.paginate_button.disabled:focus {
       background: transparent !important; }
 
+.dt-buttons button span {
+  text-decoration: underline;
+  color: #0071E1 !important; }
+
 #menu-content {
   background: #FFFFFF;
   overflow-y: auto;

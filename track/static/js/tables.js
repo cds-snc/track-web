@@ -2,16 +2,16 @@ var Tables = {
 
   // wraps renderTable around a given $("table")
   // e.g. Tables.init($("table"), data)
-  init: function(data, options) {
+  init: function (data, options) {
     // assign data
     if (!options.data) options.data = data;
 
     // add common options to all renderTables requests
     if (!options.responsive) options.responsive = true;
 
-    var customInit = function() {}; // noop
+    var customInit = function () { }; // noop
     if (options.initComplete) customInit = options.initComplete;
-    options.initComplete = function() {
+    options.initComplete = function () {
       Utils.searchLinks(this);
       customInit(this);
     }
@@ -19,35 +19,35 @@ var Tables = {
     // If the table prefix is french, load french translations
     if (options.prefix == 'fr') {
       options.oLanguage = {
-          "sProcessing":     "Traitement en cours...",
-          "sSearch":         "Rechercher&nbsp;:",
-          "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
-          "sInfo":           "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-          "sInfoEmpty":      "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
-          "sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-          "sInfoPostFix":    "",
-          "sLoadingRecords": "Chargement en cours...",
-          "sZeroRecords":    "Aucun &eacute;l&eacute;ment &agrave; afficher",
-          "sEmptyTable":     "Aucune donn&eacute;e disponible dans le tableau",
-          "oPaginate": {
-            "sPrevious": "<<",
-            "sNext": ">>"
-          },
-          "oAria": {
-              "sSortAscending":  ": activer pour trier la colonne par ordre croissant",
-              "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
-          }
+        "sProcessing": "Traitement en cours...",
+        "sSearch": "Rechercher&nbsp;:",
+        "sLengthMenu": "Afficher _MENU_ &eacute;l&eacute;ments",
+        "sInfo": "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+        "sInfoEmpty": "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
+        "sInfoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+        "sInfoPostFix": "",
+        "sLoadingRecords": "Chargement en cours...",
+        "sZeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
+        "sEmptyTable": "Aucune donn&eacute;e disponible dans le tableau",
+        "oPaginate": {
+          "sPrevious": "<<",
+          "sNext": ">>"
+        },
+        "oAria": {
+          "sSortAscending": ": activer pour trier la colonne par ordre croissant",
+          "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
+        }
       }
     }
 
     // otherwise just load in better pagination
     // can also be used to load in custom options
-    if(!options.oLanguage) {
+    if (!options.oLanguage) {
       options.oLanguage = {
         "oPaginate": {
-            "sPrevious": "<<",
-            "sNext": ">>"
-          }
+          "sPrevious": "<<",
+          "sNext": ">>"
+        }
       }
     }
 
@@ -56,10 +56,18 @@ var Tables = {
     if (!options.pageLength) options.pageLength = 25;
 
     var table = $("table").DataTable(options);
+    var csvText = $('#csv-target').text()
+    var buttonsObj = new $.fn.dataTable.Buttons(table, {
+      buttons: [
+        { extend: 'csvHtml5', text: csvText }
+      ]
+    });
+
+    $('#csv-target').html(table.buttons().container())
 
     // Wire up accessible pagination controls.
     Utils.updatePagination();
-    table.on("draw.dt",function(){
+    table.on("draw.dt", function () {
       Utils.updatePagination();
     });
 
@@ -67,7 +75,7 @@ var Tables = {
   },
 
   // sets some organization-table-specific options
-  initAgency: function(data, options) {
+  initAgency: function (data, options) {
     // Don't paginate organization tables by default.
     if (!options.pageLength) options.pageLength = 25;
     if (!options.dom) options.dom = 'fCtrip';
@@ -76,47 +84,47 @@ var Tables = {
   },
 
   // common render function for displaying booleans as Yes/No
-  boolean: function(data, type) {
+  boolean: function (data, type) {
     // Note: return "No"/"Yes" for sorting as well,
     // as sorting by raw boolean values doesn't seem to work right.
-    return {false: "No", true: "Yes"}[data];
+    return { false: "No", true: "Yes" }[data];
   },
 
   // common render function for linking domains to canonical URLs
-  canonical: function(data, type, row) {
+  canonical: function (data, type, row) {
     if (type == "sort") return data;
     else return "<a href=\"" + row.canonical + "\" target=\"blank\">" + data + "</a>";
   },
 
   // occasionally useful (see https/domains.js for example)
-  noop: function() {return ""},
+  noop: function () { return "" },
 
   // common render helper for percent bars
-  percentBar: function(data) {
+  percentBar: function (data) {
     return '' +
       '<div class="progress-bar-indication">' +
-        '<span class="meter width' + data + '" style="width: ' + data + '%">' +
-          '<p>' + data + '%</p>' +
-        '</span>' +
+      '<span class="meter width' + data + '" style="width: ' + data + '%">' +
+      '<p>' + data + '%</p>' +
+      '</span>' +
       '</div>';
   },
 
   // common pattern for percent bars:
   // given row[report] and row[report][field], will
   // compare against row[report].eligible
-  percent: function(report, field, totals) {
+  percent: function (report, field, totals) {
     if (!totals) totals = false; // be explicit
 
-    return function(data, type, row) {
+    return function (data, type, row) {
       var set = totals ? row.totals : row;
       var numerator = set[report][field];
       var denominator = set[report].eligible;
-      var language = $( "table" ).attr("language");
+      var language = $("table").attr("language");
 
       // don't divide by 0!
       if (denominator == 0) {
         if (type == "sort") return -1; // shrug?
-        else return {en: "N/A", fr: "S. O."}[language]
+        else return { en: "N/A", fr: "S. O." }[language]
       }
 
       var percent = Utils.percent(numerator, denominator);
@@ -126,37 +134,37 @@ var Tables = {
   },
 
   // helpful for reports where parent domains have totals for subdomains
-  percentTotals: function(report, field) {
+  percentTotals: function (report, field) {
     return Tables.percent(report, field, true);
   },
 
   // common rendering function for organization service/domain counts
-  organizationServices: function(category) {
-    return function(data, type, row) {
+  organizationServices: function (category) {
+    return function (data, type, row) {
       if (type == "sort") return data;
       else return "" +
         "<a href=\"/" + category + "/domains/#" +
-          QueryString.stringify({q: row.name}) + "\">" +
-          data +
+        QueryString.stringify({ q: row.name }) + "\">" +
+        data +
         "</a>";
     };
   }
 
 };
 
-$(function() {
+$(function () {
   // if a datatable is searched, sync it to the URL hash
-  $('table').on('search.dt', function(e, settings) {
+  $('table').on('search.dt', function (e, settings) {
     var query = $("input[type=search]").val();
     if (query)
-      location.hash = QueryString.stringify({q: query});
+      location.hash = QueryString.stringify({ q: query });
     // TODO: Disabled because this callback runs on table init,
     // and zeroes out the location hash. Should be addressed.
     // else
     //   location.hash = '';
   });
 
-  $('table').on('draw.dt', function() {
+  $('table').on('draw.dt', function () {
     // set max width on dataTable
     $(this).css('width', '100%');
 
