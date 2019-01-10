@@ -13,6 +13,8 @@ $(function () {
           display: $.fn.dataTable.Responsive.display.childRow
         }
       },
+      
+     
 
       initComplete: initExpansions,
 
