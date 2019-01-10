@@ -4,7 +4,7 @@ $(function () {
   var table;
 
   // Populate with parent domain data, expand hosts per-domain
-  var url = '/data/domains/https.json'
+  var url = '/data/domains/https.json';
   $.get(url, function (data) {
     table = Tables.init(data.data, {
     responsive: {

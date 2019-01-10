@@ -56,14 +56,18 @@ var Tables = {
     if (!options.pageLength) options.pageLength = 25;
 
     var table = $("table").DataTable(options);
-    var csvText = $('#csv-target').text()
-    var buttonsObj = new $.fn.dataTable.Buttons(table, {
+    var csvText = $('#csv-target').text();
+    new $.fn.dataTable.Buttons(table, {
       buttons: [
         { extend: 'csvHtml5', text: csvText }
       ]
     });
 
-    $('#csv-target').html(table.buttons().container())
+    $('#csv-target').html(table.buttons().container());
+
+    $(document).on( "click", ".buttons-csv", function() {
+      gtag('event', 'download', { event_category: 'Download / Télécharger', event_action: 'Download / Télécharger CSV'});
+    });
 
     // Wire up accessible pagination controls.
     Utils.updatePagination();
