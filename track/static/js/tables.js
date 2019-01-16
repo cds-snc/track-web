@@ -63,6 +63,12 @@ var Tables = {
       Utils.updatePagination();
     });
 
+    table.on("page.dt",function(){
+      /* scroll page to top of table on page change */
+      var top = $(".dataTable").offset().top;
+      $("html, body").animate({ scrollTop: top }, "slow");
+    });
+    
     return table;
   },
 
