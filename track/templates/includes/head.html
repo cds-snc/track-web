@@ -1,3 +1,4 @@
+{% set GA_key = "GOOGLE_ANALYTICS" | fetch_env() %}
 
 <!-- Basic Page Needs
 ================================================== -->
@@ -22,14 +23,16 @@
 <script src="/static/js/vendor/querystring.js"></script>
 <script src="/static/js/utils.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-102484926-7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-102484926-7');
-</script>
+{% if GA_key %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_key }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ GA_key }}');
+    </script>
+{% endif %}
 
 <!-- sigh, datatables -->
 
