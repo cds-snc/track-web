@@ -1,4 +1,5 @@
 {% set GA_key = "GOOGLE_ANALYTICS" | fetch_env() %}
+{% set GA_key_secondary = "GOOGLE_ANALYTICS_SECONDARY" | fetch_env() %}
 
 <!-- Basic Page Needs
 ================================================== -->
@@ -31,6 +32,10 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', '{{ GA_key }}');
+
+      {% if GA_key_secondary %}
+      gtag('config', '{{ GA_key_secondary }}');
+      {% endif %}
     </script>
 {% endif %}
 
