@@ -31,10 +31,10 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', '{{ GA_key }}');
+      gtag('config', '{{ GA_key }}', { 'anonymize_ip': true });
 
       {% if GA_key_secondary %}
-      gtag('config', '{{ GA_key_secondary }}');
+      gtag('config', '{{ GA_key_secondary }}', { 'anonymize_ip': true });
       {% endif %}
     </script>
 {% endif %}
