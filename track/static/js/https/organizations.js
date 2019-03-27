@@ -87,7 +87,7 @@ $(document).ready(function () {
     var link = function(link_text) {
       return "" +
         "<a href=\"/" + language + "/" + text.domains[language] + "/#" +
-          QueryString.stringify({q: row["name_" + language]}) + "\">" +
+          QueryString.stringify({q: row["name_" + language]}) + "\" data-domain='"+data+"'\">" +
            link_text +
         "</a>";
     }

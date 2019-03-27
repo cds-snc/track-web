@@ -1,6 +1,7 @@
 import pkg_resources
 import yaml
 import datetime
+import os
 from track import models
 from track.data import FIELD_MAPPING
 from babel.dates import format_date
@@ -56,3 +57,7 @@ def register(app):
     @app.template_filter("percent_not")
     def percent_not(num, denom):
         return (100 - round((num / denom) * 100))
+
+    @app.template_filter("fetch_env")
+    def fetch_env(value):
+        return os.getenv(value)

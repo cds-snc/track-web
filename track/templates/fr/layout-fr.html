@@ -4,8 +4,9 @@
 <head>
 	
 	<title>{% block title %}{% endblock title %}</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' ; script-src 'self';
-          img-src 'self';style-src 'self' 'unsafe-inline';form-action 'self'
+   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' http://tagmanager.google.com/ https://www.google-analytics.com/ https://tagmanager.google.com/ https://www.googletagmanager.com/;
+          img-src 'self' 'unsafe-inline' data: https://www.google-analytics.com/ https://www.gstatic.com/ https://ssl.gstatic.com/;style-src 'self' 'unsafe-inline' https://tagmanager.google.com/ https://fonts.googleapis.com/;form-action 'self';
+          font-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://fonts.gstatic.com/
     ">
 	
 	{% include 'includes/head.html' %}
@@ -15,6 +16,13 @@
 </head>
 
 <body class="flex flex-1 flex-col min-h-screen">
+{% set GTM_key = "GOOGLE_TAG_MANAGER" | fetch_env() %}
+{% if GTM_key %}
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ GTM_key }}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+{% endif %}
 
 	<header role="banner" id="header">
 
