@@ -1,6 +1,5 @@
 function generate_chart() {
     var chart = d3.select('.compliant');
-    var elem = chart[0][0];
     var width = chart.attr("data-width");
     if (width == null)
         width = calculate_width();
@@ -64,7 +63,7 @@ function generate_chart() {
 };
 
 function calculate_width() {
-    window_width = $(window).width();
+    var window_width = $(window).width();
 
     if(window_width < 769)
         return 250;
