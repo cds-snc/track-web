@@ -45,7 +45,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	    </section>
 
 	    <!-- Navigation -->
-  {%  if request.headers.get("app-type","public") == "internal"  %}
+  {%  if request.headers.get("app-type","internal") == "internal"  %}
 	    <nav class="bg-white border-b border-https-dark-gray">
 			<div class="container mx-auto flex">
 				<div class="{{ self.pageid_en() | site_title(false) }} flex-none">
