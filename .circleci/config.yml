@@ -47,7 +47,7 @@ jobs:
               docker push "${DOCKER_REGISTRY}/${DOCKER_NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
           name: "Build and Deploy Website Docker Image"
     working_directory: ~/repo
-  build_package:
+  build_internal_package:
     docker:
       - image: cdssnc/track-web-build:0.1.0
     working_directory: /opt/apps/track-web
@@ -58,12 +58,25 @@ jobs:
       - store_artifacts:
           path: /opt/apps/track-web/track-web.tar.gz
           destination: track-web.tar.gz
-          
+  build_external_package:
+    docker:
+      - image: cdssnc/track-web-build:0.1.0
+    working_directory: /opt/apps/track-web-public
+    steps:
+      - checkout
+      - run:
+          command: sh deploy/build-env-public.sh
+      - store_artifacts:
+          path: /opt/apps/track-web-public/track-web-public.tar.gz
+          destination: track-web-public.tar.gz
 workflows:
   version: 2
   tracker:
     jobs:
       - track_web
-      - build_package:
+      - build_internal_package:
+         requires:
+            - track_web
+      - build_external_package:
          requires:
             - track_web

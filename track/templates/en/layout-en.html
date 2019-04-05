@@ -4,7 +4,7 @@
 <head>
 	
 	<title>{% block title %}{% endblock title %}</title>
-	
+
 	{% include 'includes/head.html' %}
 
 	<meta name="description" content="{% block description %}{% endblock description %}">
@@ -12,7 +12,13 @@
 </head>
 
 <body class="flex flex-1 flex-col min-h-screen">
-
+{% set GTM_key = "GOOGLE_TAG_MANAGER" | fetch_env() %}
+{% if GTM_key %}
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ GTM_key }}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+{% endif %}
 	<header role="banner" id="header">
 
 		<!-- Beta bar -->
@@ -40,7 +46,7 @@
 
 
 	     <!-- Navigation -->
-
+  {%  if request.headers.get("app-type","internal") == "internal"  %}
 	     <nav class="bg-white border-b border-https-dark-gray">
 			<div class="container mx-auto flex">
 				<div class="{{ self.pageid_fr() | site_title(false) }}">
@@ -64,6 +70,9 @@
 		        </div>
 		    </div>
 		</nav>
+{% endif %}
+
+
 
 	     <nav id="menu-content" class="shadow-md">
 		    <ul class="list-reset ml-4 mr-2 mt-4 font-normal">
@@ -74,6 +83,8 @@
 		        <li class="block py-4 border-b border-https-dark-gray sm:hidden"><a tabindex="-1" class="text-xl text-https-blue hover:text-black no-underline hover:underline" href="/fr/{{ self.pageid_fr() }}" lang="fr">Français</a></li>
 		    </ul>
 		</nav>
+
+
 
 	</header>
 

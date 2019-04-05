@@ -36,9 +36,7 @@ $.fn.dataTable.Download = function ( inst ) {
     if (drawnOnce) return;
 
     var elem = "" +
-      "<a onClick=\"gtag('event', 'download', { event_category: 'Download / Télécharger', event_action: 'Download / Télécharger CSV'});\" class=\"text-https-blue hover:text-black font-bold\" href=\"" + csv + "\" download>" +
-        text +
-      "</a>";
+      "<a class=\"text-https-blue hover:text-black font-bold\" href=\"" + csv + "\" download>" + text +"</a>";
 
     container.html(elem);
     drawnOnce = true;

@@ -287,7 +287,7 @@ $(function () {
     // determines whether remote fetching has to happen
     var fetch = !(loneDomain(row));
 
-    return n(row.domain) + "<div class=\"mt-2\">" + l("", "#", showHideText(true, row), "onclick=\"return false\" data-fetch=\"" + fetch + "\" data-domain=\"" + row.domain + "\"") + "</div>";
+    return n(row.domain) + "<div class=\"mt-2\">" + l("", "#", showHideText(true, row), "data-fetch=\"" + fetch + "\" data-domain=\"" + row.domain + "\"") + "</div>";
   };
 
   var showHideText = function(show, row) {
@@ -369,9 +369,7 @@ $(function () {
   };
 
   var l = function(base_domain, href, text, extra) {
-    // if base domain is provided, CSV download, so track with gtag
-    if(base_domain != "") return "<a onClick=\"gtag('event', 'download', { event_category: 'Download / Télécharger', event_action: 'Download / Télécharger CSV " + base_domain + "'});\" href=\"" + href + "\" target=\"blank\" " + extra + ">" + text + "</a>";
-    
+
     return "<a href=\"" + href + "\" target=\"blank\" " + extra + ">" + text + "</a>";
   };
 

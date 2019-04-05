@@ -20,6 +20,8 @@ class Config:
     def init_app(app):
         pass
 
+
+
 class ProductionConfig(Config):
 
     CACHE_TYPE = "filesystem"
