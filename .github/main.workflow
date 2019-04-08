@@ -7,4 +7,5 @@ workflow "CI" {
 
 action "Dockerfile lint" {
   uses = "docker://cdssnc/docker-lint"
+  args = "--ignore DL3013"
 }
