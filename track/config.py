@@ -13,7 +13,7 @@ A_DAY = 60 * 60 * 24
 class Config:
     DEBUG = False
     TESTING = False
-    MONGO_URI = "mongodb://localhost:27017/track"
+    MONGO_URI = os.environ.get("TRACKER_MONGO_URI", "mongodb://localhost:27017/track")
     CACHE_TYPE = "null"
 
     @staticmethod
