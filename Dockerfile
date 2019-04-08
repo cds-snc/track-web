@@ -1,5 +1,4 @@
 FROM python:3.5 as python-base
-MAINTAINER David Buckley <david.buckley@cds-snc.ca>
 LABEL Description="Track Web Security Compliance" Vendor="Canadian Digital Service"
 
 COPY requirements.txt /opt/track-web/requirements.txt
