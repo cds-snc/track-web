@@ -8,6 +8,9 @@ var Tables = {
 
     // add common options to all renderTables requests
     if (!options.responsive) options.responsive = true;
+    
+    // Older browsers need this to load in an acceptable time frame. We may want to make it conditional in the future
+    if (!options.deferRender) options.deferRender = true;
 
     var customInit = function() {}; // noop
     if (options.initComplete) customInit = options.initComplete;
