@@ -16,4 +16,4 @@ RUN pip install /wheels/* && rm -rf /wheels /root/.cache/pip && \
 USER track-web:track-web
  
 EXPOSE 5000
-ENTRYPOINT ["gunicorn", "track.wsgi:app", "--bind=0.0.0.0:5000", "--worker-class=gthread", "--access-logfile=-", "--error-logfile=-", "--capture-output"]
+ENTRYPOINT ["gunicorn", "track.wsgi:app", "--bind=0.0.0.0:5000", "--worker-class=sync", "--access-logfile=-", "--error-logfile=-", "--log-level=debug", "--workers=4"]
