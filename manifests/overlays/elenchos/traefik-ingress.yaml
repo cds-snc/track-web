@@ -10,5 +10,5 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: etait-ici 
-              servicePort: 3000
+              serviceName: track-web
+              servicePort: 5000

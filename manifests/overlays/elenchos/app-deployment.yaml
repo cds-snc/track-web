@@ -5,16 +5,9 @@ metadata:
     app: track-web
   name: track-web
 spec:
-  replicas: 4
-  revisionHistoryLimit: 5
   selector:
     matchLabels:
       app: track-web
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -23,8 +16,6 @@ spec:
       containers:
         - image: gcr.io/cdssnc/track-web
           imagePullPolicy: Always
-          securityContext:
-            privileged: true
           name: track-web
           env:
             - name: TRACKER_MONGO_URI
