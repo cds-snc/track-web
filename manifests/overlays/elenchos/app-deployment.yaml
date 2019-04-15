@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: track-web
+  name: track-web
+spec:
+  selector:
+    matchLabels:
+      app: track-web
+  template:
+    metadata:
+      labels:
+        app: track-web
+    spec:
+      containers:
+        - image: gcr.io/cdssnc/track-web
+          imagePullPolicy: Always
+          name: track-web
+          env:
+            - name: TRACKER_MONGO_URI
+              value: mongodb://track-ro:0D^GEPgF52d&2S@ds113692.mlab.com:13692/trackweb
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}
