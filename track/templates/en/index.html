@@ -36,8 +36,19 @@
 </section>
 
 
+{% endblock %}
 
+{% block pagerelatedscript %}
 
 <script src="/static/js/https/donuts.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
-<script src="/static/js/https/organizations.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
+
 {% endblock %}
+
+{% block breadcrumb %}
+					{
+					 title: "Track web security compliance"
+
+					}
+{% endblock %}
+
+{% block datemodified %}2019-04-23{% endblock %}
