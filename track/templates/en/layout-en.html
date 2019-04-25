@@ -27,7 +27,7 @@
 
 </head>
 	{% include 'includes/en/beta-bar.html' %}
-<body vocab="http://schema.org/" typeof="WebPage">
+<body vocab="http://schema.org/" typeof="WebPage" class="flex flex-1 flex-col min-h-screen">
 {% set GTM_key = "GOOGLE_TAG_MANAGER" | fetch_env() %}
 {% if GTM_key %}
 <!-- Google Tag Manager (noscript) -->
@@ -58,7 +58,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					 href: "https://www.canada.ca/en/government/system/digital-government.html"
 					},
 					{
-					 title: "Digital Government",
+					 title: "Secure digital services",
 					 href: "https://www.canada.ca/en/government/system/digital-government/secure-digital-services.html"
 					},
 					{% block breadcrumb %}{% endblock breadcrumb %}

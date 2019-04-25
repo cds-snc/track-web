@@ -17,7 +17,7 @@
 		{% include 'includes/fr/header.html' %}
 
 		<div class="text-center mt-8 font-bold">
-			<div class="inline-block border-b-4 border-https-blue h-10 mr-4">Par organisation</div>
+			<div class="inline-block border-b-4 border-https-blue mr-4">Par organisation</div>
 			<div class="inline-block h-10 ml-4"><a href="/fr/domaines/" class="text-black no-underline hover:text-https-blue font-medium">Par domaine</a></div>
 		</div>
 
@@ -46,3 +46,26 @@
 
 <script src="/static/js/https/organizations.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
 {% endblock %}
+
+
+{% block breadcrumb %}
+					{
+					 title: "Track web security compliance",
+                     href: "/en/index"
+					},
+					{
+					 title: "Check compliance - By Domain",
+
+					}
+
+{% endblock %}
+
+
+{% block pagerelatedscript %}
+
+<script src="/static/js/https/organizations.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
+
+{% endblock %}
+
+
+{% block datemodified %}2019-04-23{% endblock %}

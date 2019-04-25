@@ -10,26 +10,22 @@
 
 <section id="main-content" class="flex-1 bg-https-light-gray py-6">
 
-		<div class="flex flex-col lg:flex-row mx-auto items-center sm:w-4/5 xl:w-3/5">
-			<div class="flex-1 lg:mr-8 lg:pr-8 mb-4 lg:mb-0">
-				<h1 class="text-4xl sm:text-5xl mb-6">Track web security compliance</h1>
-				<h2 class="text-3xl mb-2">Making government websites more secure</h2>
-				<p class="text-xl">Canadians rely on the Government of Canada to provide secure digital services. A <a class="text-https-blue hover:text-black" href="https://www.canada.ca/en/treasury-board-secretariat/services/information-technology/policy-implementation-notices/implementing-https-secure-web-connections-itpin.html">new policy notice</a> guides government websites to adopt good web security practices. Track how government sites are becoming more secure.</p>
-
-              {%  if request.headers.get("app-type","internal") == "internal"  %}
+		<div class="flex flex-col lg:flex-row mx-auto items-auto  sm:w-4/5 xl:w-5/6">
+			<div class="flex-1 mt-6 mr-6">
+				<h1 class="text-5xl sm:text-5xl mb-6 border-0">Track web security compliance</h1>
+				<h2 class="text-4xl mb-2">Making government websites more secure</h2>
+				<p class="text-3xl">Canadians rely on the Government of Canada to provide secure digital services. A <a class="text-https-blue hover:text-black" href="https://www.canada.ca/en/treasury-board-secretariat/services/information-technology/policy-implementation-notices/implementing-https-secure-web-connections-itpin.html">new policy notice</a> guides government websites to adopt good web security practices. Track how government sites are becoming more secure.</p>
 
 				<div class="flex">
-					<p class="text-xl mt-2 lg:mt-6"><a href="/en/domains/" class="text-https-blue hover:text-black">Check a government website</a></p>
+					<p class="text-3xl mt-2 lg:mt-6"><a href="/en/domains/" class="text-https-blue hover:text-black">Check a government website</a></p>
 					<object class="ml-2 lg:mt-4" type="image/svg+xml" tabindex="-1" aria-hidden="true" role="none" data="/static/images/cta-arrow.svg"></object>
 				</div>
-
-              {%  endif %}
 
 			</div>
 			
 			<div class="flex-inline flex-col text-center mx-auto">
 				<div class="compliant"></div>
-				<h3 class="font-bold text-xl sm:text-2xl">Domains that <br> enforce HTTPS</h3>
+				<h3 class="font-bold text-3xl sm:text-2xl">Domains that <br> enforce HTTPS</h3>
 			</div>
 		</div>
 
