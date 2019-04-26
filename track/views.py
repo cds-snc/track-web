@@ -37,18 +37,12 @@ def register(app):
     @app.route("/en/organizations/")
     @app.route("/fr/organisations/")
     def organizations():
-        if request.headers.get("app-type", "internal") == "public":
-            return index()
-
         prefix = request.path[1:3]
         return render_template(generate_path(prefix, "organizations"))
 
     @app.route("/en/domains/")
     @app.route("/fr/domaines/")
     def https_domains():
-        if request.headers.get("app-type", "internal") == "public":
-            return index()
-
         prefix = request.path[1:3]
         return render_template(generate_path(prefix, "domains"))
 
@@ -251,7 +245,13 @@ def register(app):
 
     @app.errorhandler(404)
     def page_not_found(error):
-        return render_template("404.html"), HTTPStatus.NOT_FOUND
+        path = request.path
+        if "fr" in path:
+            return render_template("/fr/404.html"), HTTPStatus.NOT_FOUND
+        else:
+            return render_template("/en/404.html"), HTTPStatus.NOT_FOUND
+
+
 
     @app.errorhandler(models.QueryError)
     def handle_invalid_usage(error):

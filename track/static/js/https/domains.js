@@ -244,7 +244,7 @@ $(function () {
       var host = hosts[i];
       var details = $("<tr/>").addClass("host");
 
-      var link = "<a class=\"word-break\" href=\"" + host.canonical + "\" target=\"blank\">" + Utils.truncate(host.domain, 35) + "</a></div>";
+      var link = "<a class=\"word-break text-2xl\" href=\"" + host.canonical + "\" target=\"blank\">" + Utils.truncate(host.domain, 35) + "</a></div>";
       details.append($("<td/>").addClass("link").html(link));
 
       var compliant = names.compliant[language][host.https.compliant];
@@ -287,7 +287,7 @@ $(function () {
     // determines whether remote fetching has to happen
     var fetch = !(loneDomain(row));
 
-    return n(row.domain) + "<div class=\"mt-2\">" + l("", "#", showHideText(true, row), "data-fetch=\"" + fetch + "\" data-domain=\"" + row.domain + "\"") + "</div>";
+    return n(row.domain) + "<div class=\"mt-0 text-2xl\">" + l("", "#", showHideText(true, row), "data-fetch=\"" + fetch + "\" data-domain=\"" + row.domain + "\"") + "</div>";
   };
 
   var showHideText = function(show, row) {
@@ -374,7 +374,7 @@ $(function () {
   };
 
   var n = function(text) {
-    return "<div class=\"word-break\"><strong>" + text + "</strong></div>";
+    return "<div class=\"word-break text-2xl leading-tight\"><strong>" + text + "</strong></div>";
   }
 
 })
