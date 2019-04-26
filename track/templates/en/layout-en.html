@@ -42,7 +42,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			defTop.outerHTML = wet.builder.top({
 				lngLinks: [{
 					lang: "fr",
-					href: "/fr/index",
+					href: "{% block languageURL %}{% endblock languageURL %}",
 					text: "Français"
 				}],
 				breadcrumbs:[{
@@ -83,7 +83,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				defPreFooter.outerHTML = wet.builder.preFooter({
 					dateModified: "{% block datemodified %}{% endblock datemodified %}",
 					showPostContent: true,
-					showFeedback: true,
+					showFeedback: 'https://www.canada.ca/en/report-problem.html',
+
 					showShare: true
 				});
 			</script>
@@ -95,13 +96,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			defFooter.outerHTML = wet.builder.footer({
 				showFooter: true,
 				showFeatures: true,
+				exitScript:true,
+			    exitMsg:'You are about to leave a our site, do you wish to continue'
+
 
 			});
 	</script>
 	<!-- Write closure template -->
 	<script type="text/javascript">
 			document.write(wet.builder.refFooter({
-			jqueryEnv:"external"
+			jqueryEnv:"external",
+			exitScript:true,
+			exitMsg:'You are about to leave a our site, do you wish to continue'
 			}));
 	</script>
 

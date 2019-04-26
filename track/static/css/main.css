@@ -200,6 +200,8 @@ table caption {
         left: -45px; }
   .dataTables_wrapper .dataTables_info {
     padding-top: 8px !important; }
+  .dataTables_wrapper .dataTables_info:after {
+    content: "" !important; }
   .dataTables_wrapper .dataTables_paginate a.paginate_button {
     padding: 8px 8px !important;
     font-size: 0.875em;

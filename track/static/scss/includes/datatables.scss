@@ -244,6 +244,10 @@ table caption {
   .dataTables_info {
     padding-top: 8px !important;
   }
+
+  .dataTables_info:after {
+    content: ""!important; }
+
   .dataTables_paginate {
     a.paginate_button {
       padding: 8px 8px !important;

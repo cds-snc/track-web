@@ -42,7 +42,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			defTop.outerHTML = wet.builder.top({
 				lngLinks: [{
 					lang: "en",
-					href: "/en/index",
+					href: "{% block languageURL %}{% endblock languageURL %}",
 					text: "English"
 				}],
 				breadcrumbs:[{
@@ -83,7 +83,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				defPreFooter.outerHTML = wet.builder.preFooter({
 					dateModified: "{% block datemodified %}{% endblock datemodified %}",
 					showPostContent: true,
-					showFeedback: true,
+					showFeedback: 'https://www.canada.ca/fr/signaler-probleme.html',
 					showShare: true
 				});
 			</script>
