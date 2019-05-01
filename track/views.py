@@ -37,18 +37,12 @@ def register(app):
     @app.route("/en/organizations/")
     @app.route("/fr/organisations/")
     def organizations():
-        if request.headers.get("app-type", "internal") == "public":
-            return index()
-
         prefix = request.path[1:3]
         return render_template(generate_path(prefix, "organizations"))
 
     @app.route("/en/domains/")
     @app.route("/fr/domaines/")
     def https_domains():
-        if request.headers.get("app-type", "internal") == "public":
-            return index()
-
         prefix = request.path[1:3]
         return render_template(generate_path(prefix, "domains"))
 
