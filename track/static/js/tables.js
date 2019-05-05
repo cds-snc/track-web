@@ -178,5 +178,10 @@ $(function() {
     $('#DataTables_Table_0_filter label').attr('class', 'w-full md:w-2/3');
     $('#datatables-search').attr('class', 'border border-solid border-https-dark-gray bg-https-light-gray focus:border-https-blue block md:inline-block h-8 md:ml-6 mb-4 md:mb-8 w-full md:w-3/5 lg:w-3/4');
     $('.dataTables_csv').attr('class', 'text-lg md:ml-4 mt-4 md:mt-6');
+
+    // remove role=row , give ARIA (SiteImprove) warning(The WAI-ARIA attribute is redundant since is doesn't provide the user with any additional information) since tr element already indicate that is a row
+    $('table tr').removeAttr("role");
+
+
   });
 });

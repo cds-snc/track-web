@@ -15,7 +15,7 @@
 {% set GTM_key = "GOOGLE_TAG_MANAGER" | fetch_env() %}
 {% if GTM_key %}
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ GTM_key }}"
+<noscript role="application" aria-label="script for google tag manager"><iframe src="https://www.googletagmanager.com/ns.html?id={{ GTM_key }}"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 {% endif %}
@@ -27,12 +27,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 		<!-- GOC Identity Bar -->
 
-	    <section id="goc-fip-bar">
+	    <section id="goc-fip-bar" aria-label="To go to the french page">
 	        <div class="container mx-auto flex">
 	            <div class="flex-1 pt-2 pb-2">
 	                <a href="https://www.canada.ca/en.html" aria-label="Government of Canada">
-	                    <object type="image/svg+xml" tabindex="-1" role="img" data="/static/images/fip-dark-en.svg"
-	                            aria-label="Symbol of the Government of Canada" class="h-6"></object>
+	                    <object type="image/svg+xml" tabindex="-1" role="presentation" data="/static/images/fip-dark-en.svg" class="h-6" aria-label="Symbol of the Government of Canada">
+							Symbol of the Government of Canada
+						</object>
 	                </a>
 	            </div>
 
@@ -46,12 +47,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 	     <!-- Navigation -->
-	     <nav class="bg-white border-b border-https-dark-gray">
+	     <nav class="bg-white border-b border-https-dark-gray" aria-label="Main menu">
 			<div class="container mx-auto flex">
 				<div class="{{ self.pageid_fr() | site_title(false) }}">
 					<h2 class="py-6 text-base sm:text-lg hidden md:block"><a class="text-grey-darkest no-underline font-medium hover:underline hover:text-https-blue" href="/en/index/">Track web security compliance</a></h2>
 				</div>
-		        <div role="navigation" class="flex-1">
+		        <div class="flex-1">
 		            <ul class="list-reset flex justify-end text-base sm:text-lg font-normal">
 		                <li class="py-6 inline xl:hidden">
 		                    <a id="menu-btn" class="text-https-blue hover:text-black no-underline hover:underline" href="#">Menu</a>
@@ -70,7 +71,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		    </div>
 		</nav>
 
-	     <nav id="menu-content" class="shadow-md">
+	     <nav id="menu-content" class="shadow-md"  aria-label="Menu for mobile">
 		    <ul class="list-reset ml-4 mr-2 mt-4 font-normal">
 		        <li class="{{ self.pageid_fr() | site_title(true) }} block py-4 border-b border-https-dark-gray sm:block md:hidden"><a tabindex="-1" class="text-xl text-https-blue no-underline hover:underline" href="/en/index/">Track web security compliance</a></li>
 		        <li class="block border-b border-https-dark-gray py-4"><a tabindex="-1" class="text-xl text-https-blue hover:text-black no-underline hover:underline" href="/en/organizations/">Check compliance</a></li>
