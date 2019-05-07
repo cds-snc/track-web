@@ -46,6 +46,13 @@ th {
 .beta-badge {
   background-color: #22A7F0; }
 
+li a.myskip {
+  color: #3D4852; }
+
+li a.myskip:focus {
+  color: white;
+  text-decoration: none; }
+
 table caption {
   left: -10000px;
   height: 1px;
