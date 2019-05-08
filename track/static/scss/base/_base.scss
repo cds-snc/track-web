@@ -24,3 +24,11 @@
 	background-color: #22A7F0;
 }
 
+li a.myskip {
+   color:$dark-gray;
+}
+li a.myskip:focus {
+    color:white;
+    text-decoration:none;
+}
+
