@@ -8,7 +8,15 @@
 {% block content %}
 
 
-Page d'erreur
+<section id="main-content" class="flex-1">
+	<div class="container mx-auto items-center sm:w-4/5 xl:w-5/6 mt-6 mb-6">
+		<h1 class="border-0">Nous ne pouvons trouver cette page Web</h1>
+  		<p class="text-3xl"><strong>Erreur 404</strong></p>
+		<p class="text-3xl">Nous sommes désolés que vous ayez abouti ici. Il arrive parfois qu’une page ait été déplacée ou supprimée. </p>
+	</div>
+
+
+</section>
 
 {% endblock %}
 {% block languageURL %}/en/404{% endblock %}
@@ -23,4 +31,4 @@ Page d'erreur
 {% endblock %}
 
 
-{% block datemodified %}2019-04-23{% endblock %}</html>
+{% block datemodified %}{{lastmodified}}{% endblock %}</html>

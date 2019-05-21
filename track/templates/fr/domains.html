@@ -60,4 +60,4 @@
 {% endblock %}
 
 
-{% block datemodified %}2019-04-23{% endblock %}
+{% block datemodified %}{{ scan_date | date(format="%Y-%m-%d")}}{% endblock %}

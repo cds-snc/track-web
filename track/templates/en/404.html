@@ -7,8 +7,15 @@
 
 {% block content %}
 
+<section id="main-content" class="flex-1">
+	<div class="container mx-auto items-center sm:w-4/5 xl:w-5/6 mt-6 mb-6">
+		<h1 class="border-0">We couldn't find that Web page</h1>
+  		<p class="text-3xl"><strong>Error 404</strong></p>
+		<p class="text-3xl">We're sorry you ended up here. Sometimes a page gets moved or deleted.</p>
+	</div>
 
-Error page
+
+</section>
 
 {% endblock %}
 {% block languageURL %}/fr/404{% endblock %}
@@ -23,4 +30,4 @@ Error page
 {% endblock %}
 
 
-{% block datemodified %}2019-04-23{% endblock %}
+{% block datemodified %}{{lastmodified}}{% endblock %}

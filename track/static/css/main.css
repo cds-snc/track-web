@@ -64,7 +64,7 @@ table caption {
   padding-bottom: 1.5rem !important; }
 
 tr.subdomain, tr.host {
-  font-size: 0.875em; }
+  font-size: 0.75em; }
 
 .rotated {
   -ms-transform: rotate(-90deg);
