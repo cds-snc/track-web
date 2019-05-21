@@ -31,7 +31,7 @@
 {% set GTM_key = "GOOGLE_TAG_MANAGER" | fetch_env() %}
 {% if GTM_key %}
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ GTM_key }}"
+<noscript role="application" aria-label="script for google tag manager"><iframe src="https://www.googletagmanager.com/ns.html?id={{ GTM_key }}"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 {% endif %}
@@ -72,7 +72,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-	<main role="main" property="mainContentOfPage" class="container">
+	<main role="main" property="mainContentOfPage" class="container" id="wb-cont">
 
 			{% block content %}{% endblock %}
 

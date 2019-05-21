@@ -63,6 +63,9 @@ table caption {
   padding-top: 1.5rem !important;
   padding-bottom: 1.5rem !important; }
 
+tr.subdomain, tr.host {
+  font-size: 0.875em; }
+
 .rotated {
   -ms-transform: rotate(-90deg);
   /* IE 9 */
@@ -197,9 +200,10 @@ table caption {
         font-size: 0.875em;
         position: relative;
         top: 5px;
-        left: -45px; }
+        left: -48px; }
   .dataTables_wrapper .dataTables_info {
-    padding-top: 8px !important; }
+    padding-top: 8px !important;
+    font-size: 0.875em; }
   .dataTables_wrapper .dataTables_info:after {
     content: "" !important; }
   .dataTables_wrapper .dataTables_paginate a.paginate_button {

@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     var link = function(link_text) {
       return "" +
-        "<a class=\"text-2xl\" href=\"/" + language + "/" + text.domains[language] + "/#" +
+        "<a class=\"text-2xl\" aria-label=\""+data+"\" href=\"/" + language + "/" + text.domains[language] + "/#" +
           QueryString.stringify({q: row["name_" + language]}) + "\" data-domain=\""+data+"\">" +
            link_text +
         "</a>";
