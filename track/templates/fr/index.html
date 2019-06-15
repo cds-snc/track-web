@@ -1,6 +1,6 @@
 {% extends "fr/layout-fr.html" %}
 
-{% block title %}Suivre la conformité en matière de sécurité Web{% endblock %}
+{% block title %}Suivre la conformité en matière de sécurité Web - Canada.ca{% endblock %}
 
 {% block pageid_en %}index{% endblock %}
 {% block pageid_fr %}index{% endblock %}
@@ -8,21 +8,38 @@
 
 {% block content %}
 
-<section id="main-content" class="flex-1 bg-https-light-gray py-6" role="contentinfo" aria-label="Suivre la conformité en matière de sécurité Web">
+<section id="main-content" class="flex-1 py-6" role="contentinfo" aria-label="Suivre la conformité en matière de sécurité Web">
 
-		<div class="flex flex-col lg:flex-row mx-auto items-center sm:w-4/5 xl:w-3/5">
+		<div class="flex flex-col lg:flex-row mx-auto items-center sm:w-4/5 xl:w-5/6">
 			<div class="flex-1 lg:mr-8 lg:pr-8 mb-4 lg:mb-0">
-				<h1 class="text-4xl sm:text-5xl mb-6">Suivre la conformité en matière de sécurité Web</h1>
-				<h2 class="text-3xl mb-2">Rendre les sites gouvernementaux plus sécuritaires</h2>
-				<p class="text-xl">Les Canadiens s'attendent à ce que le gouvernement du Canada leur offre des services en ligne sécurisés. Un <a class="text-https-blue hover:text-black " href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/technologie-information/avis-mise-oeuvre-politique/mise-oeuvre-https-connexions-web-securisees-ampti.html">nouvel avis de politique</a> vise à assurer que les sites gouvernementaux soient conformes aux bonnes pratiques en matière de sécurité Web. Voyez comment les sites gouvernementaux deviennent plus sécuritaires.</p>
+				<h1 class="text-5xl font-black sm:text-5xl mb-6">Suivre la conformité en matière de sécurité Web</h1>
+				<h2 class="text-4xl mb-2 font-black">Rendre les sites gouvernementaux plus sécuritaires</h2>
+				<p class="text-3xl">Les Canadiens s'attendent à ce que le gouvernement du Canada leur offre des services en ligne sécurisés. Un nouvel avis de politique vise à assurer que les sites gouvernementaux soient conformes aux bonnes pratiques en matière de sécurité Web. Voyez comment les sites gouvernementaux deviennent plus sécuritaires.</p>
 
 
-				<div class="flex">
-					<p class="text-xl mt-2 lg:mt-6"><a href="/fr/organisations/" class="text-https-blue hover:text-black ">Vérifier la conformité d’un site gouvernemental</a></p>
-					<object class="ml-2 lg:mt-4" type="image/svg+xml" tabindex="-1" role="img" aria-hidden="true" data="/static/images/cta-arrow.svg">
-						<p>Pour vérifier la conformité d’un site gouvernemental</p>
-					</object>
-				</div>
+
+
+				<br/>
+
+
+                <div class="flex-1 flex-col">
+                     <div class="flex flex-row my-4">
+                         <div class="w-1/2 text-left"><h3 class="text-3xl"><a href="/fr/organisations/">Vérifier la conformité</a></h3>
+                          <p class="text-3xl">Which organizations or domains meet requirements </p>
+                         </div>
+                         <div class="w-1/2 text-left"><h3 class="text-3xl"><a href="/fr/directives">Lire les directives</a></h3>
+                          <p class="text-3xl">Detailed process for government sites to become compliant</p>
+                         </div>
+                     </div>
+                     <div class="flex flex-row">
+                         <div class="w-1/2 text-left"><h3 class="text-3xl"><a href="https://www.canada.ca/fr/secretariat-conseil-tresor/services/technologie-information/avis-mise-oeuvre-politique/mise-oeuvre-https-connexions-web-securisees-ampti.html">Avis de politique</a></h3>
+                          <p class="text-3xl">Politique sur la technologie de l'information<br/>Information Notice: Implementing<br/>HTTPS For Secure Web Connection</p>
+                         </div>
+                         <div class="w-1/2 text-left"><h3 class="text-3xl"><a href="/fr/aide">Contacts</a></h3>
+                           <p class="text-3xl">For government or the public, get in touch for questions or comments</p>
+                         </div>
+                     </div>
+                </div>
 
 
 			</div>
@@ -31,10 +48,24 @@
 				<div class="compliant"></div>
 				<h3 class=" text-xl sm:text-2xl">Domaines qui excécutent <br>  le protocole HTTPS</h3>
 			</div>
+
+
+
+
+
+
 		</div>
 
 </section>
 
+
+{% endblock %}
+
+{% block pagerelatedscript %}
+
 <script src="/static/js/https/donuts.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
 <script src="/static/js/https/organizations.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
+
 {% endblock %}
+{% block languageURL %}/en/index{% endblock %}
+{% block datemodified %}{{ scan_date | date(format="%Y-%m-%d")}}{% endblock %}

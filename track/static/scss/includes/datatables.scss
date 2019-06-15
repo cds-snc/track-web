@@ -23,6 +23,10 @@ table caption {
   }
 }
 
+tr.subdomain, tr.host {
+    font-size:0.75em;
+}
+
 .rotated {
   -ms-transform: rotate(-90deg); /* IE 9 */
   -webkit-transform: rotate(-90deg); /* Safari */
@@ -236,14 +240,19 @@ table caption {
           font-size: 0.875em;
           position: relative;
           top: 5px;
-          left: -45px;
+          left: -48px;
         }
       }
     }
   }
   .dataTables_info {
     padding-top: 8px !important;
+    font-size:$base-font-size;
   }
+
+  .dataTables_info:after {
+    content: ""!important; }
+
   .dataTables_paginate {
     a.paginate_button {
       padding: 8px 8px !important;

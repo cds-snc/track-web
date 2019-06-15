@@ -19,6 +19,12 @@ def register(app):
         else:
             return datetime.datetime.now()
 
+    def lastmodified(date_format="%Y-%m-%d"):
+        file_path = os.path.abspath(__file__)
+        file_datetime = os.path.getmtime(file_path)
+        date_readable = datetime.datetime.fromtimestamp(file_datetime).strftime(date_format)
+        return date_readable
+
     # Make site metadata available everywhere.
     resource_package = __name__
     resource_path = 'track_meta.yml'
@@ -27,7 +33,7 @@ def register(app):
 
     @app.context_processor
     def inject_meta():
-        return dict(site=meta, now=datetime.datetime.utcnow, scan_date=scan_date())
+        return dict(site=meta, now=datetime.datetime.utcnow, scan_date=scan_date(), lastmodified=lastmodified())
 
     @app.template_filter("date")
     def datetimeformat(value, format="%H:%M / %d-%m-%Y"):
@@ -61,3 +67,7 @@ def register(app):
     @app.template_filter("fetch_env")
     def fetch_env(value):
         return os.getenv(value)
+
+
+
+

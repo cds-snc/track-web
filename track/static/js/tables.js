@@ -175,9 +175,8 @@ $(function() {
 
     // add custom tailwind classes
     $('#DataTables_Table_0_filter').attr('class', 'flex block justify-start md:justify-center');
-    $('#DataTables_Table_0_filter label').attr('class', 'w-full md:w-2/3');
-    $('#datatables-search').attr('class', 'border border-solid border-https-dark-gray bg-https-light-gray focus:border-https-blue block md:inline-block h-8 md:ml-6 mb-4 md:mb-8 w-full md:w-3/5 lg:w-3/4');
-    $('.dataTables_csv').attr('class', 'text-lg md:ml-4 mt-4 md:mt-6');
-
+    $('#DataTables_Table_0_filter label').attr('class', 'text-2xl w-full md:w-2/3');
+    $('#datatables-search').attr('class', 'border border-solid border-https-dark-gray bg-https-light-gray focus:border-https-blue block md:inline-block h-12 md:ml-6 mb-4 md:mb-8 w-full lg:w-3/4');
+    $('.dataTables_csv').attr('class', 'text-3xl md:ml-4 mt-4 md:mt-6');
   });
 });

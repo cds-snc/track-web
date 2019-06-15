@@ -86,16 +86,16 @@ $(document).ready(function () {
 
     var link = function(link_text) {
       return "" +
-        "<a aria-label=\""+data+"\" href=\"/" + language + "/" + text.domains[language] + "/#" +
+        "<a class=\"text-2xl\" aria-label=\""+data+"\" href=\"/" + language + "/" + text.domains[language] + "/#" +
           QueryString.stringify({q: row["name_" + language]}) + "\" data-domain=\""+data+"\">" +
            link_text +
         "</a>";
     }
 
     if(services > 1)
-      return "<div class=\"mb-2\">" + name + "</div>" + link(text.show[language] + " " + services + " " + text.domains[language]);
+      return "<div class=\"mb-0 text-2xl leading-tight\">" + name + "</div>" + link(text.show[language] + " " + services + " " + text.domains[language]);
     else
-      return "<div class=\"mb-2\">" + name + "</div>" + link(text.show[language] + " " + services + " " + text.domain_singular[language]);
+      return "<div class=\"mb-0 text-2xl leading-tight\">" + name + "</div>" + link(text.show[language] + " " + services + " " + text.domain_singular[language]);
   };
 
 

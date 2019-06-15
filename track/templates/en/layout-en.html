@@ -1,17 +1,33 @@
-<!doctype html>
-<html lang="en" class="flex">
-
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en" dir="ltr"><!--<![endif]-->
 <head>
-	
-	<title>{% block title %}{% endblock title %}</title>
+		<meta charset="utf-8">
+
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<!-- Meta data -->
+		<!-- Meta data-->
+		<!-- Load closure template scripts -->
+		<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_30/cdts/compiled/soyutils.js"></script>
+		<script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_30/cdts/compiled/wet-en.js"></script>
+
+		<!-- Write closure template -->
+		<script type="text/javascript">
+			document.write(wet.builder.refTop({
+			 jqueryEnv:"external"
+			}));
+		</script>
+
+
+		<title>{% block title %}{% endblock title %}</title>
 
 	{% include 'includes/head.html' %}
 
 	<meta name="description" content="{% block description %}{% endblock description %}">
-	
-</head>
 
-<body class="flex flex-1 flex-col min-h-screen">
+</head>
+	{% include 'includes/en/beta-bar.html' %}
+<body vocab="http://schema.org/" typeof="WebPage" class="flex flex-1 flex-col min-h-screen">
 {% set GTM_key = "GOOGLE_TAG_MANAGER" | fetch_env() %}
 {% if GTM_key %}
 <!-- Google Tag Manager (noscript) -->
@@ -19,82 +35,102 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 {% endif %}
-	<header role="banner" id="header">
-
-		<!-- Beta bar -->
-
-		{% include 'includes/en/beta-bar.html' %}
-
-		<!-- GOC Identity Bar -->
-
-	    <section id="goc-fip-bar" aria-label="To go to the french page">
-	        <div class="container mx-auto flex">
-	            <div class="flex-1 pt-2 pb-2">
-	                <a href="https://www.canada.ca/en.html" aria-label="Government of Canada">
-	                    <object type="image/svg+xml" tabindex="-1" role="presentation" data="/static/images/fip-dark-en.svg" class="h-6" aria-label="Symbol of the Government of Canada">
-							Symbol of the Government of Canada
-						</object>
-	                </a>
-	            </div>
-
-	            <div class="flex-1 text-right pt-2 pb-2 hidden sm:inline">
-	                <h2 class="sr-only">Language selection</h2>
-	                <a href="/fr/{{ self.pageid_fr() }}" class="text-white" lang="fr">Français</a>
-	            </div>
-	        </div>
-
-	    </section>
-
-
-	     <!-- Navigation -->
-	     <nav class="bg-white border-b border-https-dark-gray" aria-label="Main menu">
-			<div class="container mx-auto flex">
-				<div class="{{ self.pageid_fr() | site_title(false) }}">
-					<h2 class="py-6 text-base sm:text-lg hidden md:block"><a class="text-grey-darkest no-underline font-medium hover:underline hover:text-https-blue" href="/en/index/">Track web security compliance</a></h2>
-				</div>
-		        <div class="flex-1">
-		            <ul class="list-reset flex justify-end text-base sm:text-lg font-normal">
-		                <li class="py-6 inline xl:hidden">
-		                    <a id="menu-btn" class="text-https-blue hover:text-black no-underline hover:underline" href="#">Menu</a>
-		                </li>
-		                 <li class="mr-8 py-6 hidden xl:flex">
-		                    <a class="text-https-blue hover:text-black no-underline hover:underline" href="/en/organizations/">Check compliance</a>
-		                </li>
-		                <li class="mr-8 py-6 hidden xl:flex">
-		                    <a class="text-https-blue hover:text-black no-underline hover:underline" href="/en/guidance/">Read guidance</a>
-		                </li>
-		                <li class="py-6 hidden xl:flex">
-		                    <a class="text-https-blue hover:text-black no-underline hover:underline" href="/en/help/">Get help</a>
-		                </li>
-		            </ul>
-		        </div>
-		    </div>
-		</nav>
-
-	     <nav id="menu-content" class="shadow-md"  aria-label="Menu for mobile">
-		    <ul class="list-reset ml-4 mr-2 mt-4 font-normal">
-		        <li class="{{ self.pageid_fr() | site_title(true) }} block py-4 border-b border-https-dark-gray sm:block md:hidden"><a tabindex="-1" class="text-xl text-https-blue no-underline hover:underline" href="/en/index/">Track web security compliance</a></li>
-		        <li class="block border-b border-https-dark-gray py-4"><a tabindex="-1" class="text-xl text-https-blue hover:text-black no-underline hover:underline" href="/en/organizations/">Check compliance</a></li>
-		        <li class="block py-4 border-b border-https-dark-gray"><a tabindex="-1" class="text-xl text-https-blue hover:text-black no-underline hover:underline" href="/en/guidance/">Read guidance</a></li>
-		        <li class="block py-4 border-b border-https-dark-gray"><a tabindex="-1" class="text-xl text-https-blue hover:text-black no-underline hover:underline" href="/en/help/">Get help</a></li>
-		        <li class="block py-4 border-b border-https-dark-gray sm:hidden"><a tabindex="-1" class="text-xl text-https-blue hover:text-black no-underline hover:underline" href="/fr/{{ self.pageid_fr() }}" lang="fr">Français</a></li>
-		    </ul>
-		</nav>
+	<div id="def-top"></div>
+	<!-- Write closure template -->
+	<script type="text/javascript">
+			var defTop = document.getElementById("def-top");
+			defTop.outerHTML = wet.builder.top({
+				lngLinks: [{
+					lang: "fr",
+					href: "{% block languageURL %}{% endblock languageURL %}",
+					text: "Français"
+				}],
+				breadcrumbs:[{
+					title: "Home",
+					href: "https://www.canada.ca/en.html"
+					},
+					{
+					 title: "About government",
+					 href: "https://www.canada.ca/en/government/system.html"
+					},
+					{
+					 title: "Digital Government",
+					 href: "https://www.canada.ca/en/government/system/digital-government.html"
+					},
+					{
+					 title: "Secure digital services",
+					 href: "https://www.canada.ca/en/government/system/digital-government/secure-digital-services.html"
+					},
+					{% block breadcrumb %}{% endblock breadcrumb %}
+				] ,
+				search: true,
+				siteMenu: true,
+				showPreContent: true
+			});
+	</script>
 
 
 
-	</header>
 
-	<main class="flex flex-auto">
+	<main role="main" property="mainContentOfPage" class="container" id="wb-cont">
 
-		{% block content %}{% endblock %}
+			{% block content %}{% endblock %}
 
+		<div id="def-preFooter"></div>
+			<!-- Write closure template -->
+			<script type="text/javascript">
+				var defPreFooter = document.getElementById("def-preFooter");
+				defPreFooter.outerHTML = wet.builder.preFooter({
+					dateModified: "{% block datemodified %}{% endblock datemodified %}",
+					showPostContent: true,
+					showFeedback: 'https://www.canada.ca/en/report-problem.html',
+
+					showShare: true
+				});
+			</script>
 	</main>
+ 	<div id="def-footer"></div>
+	<!-- Write closure template -->
+	<script type="text/javascript">
+			var defFooter = document.getElementById("def-footer");
+			defFooter.outerHTML = wet.builder.footer({
+				showFooter: true,
+				showFeatures: true,
+				exitScript:true,
+			    exitMsg:'You are about to leave a our site, do you wish to continue'
 
-	{% include 'includes/en/footer.html' %}
 
-<script src="/static/js/main.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
-<script src="/static/js/tables.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
+			});
+	</script>
+	<!-- Write closure template -->
+	<script type="text/javascript">
+			document.write(wet.builder.refFooter({
+			jqueryEnv:"external",
+			exitScript:true,
+			exitMsg:'You are about to leave a our site, do you wish to continue'
+			}));
+	</script>
+
+
+
+
+	<!-- Scripts  ================================================== -->
+
+
+	<script src="/static/js/vendor/d3.min.js"></script>
+	<script src="/static/js/vendor/querystring.js"></script>
+	<script src="/static/js/utils.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
+	<script type="text/javascript" src="/static/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="/static/Responsive-2.2.2/js/dataTables.responsive.min.js"></script>
+	<script src="/static/js/dataTables.downloads.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
+	<script src="/static/js/main.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
+	<script src="/static/js/tables.js?{{ now() | date("%Y%m%j%H%M%S") }}"></script>
+
+
+	<!-- Scripts  related to specific page -->
+
+	{% block pagerelatedscript %}{% endblock pagerelatedscript %}
+
 
 </body>
 </html>

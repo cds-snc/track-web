@@ -245,7 +245,13 @@ def register(app):
 
     @app.errorhandler(404)
     def page_not_found(error):
-        return render_template("404.html"), HTTPStatus.NOT_FOUND
+        path = request.path
+        if "fr" in path:
+            return render_template("/fr/404.html"), HTTPStatus.NOT_FOUND
+        else:
+            return render_template("/en/404.html"), HTTPStatus.NOT_FOUND
+
+
 
     @app.errorhandler(models.QueryError)
     def handle_invalid_usage(error):
