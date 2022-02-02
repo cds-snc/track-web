@@ -2,7 +2,7 @@ version: 2
 jobs:
   track_web:
     docker:
-      - image: "circleci/python:3.5.5"
+      - image: "cimg/python:3.6.9"
       - image: "mongo:3.6.2"
     steps:
       - checkout:
